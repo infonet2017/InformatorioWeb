@@ -13,5 +13,6 @@ namespace Informatorio.WebInformatorio.Data
             Posts = new List<Post>();
 
         }
+        
     }
 }
