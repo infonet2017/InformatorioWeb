@@ -20,15 +20,16 @@ namespace Informatorio.WebInformatorio.Business
         //add post to module
         //modify post 
         //search
-        public Post PublishPost()
+        public Post PublishPost() // esto no se si esta bien
         {
-            if (InfoDbContext.Posts == null)
+            if (InfoDb.Posts == null)
             {
                 throw new Exception();
             }
             else
             {
-                var item = InfoDb.Posts[InfoDbContext.Posts.Count - 1];
+                
+                var item = InfoDb.Posts[InfoDb.Posts.Count - 1];
                 return item;
             }
 

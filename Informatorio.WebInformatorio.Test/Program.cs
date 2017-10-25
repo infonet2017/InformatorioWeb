@@ -13,6 +13,10 @@ namespace Informatorio.WebInformatorio.Test
             for (int i = 0; i < 8; i++)
             {
                 pm.SavePost(i, "Titulaso", "esto es una publicacion loco", "profesor giraf", DateTime.Today);
+                Console.WriteLine(pm.PublishPost().Description);
+                Console.ReadLine();
+                
+                
             }
             pm.SavePost(1,"Titulaso", "esto es una publicacion loco", "profesor giraf", DateTime.Today);
             try
@@ -20,7 +24,7 @@ namespace Informatorio.WebInformatorio.Test
                 List<Post> allPosts = pm.getAllPosts();
                 foreach (var item in allPosts)
                 {
-                    Console.WriteLine(item.Id + " " +item.Description);
+                    Console.WriteLine(item.Id + " " + item.Description);
                     
                 }
             }
