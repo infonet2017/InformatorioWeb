@@ -14,7 +14,7 @@ namespace Informatorio.WebInformatorio.Business
         //search
         public void publishPost(string v1, DateTime today, string v2)
         {
-            throw new NotImplementedException();
+            //infodbcontext.posts.add(new Post("nombre", "fecha", "user");
         }
 
         public List<Post> getAllPosts()
