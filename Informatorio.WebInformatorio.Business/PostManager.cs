@@ -15,6 +15,7 @@ namespace Informatorio.WebInformatorio.Business
         public void publishPost(string v1, DateTime today, string v2)
         {
             //infodbcontext.posts.add(new Post("nombre", "fecha", "user");
+            ///jasljñkasdljkasfdljñksdljñksdflñjkasdflñjksdfa
         }
 
         public List<Post> getAllPosts()
