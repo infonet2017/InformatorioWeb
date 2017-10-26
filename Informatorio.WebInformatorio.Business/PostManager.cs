@@ -14,7 +14,7 @@ namespace Informatorio.WebInformatorio.Business
         {
             var posts = new Post(Id,Title, Description, Teacher, Day);
             InfoDb.Posts.Add(posts);
-            //podria ser un Return posts y hacemos save y publisher de una
+            //Para mi aca iria un return post y se haria el publish y el save de una
         }
         //delete post
         //add post to module
@@ -29,7 +29,7 @@ namespace Informatorio.WebInformatorio.Business
             else
             {
                 
-                var item = InfoDb.Posts[InfoDb.Posts.Count - 1];
+                var item = InfoDb.Posts[InfoDb.Posts.Count - 1]; // muestra la ultima publicación
                 return item;
             }
 

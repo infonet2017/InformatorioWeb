@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Informatorio.WebInformatorio.Data
 {
-    public class InfoDbContext
+    public class InfoDbContext 
     {
         public List<Post> Posts { get; set; }
 

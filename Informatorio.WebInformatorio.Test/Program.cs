@@ -12,13 +12,13 @@ namespace Informatorio.WebInformatorio.Test
             var pm = new PostManager();
             for (int i = 0; i < 8; i++)
             {
-                pm.SavePost(i, "Titulaso", "esto es una publicacion loco", "profesor giraf", DateTime.Today);
+                pm.SavePost(i,"title", "this is a publication", "theacher", DateTime.Today);
                 Console.WriteLine(pm.PublishPost().Description);
                 Console.ReadLine();
                 
                 
             }
-            pm.SavePost(1,"Titulaso", "esto es una publicacion loco", "profesor giraf", DateTime.Today);
+            pm.SavePost(1,"Title", "this is a publication", "teacher", DateTime.Today);
             try
             {
                 List<Post> allPosts = pm.getAllPosts();
