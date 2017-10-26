@@ -42,7 +42,10 @@ namespace Informatorio.WebInformatorio.Test
                 Console.ReadLine();
             }
             */
-
+            Console.WriteLine("here, i am testing the method DeletdPost");
+            int idPost = 6; //this number is only to test the method DeletePost
+            pm.DeletePost(idPost); //testing the method
+            Console.ReadKey();
         }
     }
 }

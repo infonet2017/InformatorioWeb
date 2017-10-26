@@ -13,8 +13,12 @@ namespace Informatorio.WebInformatorio.Data
         public string Teacher { get; set; }
         public DateTime DateTime { get; set; }
 
-        public Post(int Id  ,string Title, string Description, string Teacher, DateTime Day){
+        public Post()
+        {
+        }
 
+        public Post(int Id, string Title, string Description, string Teacher, DateTime Day)
+        {
             this.Id = Id; // este id cuando se implemente bd se va a hacer solo y hay que sacarlo de los constr
             this.Title = Title;
             this.Description = Description;
