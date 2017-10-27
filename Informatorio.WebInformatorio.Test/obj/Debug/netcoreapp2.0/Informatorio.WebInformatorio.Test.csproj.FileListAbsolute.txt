@@ -1,0 +1,15 @@
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Informatorio.WebInformatorio.Test\bin\Debug\netcoreapp2.0\Informatorio.WebInformatorio.Test.deps.json
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Informatorio.WebInformatorio.Test\bin\Debug\netcoreapp2.0\Informatorio.WebInformatorio.Test.runtimeconfig.json
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Informatorio.WebInformatorio.Test\bin\Debug\netcoreapp2.0\Informatorio.WebInformatorio.Test.runtimeconfig.dev.json
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Informatorio.WebInformatorio.Test\bin\Debug\netcoreapp2.0\Informatorio.WebInformatorio.Test.dll
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Informatorio.WebInformatorio.Test\bin\Debug\netcoreapp2.0\Informatorio.WebInformatorio.Test.pdb
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Informatorio.WebInformatorio.Test\bin\Debug\netcoreapp2.0\Informatorio.WebInformatorio.Business.dll
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Informatorio.WebInformatorio.Test\bin\Debug\netcoreapp2.0\Informatorio.WebInformatorio.Data.dll
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Informatorio.WebInformatorio.Test\bin\Debug\netcoreapp2.0\Informatorio.WebInformatorio.Business.pdb
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Informatorio.WebInformatorio.Test\bin\Debug\netcoreapp2.0\Informatorio.WebInformatorio.Data.pdb
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Informatorio.WebInformatorio.Test\obj\Debug\netcoreapp2.0\Informatorio.WebInformatorio.Test.csprojResolveAssemblyReference.cache
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Informatorio.WebInformatorio.Test\obj\Debug\netcoreapp2.0\Informatorio.WebInformatorio.Test.csproj.CoreCompileInputs.cache
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Informatorio.WebInformatorio.Test\obj\Debug\netcoreapp2.0\Informatorio.WebInformatorio.Test.AssemblyInfoInputs.cache
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Informatorio.WebInformatorio.Test\obj\Debug\netcoreapp2.0\Informatorio.WebInformatorio.Test.AssemblyInfo.cs
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Informatorio.WebInformatorio.Test\obj\Debug\netcoreapp2.0\Informatorio.WebInformatorio.Test.dll
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Informatorio.WebInformatorio.Test\obj\Debug\netcoreapp2.0\Informatorio.WebInformatorio.Test.pdb

@@ -23,7 +23,7 @@ namespace Informatorio.WebInformatorio.Business
             //Para mi aca iria un return post y se haria el publish y el save de una
         }
 
-        public Post PublishPost() // esto no se si esta bien
+        public string PublishPost() // esto no se si esta bien
         {
             if (InfoDb.Posts == null)
             {
@@ -32,7 +32,27 @@ namespace Informatorio.WebInformatorio.Business
             else
             {
                 var item = InfoDb.Posts[InfoDb.Posts.Count - 1]; // muestra la ultima publicación
-                return item;
+                var text = "";
+                return ($"{text} {item.Title}\n {item.DateTime.ToString()} \n{item.Teacher}\n {item.Description}\n");
+            }
+        }
+
+        public string PublishWall()// Muestra todos los post // Ver muro
+        {
+            var text = "";
+
+            if (InfoDb.Posts == null)
+            {
+                throw new Exception();
+            }
+            else
+            {
+                foreach (var item in InfoDb.Posts)
+                {
+                    
+                    text = text + ($"{item.Id}\n {item.Title}\n {item.DateTime.ToString()} \n{item.Teacher}\n {item.Description}\n\n\n");
+                }
+                return text;
             }
         }
 
@@ -48,28 +68,17 @@ namespace Informatorio.WebInformatorio.Business
             }
         }
 
-        public void DeletePost(int idPost)
+        public Boolean DeletePost(int idPost)
         {
             bool deleted = false;
             try
-            {
-                var pm = new PostManager();
+            { 
 
-                //<remove>
-                for (int i = 0; i < 8; i++) //this "for" is only to verify that the posts are added and only the number 6 is deleted.
-                {
-                    pm.SavePost(i, "title", "this is a publication", "theacher", DateTime.Today);
-                    Console.WriteLine(pm.PublishPost().Id + " " + pm.PublishPost().Description);
-                } //if run ok, these 7 lines must removed 
-                //</remove>
-
-                List<Post> allPosts = pm.getAllPosts(); //charge all post to search "the post" to remove
-
-                foreach (Post currentPost in allPosts) //cycle through all posts searching for the entry id
+                foreach (Post currentPost in InfoDb.Posts) //cycle through all posts searching for the entry id
                 {
                     if (currentPost.Id == idPost) // found the post :)
                     {
-                        allPosts.Remove(currentPost); //remove that
+                        InfoDb.Posts.Remove(currentPost); //remove that
                         deleted = true;
                         break;
                     }
@@ -77,24 +86,17 @@ namespace Informatorio.WebInformatorio.Business
 
                 if (deleted)
                 {
-                    Console.WriteLine("The post with ID " + idPost + " has been successfully removed");
-                    //<remove>
-                    foreach (var item in allPosts)
-                    {
-                        Console.WriteLine(item.Id + " " + item.Description);
-
-                    }
-                    //</remove>
+                    return true;
                 }
                 else
                 {
-                    Console.WriteLine("Doesn't possible eliminate the post");
+                    return false;
                 }
             }
             catch (Exception)
             {
                 //throw new Exception();
-                Console.WriteLine("You have a problem");
+                return false;
             }
 
         }

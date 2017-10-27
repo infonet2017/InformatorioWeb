@@ -10,41 +10,28 @@ namespace Informatorio.WebInformatorio.Test
         static void Main(string[] args)
         {
             var pm = new PostManager();
+
+            Console.WriteLine("Add 7 post");
             for (int i = 0; i < 8; i++)
             {
                 pm.SavePost(i,"title", "this is a publication", "theacher", DateTime.Today);
-                Console.WriteLine(pm.PublishPost().Description);
-                Console.ReadLine();
-                
-                
+                Console.WriteLine($"Creating the post Number {i}");
+               
             }
-            pm.SavePost(1,"Title", "this is a publication", "teacher", DateTime.Today);
-            try
-            {
-                List<Post> allPosts = pm.getAllPosts();
-                foreach (var item in allPosts)
-                {
-                    Console.WriteLine(item.Id + " " + item.Description);
-                    
-                }
-            }
-            catch (Exception)
-            {
 
-                Console.WriteLine("something wrong with your data. Are you sure you are not storing the same pokemon twice?");
-                Console.ReadLine();
-            }
-            Console.ReadLine();
-            /*List<Post> allPosts = pm.getAllPosts();
-            foreach (var item in allPosts)
-            {
-                Console.WriteLine(item.Description);
-                Console.ReadLine();
-            }
-            */
-            Console.WriteLine("here, i am testing the method DeletdPost");
-            int idPost = 6; //this number is only to test the method DeletePost
-            pm.DeletePost(idPost); //testing the method
+
+            Console.WriteLine("Showing the Post Wall");
+
+            Console.WriteLine(pm.PublishWall());
+
+
+            Console.WriteLine("Testing the delete module");
+            Console.WriteLine($"Ingrese ID del post a eliminar");
+            Int32.TryParse(Console.ReadLine(), out var id);
+            pm.DeletePost(id);
+
+            Console.WriteLine(pm.PublishWall());
+
             Console.ReadKey();
         }
     }
