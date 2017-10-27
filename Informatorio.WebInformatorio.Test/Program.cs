@@ -14,9 +14,9 @@ namespace Informatorio.WebInformatorio.Test
             Console.WriteLine("Add 7 post");
             for (int i = 0; i < 8; i++)
             {
-                pm.SavePost(i,"title", "this is a publication", "theacher", DateTime.Today);
+                pm.SavePost(i, "title", "this is a publication", "theacher", DateTime.Today);
                 Console.WriteLine($"Creating the post Number {i}");
-               
+
             }
 
 
@@ -25,6 +25,11 @@ namespace Informatorio.WebInformatorio.Test
             Console.WriteLine(pm.PublishWall());
 
 
+            Console.WriteLine("You want to Modify a Comment");
+            Int32.TryParse(Console.ReadLine(), out var id);
+            pm.ModifyPost(Id);
+            Console.WriteLine(pm.PublishWall());
+
             Console.WriteLine("Testing the delete module");
             Console.WriteLine($"Ingrese ID del post a eliminar");
             Int32.TryParse(Console.ReadLine(), out var id);
@@ -32,6 +37,9 @@ namespace Informatorio.WebInformatorio.Test
 
             Console.WriteLine(pm.PublishWall());
 
+
+
+            Console.Writeline();
             Console.ReadKey();
         }
     }

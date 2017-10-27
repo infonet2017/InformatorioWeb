@@ -68,6 +68,29 @@ namespace Informatorio.WebInformatorio.Business
             }
         }
 
+        public void ModifyPost(int idPost)  // Modificar
+        {
+            string Modify = "modify" + Post;
+
+            foreach (Post currentPost in InfoDb.Posts) { 
+                posts = new Posts(string.format("Update Post set Title ='{0}', Description = '{1}', Teacher='{2}', Day='{3}' where IdPost={4}" +
+                 pPost.Title, pPost.Description, pPost.Teacher, pPost.Day, pPost.Id));  //Posts = new List<Post>();
+                                                                                        //posts = new Post(Title, Description, Teacher, Day);
+                int amount = posts.ExecuteNonQuery; //int amount = posts.InfoDbContext;
+                if (amount > 0)
+                {
+                Console.WriteLine("Modify Dat");
+                return true;
+                }
+                else
+                {
+                Console.WriteLine("Error in modifying data");
+                return false;
+                }
+            }
+
+        }
+
         public Boolean DeletePost(int idPost)
         {
             bool deleted = false;
