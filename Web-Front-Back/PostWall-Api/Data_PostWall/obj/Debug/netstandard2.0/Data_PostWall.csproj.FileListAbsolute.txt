@@ -1,0 +1,9 @@
+C:\Users\Eve Bejarano\source\repos\PostWall\Data_PostWall\bin\Debug\netstandard2.0\Data_PostWall.deps.json
+C:\Users\Eve Bejarano\source\repos\PostWall\Data_PostWall\bin\Debug\netstandard2.0\Data_PostWall.dll
+C:\Users\Eve Bejarano\source\repos\PostWall\Data_PostWall\bin\Debug\netstandard2.0\Data_PostWall.pdb
+C:\Users\Eve Bejarano\source\repos\PostWall\Data_PostWall\obj\Debug\netstandard2.0\Data_PostWall.csprojResolveAssemblyReference.cache
+C:\Users\Eve Bejarano\source\repos\PostWall\Data_PostWall\obj\Debug\netstandard2.0\Data_PostWall.csproj.CoreCompileInputs.cache
+C:\Users\Eve Bejarano\source\repos\PostWall\Data_PostWall\obj\Debug\netstandard2.0\Data_PostWall.AssemblyInfoInputs.cache
+C:\Users\Eve Bejarano\source\repos\PostWall\Data_PostWall\obj\Debug\netstandard2.0\Data_PostWall.AssemblyInfo.cs
+C:\Users\Eve Bejarano\source\repos\PostWall\Data_PostWall\obj\Debug\netstandard2.0\Data_PostWall.dll
+C:\Users\Eve Bejarano\source\repos\PostWall\Data_PostWall\obj\Debug\netstandard2.0\Data_PostWall.pdb

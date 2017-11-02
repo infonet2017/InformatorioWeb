@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Angular JS Wall System with Multiple Operations</title>
+		<script src="js/angular.js"></script>
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.js"></script>
+		Profe le cambie el archivo de angular, baje otro archivo (que comento que ocupemos) de la misma version 1.2 sin el min-->
+		<script src="js/script.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+	</head>
+	<body>
+		<div id="container" ng-app="myApp" ng-controller="myWall">
+			<table>
+				<tr>
+					<td width="80%" valign="top">
+						<div id="wallContainer">
+							<h1>COMENTARIOS</h1>
+							<form>
+								<textarea ng-model="feedValue" id="updateBox"></textarea>
+								<input type="submit" value="Post" id="wallPost" ng-click="updateFeed()" />
+							</form>
+							<div id="wallFeed">
+								<div class="feedBody" ng-repeat="data in updatesData">
+									<img ng-src="{{data.profile_pic}}" class="feedImg" />
+									<div class="feedText">
+										<b>{{data.name}}</b>
+										<a href="#delete{{data.update_id}}" class="feedDelete" ng-click="deleteFeed(data.update_id, $index)">X</a>
+										<span ng-bind-html="data.user_update | textToLink"></span>
+									</div>
+									<div class="feedLinks">
+										<a href="#{{data.update_id}}" ng-click="commentToggle($index)" class="commentLink">Comment</a>
+									</div>
+									<div ng-repeat="commentData in data.comments" class="feedCommentGrid">
+										<img ng-src="{{commentData.profile_pic}}" class="commentImg" />
+										<div class="commentText">
+											<b>{{commentData.name}}</b>
+											<a href="#{{data.update_id}}{{$index}}" ng-click="deleteComment($index, $parent.$index, data.update_id, commentData.com_id)" class="commetDelete">X</a>
+											<div ng-bind-html="commentData.comment | textToLink"></div>
+										</div>
+									</div>
+									<div class="feedCommentForm" ng-show="commentForm[$index]">
+										<textarea class="commentInput" ng-model="commentSubmitData.commentValue" id="commenInput{{$index}}"></textarea>
+										<input type="submit" value="Comment" ng-click="updateComment(commentSubmitData, $index, data.update_id)" class="commentSubmit" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+					<td valign="top">
+						<div style="margin-top:500px">
+							
+							<br />
+							<br />
+							
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		
+		</body>
+	</html>
