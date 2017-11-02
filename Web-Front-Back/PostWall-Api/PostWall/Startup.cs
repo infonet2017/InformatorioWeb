@@ -19,6 +19,7 @@ namespace PostWall
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddMvc();
 
             var connection = @"Server=(localdb)\mssqllocaldb;Database=InfoDb;Trusted_Connection=True;";
@@ -39,7 +40,13 @@ namespace PostWall
             }
 
             app.UseStaticFiles();
-
+            app.UseCors(
+                options => options.WithOrigins("*")
+                .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+   
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
