@@ -92,7 +92,16 @@ namespace PostWall.APIs
             }
 
             _context.Posts.Add(post);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            
 
             return CreatedAtAction("GetPost", new { id = post.Id }, post);
         }

@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp" >
 	<head>
 		<title>INFORMATORIO</title>
 		<link rel="shortcut icon" href="img\logo.jpg">
-		<script src="js/angular.js"></script>
-		<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.js"></script>
-		Profe le cambie el archivo de angular, baje otro archivo (que comento que ocupemos) de la misma version 1.2 sin el min-->
-		<script src="js/script.js"></script>
+	
 		<script
 		  src="https://code.jquery.com/jquery-3.2.1.js"
 		  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
@@ -16,119 +13,22 @@
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	</head>
 	<body>
-		<div id="container" ng-app="myApp" ng-controller="myWall">
+		<div id="container" >
 
-		<div class="col-md-offset-3 col-md-6">
-			<div class="form-group">
-			  <label for="usr">Titulo</label>
-			  <input type="text" class="form-control" id="usr" ng-model="currentPost.Title">
-			</div>
-			<div class="form-group">
-			  <label for="pwd">Comentario</label>
-			  <textarea class="form-control" rows="5" id="comment" ng-model="currentPost.Description"></textarea>
-			</div>
-			<div class="form-group">
-				<button class="btn btn-primary" ng-click="updateFeedLocal()">Post</button>
-			</div>
-		</div>
-
-
-		<div class="col-md-offset-3 col-md-6" ng-repeat="post in posts track by $index"">
-		  <div class="col-md-12">
-		    <div class="thumbnail">
-		      <div class="caption">
-		        <h3>{{post.Title}}</h3>
-		        <p>{{post.Description}}</p>
-		        <p style="font-size: 12px; font-weight: bold">{{post.DateTime}}</p>
-		        <button class="btn btn-primary" ng-click="turnToEditFeedLocal($index)">Editar</button>
-		        <button class="btn btn-danger" ng-click="deleteFeedLocal($index)">Eliminar</button>
-
-		      </div>
-		    </div>
-		  </div>
-		</div>
-
-
-		<div class="modal fade" tabindex="-1" role="dialog">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h4 class="modal-title">Editar Comentario</h4>
-			      </div>
-			      <div class="modal-body">
-			          <div class="form-group">
-						  <label for="usr">Title:</label>
-						  <input type="text" class="form-control" id="usr" ng-model="editPost.Title">
-						</div>
-						<div class="form-group">
-						  <label for="pwd">Comentario:</label>
-						  <textarea class="form-control" rows="5" id="comment" ng-model="editPost.Description"></textarea>
-						</div>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-			        <button type="button" class="btn btn-primary" ng-click="editFeedLocal(editPost.index)">Confirmar</button>
-			      </div>
-			    </div><!-- /.modal-content -->
-			  </div><!-- /.modal-dialog -->
-			</div><!-- /.modal -->
-
-
-		
+			<div ng-view></div>
 
 
 
-
-			<!-- <table>
-				<tr>
-					<td width="80%" valign="top">
-						<div id="wallContainer">
-							<h1>COMENTARIOS</h1>
-							<div>
-								<input type="text" ng-model="currentPost.Title" />
-								<textarea ng-model="currentPost.Description" id="updateBox"></textarea>
-								<button  ng-click="updateFeedLocal()" >Post<button/>
-							</div>
-							<div id="wallFeed">
-								<div class="feedBody" ng-repeat="post in posts">
-									<img ng-src="{{data.profile_pic}}" class="feedImg" />
-									<div class="feedText">
-										<b>{{post.Title}}</b>
-										<a href="#delete{{data.update_id}}" class="feedDelete" ng-click="deleteFeed(data.update_id, $index)">X</a>
-										<span ng-bind-html="data.user_update | textToLink"></span>
-									</div>
-									<div class="feedLinks">
-										<a href="#{{data.update_id}}" ng-click="commentToggle($index)" class="commentLink">Comment</a>
-									</div>
-									<div ng-repeat="commentData in data.comments" class="feedCommentGrid">
-										<img ng-src="{{commentData.profile_pic}}" class="commentImg" />
-										<div class="commentText">
-											<b>{{post.Description}}</b>
-											<a href="#{{data.update_id}}{{$index}}" ng-click="deleteComment($index, $parent.$index, data.update_id, commentData.com_id)" class="commetDelete">X</a>
-											<div ng-bind-html="commentData.comment | textToLink"></div>
-										</div>
-									</div>
-									<div class="feedCommentForm" ng-show="commentForm[$index]">
-										<textarea class="commentInput" ng-model="commentSubmitData.commentValue" id="commenInput{{$index}}"></textarea>
-										<input type="submit" value="Comment" ng-click="updateComment(commentSubmitData, $index, data.update_id)" class="commentSubmit" />
-									</div>
-								</div>
-							</div>
-						</div>
-					</td>
-					<td valign="top">
-						<div style="margin-top:500px">
-							
-							<br />
-							<br />
-							
-						</div>
-					</td>
-				</tr>
-			</table> -->
 		</div>
 		
 		
 		</body>
+
+		<script src="js/angular.js"></script>
+		<script src="js/angular-route.js"></script>
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.js"></script>
+		Profe le cambie el archivo de angular, baje otro archivo (que comento que ocupemos) de la misma version 1.2 sin el min-->
+		<script src="js/app.js"></script>
+		<script src="js/wall/myWallCtrlr.js"></script>
+		<script src="js/wall/wallService.js"></script>
 	</html>
