@@ -27,7 +27,7 @@ myApp.controller('MyWallCtrlr', function ($scope, $http, WallService) {
         var newPost = $scope.currentPost;
         WallService.savePost(newPost)
         .then(function(response){
-            
+            debugger
             $scope.posts.push(newPost);
         })
         .catch(function(err){

@@ -2,8 +2,6 @@ angular.module("myApp")
     .factory('WallService', function ($http) {
         var apiUrl = "http://localhost:59294/"
         return {
-
-
             getPosts: function () {
 
                 return $http.get(apiUrl + 'api/posts');

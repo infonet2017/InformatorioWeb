@@ -3,32 +3,106 @@
 	<head>
 		<title>INFORMATORIO</title>
 		<link rel="shortcut icon" href="img\logo.jpg">
-	
-		<script
-		  src="https://code.jquery.com/jquery-3.2.1.js"
-		  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-		  crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-grid.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-reboot.css">
 		<!-- <link rel="stylesheet" type="text/css" href="css/style.css" /> -->
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<!--<link rel="stylesheet" type="text/css" href="/../node_modules/bootstrap/dist/css/bootstrap.css" />-->
+	
 	</head>
-	<body>
-		<div id="container" >
-
-			<div ng-view></div>
+	<body class="bg-inf-gray">
 
 
+	<!-- BARRA DE NAVEGACIÓN -->
 
+	<div class="bg-inf-blue"> <!-- Esto es necesario para poner la navbar dentro de un contaner sin notar el padding -->
+		<div class="container">
+			<nav class="navbar bg-inf-blue navbar-expand-lg">
+				<a class="navbar-brand" href="index.html">
+				<img src="Images/Logotipo-Informatorio.svg" class="align-top" alt="Cinque Terre" height="25">
+				</a>
+				<div class="collapse navbar-collapse justify-content-end" id="responsivo">  
+					<div class="row">
+						<div class="col-12">
+							<ul class="nav navbar-nav ml-auto  mt-2 mt-md-0 enlace">
+								<li><a class="nav-item nav-link text-white" href="#">¿Qué es el informatorio?</a></li>
+								<li><a class="nav-item nav-link text-white" href="#">Cursos</a></li>
+								<li><a class="nav-item nav-link text-white" href="#">Proyectos</a></li>
+								<li><a class="nav-item nav-link text-white" href="#">Galería</a></li>
+								<li><a class="nav-item nav-link text-white" href="#">Blog</a></li>
+								<li><a class="nav-item nav-link text-white" href="#">INICIAR SESIÓN</a></li>		
+							</ul>	
+						</div>
+					</div>	
+		    	</div>  
+		    </nav>
+	    </div>
+    </div>
+
+	<!-- CONTAINER -->
+
+	<div class="container">
+		<div class="row">
+
+			<!-- BARRA LATERAL -->
+
+			<div class="col-2 bg-white shad-inf p-0">
+				<div class="row p-0 m-3">
+					<div class="col-12 btn btn-sm btn-inf mb-3">BOTONASO</div>
+					<p class="h6">Los títulos van en h6</p>
+					<p><small>Los demás elementos como tel texto van en un "p" común como el que estás viendo, pero con la etiqueta small</small></p>
+					<ul class="list-unstyled col-12 p-0">
+						<li class="h6">Título</li>
+						<li><small>-Apartado 1</small></li>
+						<li><small>-Apartado 2</small></li>
+						<li><small>-Apartado 3</small></li>
+						<li><small>-Apartado 4</small></li>
+					</ul>
+					<ul class="list-unstyled col-12 p-0">
+						<li class="h6">Título</li>
+						<li><small>-Apartado 1</small></li>
+						<li><small>-Apartado 2</small></li>
+						<li><small>-Apartado 3</small></li>
+						<li><small>-Apartado 4</small></li>
+					</ul>
+				</div>
+			</div>
+			
+				
+			<!-- CONTENIDO PRINCIPAL -->
+
+			
+
+			<div class="col-10 p-0">
+				<div class="col-12 p-0">
+					<div class="card-inf-gray ml-3 mb-3">
+						<div class="card-header bg-inf-blue">
+							<ul class="nav nav-tabs card-header-tabs">
+								<li class="nav-item"><a class="nav-link active-inf " href="#">Solapa 1</a></li>
+								<li class="nav-item"><a class="nav-link inactive-inf text-dark" href="#">Solapa 2</a></li>
+								<li class="nav-item"><a class="nav-link inactive-inf text-dark" href="#">Solapa 3</a></li>
+							</ul>
+						</div>
+						<div class="card-body-inf pre">
+							<div ng-view></div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		
-		
-		</body>
+	</div>
+	
+	</body>
 
-		<script src="js/angular.js"></script>
-		<script src="js/angular-route.js"></script>
+		<script src="/../node_modules/angular/angular.js"></script>
+		<script src="/../node_modules/angular-route/angular-route.js"></script>	
+		<script src="/../node_modules/jquery/dist/jquery.js"></script>		
+		<script src="/../node_modules/bootstrap/dist/js/bootstrap.js"></script>	
+		
+		
 		<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.js"></script>
 		Profe le cambie el archivo de angular, baje otro archivo (que comento que ocupemos) de la misma version 1.2 sin el min-->
-		<script src="js/app.js"></script>
-		<script src="js/wall/myWallCtrlr.js"></script>
-		<script src="js/wall/wallService.js"></script>
+		<script src="app/app.js"></script>
+		<script src="app/wall/myWallCtrlr.js"></script>
+		<script src="app/wall/wallService.js"></script>
 	</html>
