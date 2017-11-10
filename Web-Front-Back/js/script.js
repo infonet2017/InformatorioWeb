@@ -1,3 +1,5 @@
+var apiUrl = "http://localhost:59294/";
+
 angular.module("myApp", []);
 var app =angular.module("myApp");
 
@@ -12,8 +14,8 @@ app.filter('textToLink', function ($sce) {
 
 app.controller('myWall', ['$scope', '$http', function ($scope, $http) {
                 document.getElementById('updateBox').focus();
-                $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-                $http({
+               // $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+          /**      $http({
                     method: "POST",
                     url: "http://localhost:5000/api/posts/",
                     data : {
@@ -27,6 +29,7 @@ app.controller('myWall', ['$scope', '$http', function ($scope, $http) {
                 }).then(function (response) {
                     $scope.updatesData = response.data.updates;
                 });
+                **/
                 $scope.commentForm = {};
                 $scope.commentToggle = function (index) {
                     $scope.commentForm[index] = !$scope.commentForm[index];
@@ -36,23 +39,24 @@ app.controller('myWall', ['$scope', '$http', function ($scope, $http) {
                 }
                 $scope.updateFeed = function () {
                     if ($scope.feedValue) {
+                       
                         $http({
                             method: "POST",
-                            url: "http://localhost:5000/api/posts/",
+                            url: apiUrl+ "api/posts/",
                             data:{
-                                Title: string,
-                                Description : string,
-                                Teacher : string,
-                                DateTime: DateTime,
+                                "Title": "holis soy un titulo",
+                                "Description" : $scope.feedValue,
+                                "Teacher" : "holis soy un ticher"
+                               // "DateTime": "soy una fecha"
                             } /*'user_update=' + $scope.feedValue*/
                         }).then(function (response) {
                             $scope.updatesData.unshift(response.data.updates[0]);
                             $scope.feedValue = "";
                             document.getElementById('updateBox').focus();
                         })
-                        /* .catch(function(error){ 
+                        .catch(function(error){ 
                              console.log(error)
-                         }); COMENTE EL COD QUE ME DICTO*/
+                         }); 
                     }
                 }
                 $scope.deleteFeed = function (ID, index) {
