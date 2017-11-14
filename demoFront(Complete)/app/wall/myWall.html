@@ -1,3 +1,4 @@
+
 <div class="col-md-offset-3 col-md-6">
     <div class="form-group">
       <label for="usr">Titulo</label>
@@ -21,7 +22,7 @@
         <p>{{post.description}}</p>
         <p style="font-size: 12px; font-weight: bold">{{post.dateTime}}</p>
         <button class="btn btn-primary" ng-click="turnToEditFeedLocal($index)">Editar</button>
-        <button class="btn btn-danger" ng-click="deletePostID(post)">Eliminar</button>
+        <button class="btn btn-danger" ng-click="deletePostID(post, $index)">Eliminar</button>
 
       </div>
     </div>
@@ -48,11 +49,9 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary" ng-click="editFeedLocal(editPost.index)">Confirmar</button>
+            <button type="button" class="btn btn-primary" ng-click="editFeedLocal()">Confirmar</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
-
 
