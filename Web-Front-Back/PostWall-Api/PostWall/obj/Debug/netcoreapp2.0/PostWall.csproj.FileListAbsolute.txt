@@ -1,0 +1,11 @@
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Web-Front-Back\PostWall-Api\PostWall\bin\Debug\netcoreapp2.0\PostWall.deps.json
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Web-Front-Back\PostWall-Api\PostWall\bin\Debug\netcoreapp2.0\PostWall.runtimeconfig.json
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Web-Front-Back\PostWall-Api\PostWall\bin\Debug\netcoreapp2.0\PostWall.runtimeconfig.dev.json
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Web-Front-Back\PostWall-Api\PostWall\bin\Debug\netcoreapp2.0\PostWall.dll
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Web-Front-Back\PostWall-Api\PostWall\bin\Debug\netcoreapp2.0\PostWall.pdb
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Web-Front-Back\PostWall-Api\PostWall\obj\Debug\netcoreapp2.0\PostWall.csprojResolveAssemblyReference.cache
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Web-Front-Back\PostWall-Api\PostWall\obj\Debug\netcoreapp2.0\PostWall.csproj.CoreCompileInputs.cache
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Web-Front-Back\PostWall-Api\PostWall\obj\Debug\netcoreapp2.0\PostWall.AssemblyInfoInputs.cache
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Web-Front-Back\PostWall-Api\PostWall\obj\Debug\netcoreapp2.0\PostWall.AssemblyInfo.cs
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Web-Front-Back\PostWall-Api\PostWall\obj\Debug\netcoreapp2.0\PostWall.dll
+C:\Users\Eve Bejarano\Documents\Informatorio\Net\InformatorioWeb\Web-Front-Back\PostWall-Api\PostWall\obj\Debug\netcoreapp2.0\PostWall.pdb
