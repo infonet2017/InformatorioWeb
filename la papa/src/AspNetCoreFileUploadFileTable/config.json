@@ -1,0 +1,8 @@
+﻿{
+  "ApplicationConfiguration": {
+    //"SQLConnectionString": "Data Source=.\\SQLEXPRESS;Initial Catalog=WebApiFileTable;Integrated Security=True;",
+    // "SQLConnectionString": "server=cdbr-azure-south-b.cloudapp.net;port=3306;database=info2017;user=bc024701276aa4;password=f6faf138;",
+    "SQLConnectionString": "server=localhost;port=3306;database=WebApiFileTable;user=root;",
+    "ServerUploadFolder": "./files"
+  }
+}
