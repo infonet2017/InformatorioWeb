@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProyectoNET_LocalDB.Models;
 using Microsoft.AspNetCore.Routing;
+using ProyectoNET_LocalDB.Models.RestModels;
+using Newtonsoft.Json;
+using System.IO;
+using RestSharp;
 
 namespace ProyectoNET_LocalDB.Controllers
 {
@@ -22,7 +26,20 @@ namespace ProyectoNET_LocalDB.Controllers
         // GET: Modules
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Modules.ToListAsync());
+
+
+
+            var restResult = LoadFakeResponse();//cargo el jotason desde un archivo para simular la request a la api rancia del equipo de django
+            var modules = new List<Module>();
+            foreach (var respModule in restResult.Modulos)
+            {
+                var newMod = new Module();
+                newMod.ID = respModule.IDModulo;
+                newMod.Name = respModule.Descripcion;
+                modules.Add(newMod);
+            }
+
+            return View(modules);
         }
 
         // GET: Modules/Details/5
@@ -79,6 +96,32 @@ namespace ProyectoNET_LocalDB.Controllers
             return View(@module);
         }
 
+        public ModuleResponse LoadFakeResponse()
+        {
+            ModuleResponse fakeResponse;
+            using (StreamReader r = new StreamReader("fakeResponse.json"))
+            {
+                string json = r.ReadToEnd();
+                
+                fakeResponse = JsonConvert.DeserializeObject<ModuleResponse>(json);
+            }
+            return fakeResponse;
+        }
 
+        //public ModuleResponse LoadModules(int idAlumno, int idCurso)
+        //{
+        //    var client = new RestClient("http://example.com");
+        //    // client.Authenticator = new HttpBasicAuthenticator(username, password);
+
+        //    var request = new RestRequest("modulo/", Method.GET);
+        //    request.AddParameter("IDAlumno", idAlumno); // adds to POST or URL querystring based on Method
+        //    request.AddParameter("IDCurso", idCurso);
+        //    // or automatically deserialize result
+        //    // return content type is sniffed but can be explicitly set via RestClient.AddHandler();
+        //    RestResponse<ModuleResponse> response2 = client.Execute<ModuleResponse>(request);
+        //   // var name = response2.Data.Name;
+        //    return algo
+
+        //}
     }
 }
