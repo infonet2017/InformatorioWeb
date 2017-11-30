@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\..\..\.nuget\packages\mysql.data\6.10.4\contentFiles\any\netstandard1.3\app.config.transform" Link="app.config.transform">
+      <Private>False</Private>
+      <NuGetPackageVersion>6.10.4</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <NuGetPackageId>MySql.Data</NuGetPackageId>
+    </Content>
+    <Content Include="..\..\..\..\.nuget\packages\mysql.data\6.10.4\contentFiles\any\netstandard1.3\web.config.transform" Link="web.config.transform">
+      <Private>False</Private>
+      <NuGetPackageVersion>6.10.4</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <NuGetPackageId>MySql.Data</NuGetPackageId>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="runtimeconfig.template.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Files\" />
+  </ItemGroup>
+
+</Project>

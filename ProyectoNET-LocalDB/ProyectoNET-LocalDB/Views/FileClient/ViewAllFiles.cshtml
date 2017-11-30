@@ -1,0 +1,29 @@
+﻿@model ProyectoNET_LocalDB.Models.AllUploadedFiles
+
+
+
+
+<fieldset>
+    <legend style="padding-top:10px; padding-bottom: 10px;">Uploaded Files</legend>
+
+    <div class="col-xs-12" style="padding: 10px;">
+        <div class="col-xs-4"><b>Filename</b></div>
+        <div class="col-xs-7"><b>Description</b></div>
+    </div>
+
+    <hr/>
+
+    @foreach (var item in Model.FileShortDescriptions)
+    {
+        <div class="col-xs-12" style="padding: 10px;">
+            <div class="col-xs-4">
+                <a asp-action="download" asp-route-id="@item.Id">@item.Name</a>
+        </div>
+            <span class="col-xs-5" name="Description" id="Description" >  @item.Description</span>
+
+        </div>
+    }
+
+</fieldset>
+
+
