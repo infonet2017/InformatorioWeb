@@ -23,7 +23,7 @@ namespace ProyectoNET_LocalDB.Controllers
     // GET: Posts/Module
     public async Task<IActionResult> Index(int Module)
         {
-
+            var Modulo = _context.ActualModules.FirstOrDefault();
             List<Post> post = await _context.Posts.Where(m => m.Module.ID == Module).ToListAsync();
             return View(post);
         }
@@ -36,8 +36,7 @@ namespace ProyectoNET_LocalDB.Controllers
                 return NotFound();
             }
 
-            var post = await _context.Posts
-                .SingleOrDefaultAsync(m => m.Id == id);
+            var post = await _context.Posts.SingleOrDefaultAsync(m => m.Id == id);
             if (post == null)
             {
                 return NotFound();

@@ -15,6 +15,7 @@ namespace ProyectoNET_LocalDB.Models
         
 
 
+
         public InfoDbContext(DbContextOptions<InfoDbContext> options)
             : base(options)
         {

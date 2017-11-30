@@ -30,7 +30,7 @@ namespace ProyectoNET_LocalDB
 
             services.AddMvc();
 
-            services.AddScoped<IFileRepository, FileRepository>();
+            services.AddScoped<FileRepository, FileRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,7 +52,7 @@ namespace ProyectoNET_LocalDB
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=FileClient}/{action=Index}/{id?}");
+                    template: "{controller=Modules}/{action=Index}/{id?}");
             });
         }
     }

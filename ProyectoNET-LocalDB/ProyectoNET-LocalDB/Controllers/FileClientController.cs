@@ -7,28 +7,30 @@ using System.IO;
 using System.Net.Http.Headers;
 using ProyectoNET_LocalDB.Extra_Models;
 using ProyectoNET_LocalDB.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProyectoNET_LocalDB.Controllers
 {
     public class FileClientController : Controller
     {
-        private readonly IFileRepository _fileRepository;
-
+        private readonly FileRepository _fileRepository;
+        private readonly InfoDbContext _context;
         private string pathFolder = "./Files";
 
-        public FileClientController(IFileRepository fileRepository)
+        public FileClientController(FileRepository fileRepository, InfoDbContext context)
         {
             _fileRepository = fileRepository;
+            _context = context;
         }
 
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            ViewBag.Title = "Index Page";
-
-            return View();
+            var Modulo = _context.ActualModules.FirstOrDefault();
+            List<FileDescription> Files = await _context.FileDescriptions.Where(m => m.Modulo.ID == Modulo.ActualModulo).ToListAsync();
+            return View(Files);
         }
 
-        public ActionResult Client()
+        public ActionResult AgregarArchivos()
         {
             ViewBag.Title = "Cargar Archivo";
 
@@ -36,20 +38,17 @@ namespace ProyectoNET_LocalDB.Controllers
         }
         
 
+
         /// <summary>
         /// Just a test method to view all files.
         /// </summary>
-        public ActionResult ViewAllFiles()
-        {
-            var model = new AllUploadedFiles {FileShortDescriptions = _fileRepository.GetAllFiles().ToList()};
-            return View(model);
-        }
+
 
         [Route("download/{id}")]
         [HttpGet]
         public FileStreamResult Download(int id)
         {
-            var fileDescription = _fileRepository.GetFileDescription(id);
+            FileDescription fileDescription = _context.FileDescriptions.Single(m => m.Id == id);
 
             var path = pathFolder + "\\" + fileDescription.FileName;
             var stream = new FileStream(path, FileMode.Open);
@@ -63,37 +62,44 @@ namespace ProyectoNET_LocalDB.Controllers
         {
             var names = new List<string>();
             var contentTypes = new List<string>();
-            if (ModelState.IsValid)
+            if (fileDescriptionShort.File != null)
             {
-                // http://www.mikesdotnetting.com/article/288/asp-net-5-uploading-files-with-asp-net-mvc-6
-                // http://dotnetthoughts.net/file-upload-in-asp-net-5-and-mvc-6/
-                foreach (var file in fileDescriptionShort.File)
+                if (ModelState.IsValid)
                 {
-                    if (file.Length > 0)
+                    // http://www.mikesdotnetting.com/article/288/asp-net-5-uploading-files-with-asp-net-mvc-6
+                    // http://dotnetthoughts.net/file-upload-in-asp-net-5-and-mvc-6/
+
+                    foreach (var file in fileDescriptionShort.File)
                     {
-                        var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.ToString().Trim('"');
-                        contentTypes.Add(file.ContentType);
+                        if (file.Length > 0)
+                        {
+                            var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.ToString().Trim('"');
+                            contentTypes.Add(file.ContentType);
 
-                        names.Add(fileName);
+                            names.Add(fileName);
 
-                        // Extension method update RC2 has removed this 
-                        await file.SaveAsAsync(Path.Combine(pathFolder, fileName));
+                            // Extension method update RC2 has removed this 
+                            await file.SaveAsAsync(Path.Combine(pathFolder, fileName));
+                        }
                     }
                 }
+
+                var module = _context.ActualModules.FirstOrDefault();
+
+                var files = new ProyectoNET_LocalDB.Models.FileResult
+                {
+                    FileNames = names,
+                    ContentTypes = contentTypes,
+                    Description = fileDescriptionShort.Description,
+                    CreatedTimestamp = DateTime.UtcNow,
+                    UpdatedTimestamp = DateTime.UtcNow,
+                    Modulo = _context.Modules.Single(p => p.ID == module.ActualModulo),
+                    Teacher = _context.Teachers.Single(p => p.ID == module.TeacherID)
+                };
+
+                _fileRepository.AddFileDescriptions(files);
             }
-
-            var files = new ProyectoNET_LocalDB.Models.FileResult
-            {
-                FileNames = names,
-                ContentTypes = contentTypes,
-                Description = fileDescriptionShort.Description,
-                CreatedTimestamp = DateTime.UtcNow,
-                UpdatedTimestamp = DateTime.UtcNow,
-            };
-
-            _fileRepository.AddFileDescriptions(files);
-
-            return RedirectToAction("ViewAllFiles", "FileClient");
+            return RedirectToAction("Index", "FileClient");
         }
 
     }

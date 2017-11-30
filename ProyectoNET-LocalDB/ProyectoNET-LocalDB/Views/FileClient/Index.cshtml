@@ -1,6 +1,40 @@
-﻿<div class="jumbotron">
-    
-</div>
-<div class="row">
-   
-</div>
+﻿@model List<ProyectoNET_LocalDB.Models.FileDescription>
+
+
+
+<fieldset>
+    <legend style="padding-top:10px; padding-bottom: 10px;">Uploaded Files</legend>
+
+    <div class="col-xs-12" style="padding: 10px;">
+        <div class="col-xs-2"><b>Nombre</b></div>
+        <div class="col-xs-2"><b>Descripcion</b></div>
+        <div class="col-xs-2"><b>Fecha</b></div>
+        <div class="col-xs-2"><b>Profesor</b></div>
+        <div class="col-xs-2"><b>Modulo</b></div>
+    </div>
+
+    <hr />
+
+    @foreach (var item in Model)
+    {
+        <div class="col-xs-12" style="padding: 10px;">
+            <div class="col-xs-2">
+                <a asp-action="download" asp-route-id="@item.Id">@item.FileName</a>
+            </div>
+            <div class="col-xs-2">
+                <span class="col-xs-2" name="Name" id="Name">  @item.Description</span>
+            </div>
+            <div class="col-xs-2">
+                <span class="col-xs-2" name="Description" id="Description">  @item.CreatedTimestamp</span>
+            </div>
+            <div class="col-xs-2">
+                <span class="col-xs-2" name="Description" id="Description">  @item.ModuleName</span>
+            </div>
+            <div class="col-xs-2">
+                <span class="col-xs-2" name="Description" id="Description">  @item.TeacherName</span>
+            </div>
+
+        </div>
+    }
+
+</fieldset>

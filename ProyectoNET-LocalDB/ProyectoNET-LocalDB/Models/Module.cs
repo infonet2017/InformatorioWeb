@@ -11,6 +11,6 @@ namespace ProyectoNET_LocalDB.Models
         public string Name { get; set; }
         public List<Post> Posts { get; set; }
         public List<Teacher> Teachers { get; set; }
-       // public List<FileDescriptionShort> FileShortDescriptions { get; set; }
+        public List<FileDescription> FileShortDescriptions { get; set; }
     }
 }

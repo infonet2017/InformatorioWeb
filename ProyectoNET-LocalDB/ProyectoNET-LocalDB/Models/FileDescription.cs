@@ -10,5 +10,9 @@ namespace ProyectoNET_LocalDB.Models
         public DateTime CreatedTimestamp { get; set; }
         public DateTime UpdatedTimestamp { get; set; }
         public string ContentType { get; set; }
+        public virtual Module Modulo { get; set; }
+        public virtual Teacher Teacher { get; set; }
+        public string TeacherName { get; set; }
+        public string ModuleName { get; set; }
     }
 }
