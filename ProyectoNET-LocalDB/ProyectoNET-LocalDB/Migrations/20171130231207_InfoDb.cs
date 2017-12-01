@@ -24,23 +24,6 @@ namespace ProyectoNETLocalDB.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FileDescriptions",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ContentType = table.Column<string>(nullable: true),
-                    CreatedTimestamp = table.Column<DateTime>(nullable: false),
-                    Description = table.Column<string>(nullable: true),
-                    FileName = table.Column<string>(nullable: true),
-                    UpdatedTimestamp = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FileDescriptions", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Modules",
                 columns: table => new
                 {
@@ -74,6 +57,39 @@ namespace ProyectoNETLocalDB.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FileDescriptions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ContentType = table.Column<string>(nullable: true),
+                    CreatedTimestamp = table.Column<DateTime>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    FileName = table.Column<string>(nullable: true),
+                    ModuleName = table.Column<string>(nullable: true),
+                    ModuloID = table.Column<int>(nullable: true),
+                    TeacherID = table.Column<int>(nullable: true),
+                    TeacherName = table.Column<string>(nullable: true),
+                    UpdatedTimestamp = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FileDescriptions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FileDescriptions_Modules_ModuloID",
+                        column: x => x.ModuloID,
+                        principalTable: "Modules",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_FileDescriptions_Teachers_TeacherID",
+                        column: x => x.TeacherID,
+                        principalTable: "Teachers",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Posts",
                 columns: table => new
                 {
@@ -102,6 +118,16 @@ namespace ProyectoNETLocalDB.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FileDescriptions_ModuloID",
+                table: "FileDescriptions",
+                column: "ModuloID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FileDescriptions_TeacherID",
+                table: "FileDescriptions",
+                column: "TeacherID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Posts_ModuleID",

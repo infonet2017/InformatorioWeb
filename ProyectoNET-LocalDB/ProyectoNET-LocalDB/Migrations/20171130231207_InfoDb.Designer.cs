@@ -11,7 +11,7 @@ using System;
 namespace ProyectoNETLocalDB.Migrations
 {
     [DbContext(typeof(InfoDbContext))]
-    [Migration("20171130190447_InfoDb")]
+    [Migration("20171130231207_InfoDb")]
     partial class InfoDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,9 +48,21 @@ namespace ProyectoNETLocalDB.Migrations
 
                     b.Property<string>("FileName");
 
+                    b.Property<string>("ModuleName");
+
+                    b.Property<int?>("ModuloID");
+
+                    b.Property<int?>("TeacherID");
+
+                    b.Property<string>("TeacherName");
+
                     b.Property<DateTime>("UpdatedTimestamp");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ModuloID");
+
+                    b.HasIndex("TeacherID");
 
                     b.ToTable("FileDescriptions");
                 });
@@ -107,6 +119,17 @@ namespace ProyectoNETLocalDB.Migrations
                     b.HasIndex("ModuleIDID");
 
                     b.ToTable("Teachers");
+                });
+
+            modelBuilder.Entity("ProyectoNET_LocalDB.Models.FileDescription", b =>
+                {
+                    b.HasOne("ProyectoNET_LocalDB.Models.Module", "Modulo")
+                        .WithMany("FileShortDescriptions")
+                        .HasForeignKey("ModuloID");
+
+                    b.HasOne("ProyectoNET_LocalDB.Models.Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherID");
                 });
 
             modelBuilder.Entity("ProyectoNET_LocalDB.Models.Post", b =>
