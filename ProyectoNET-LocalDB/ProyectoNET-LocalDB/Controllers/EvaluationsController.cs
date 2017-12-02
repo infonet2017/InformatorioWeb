@@ -22,7 +22,9 @@ namespace ProyectoNET_LocalDB.Controllers
         public async Task<IActionResult> Index()
         {
             ViewBag.Title = "Informatorio";
-            List<Evaluation> Evaluation = await _context.Evaluations.ToListAsync();
+
+            var Modulo = _context.ActualModules.FirstOrDefault();
+            List<Evaluation> Evaluation = await _context.Evaluations.Where(p=> p.Module.ID == Modulo.ActualModulo).ToListAsync();
             foreach (var item in Evaluation)
             {
                 item.Feedbacks= await _context.Feedbacks.Where(p => p.Evaluation == item).Include("Student").ToListAsync();
@@ -48,6 +50,7 @@ namespace ProyectoNET_LocalDB.Controllers
         {
             evaluation.DateEvaluation = DateTime.Today;
             var Modulo = _context.ActualModules.FirstOrDefault();
+            evaluation.Module= _context.Modules.Single(p => p.ID == Modulo.ActualModulo);
             List<Student> Student = _context.Students.ToList();
             evaluation.Feedbacks = new List<Feedback>();
             foreach (var stu in Student)
