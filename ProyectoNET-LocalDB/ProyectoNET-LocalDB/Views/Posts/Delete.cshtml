@@ -1,6 +1,5 @@
 ﻿@model ProyectoNET_LocalDB.Models.Post
 @{
-    ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_ModuleLayout.cshtml";
 }
 
@@ -23,23 +22,22 @@
             <div class="card-body-inf-white pre">
                 <h3>¿Está Seguro que desea eliminar la siguiente Publicación?</h3>
                 <div>
-                    <h4>Post</h4>
                     <hr />
                     <dl class="dl-horizontal">
                         <dt>
-                            @Html.DisplayNameFor(model => model.Title)
+                            <p>Título</p>
                         </dt>
                         <dd>
                             @Html.DisplayFor(model => model.Title)
                         </dd>
                         <dt>
-                            @Html.DisplayNameFor(model => model.Description)
+                            <p>Descripción</p>
                         </dt>
                         <dd>
                             @Html.DisplayFor(model => model.Description)
                         </dd>
                         <dt>
-                            @Html.DisplayNameFor(model => model.DateTime)
+                            <p>Fecha de Publicación</p>
                         </dt>
                         <dd>
                             @Html.DisplayFor(model => model.DateTime)

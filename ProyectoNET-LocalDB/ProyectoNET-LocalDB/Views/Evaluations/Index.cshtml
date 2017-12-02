@@ -29,14 +29,15 @@
 
                 @foreach (var item in Model)
                 {
-                    <div class="col-6 p-0 mx-0">
+                    <div class="col-12 p-0 mx-0">
                         <div class="card-inf-gray text-white ml-3 mb-3">
                             <div class="card-header-inf bg-inf-blue">
-                                <a data-toggle="" href="#collapsed@item.ID" aria-expanded="false" aria-controls="collapse@item.ID" class="lead m-0">
+                                <a>
                                     @Html.DisplayFor(modelItem => item.Name)
+
                                 </a>
                             </div>
-                            <div id="collapse@item.ID" class="collapse show" role="tabpanel" aria-labelledby="heading@item.ID" data-parent="#accordion">
+                            <div >
                                 <div class="card-body-inf  text-dark">
                                     <div class="card-text">
                                         <p>@Html.DisplayFor(modelItem => item.DateEvaluation)</p>
@@ -48,11 +49,11 @@
                                                 <p>- @Html.DisplayFor(modelItem => feedback.Student.Name)</p>
                                                 <input id="feed-description" value="@Html.DisplayFor(modelItem => feedback.Description)" />
                                                 <input id="feed-note" value="@Html.DisplayFor(modelItem => feedback.Note)" />
-                                                <button onclick="editFeedback(@feedback.ID)">Sapee</button>
+                                                <button onclick="editFeedback(@feedback.ID)">Guardar</button>
                                             </div>
                                         }
 
-                                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                                        <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-inf btn-sm mb-3">Eliminar Instancia Evaluativa</a>
 
                                     </div>
 

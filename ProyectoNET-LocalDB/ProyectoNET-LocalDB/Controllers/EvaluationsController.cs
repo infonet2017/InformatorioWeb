@@ -89,49 +89,15 @@ namespace ProyectoNET_LocalDB.Controllers
             {
                 return NotFound();
             }
-
-            var evaluation = await _context.Evaluations.SingleOrDefaultAsync(m => m.ID == id);
+            var evaluation = _context.Evaluations.Single(m => m.ID == id);
+            evaluation.Feedbacks = await _context.Feedbacks.Where(p => p.Evaluation == evaluation).Include("Student").ToListAsync();
             if (evaluation == null)
             {
                 return NotFound();
             }
             return View(evaluation);
         }
-
-        // POST: Evaluations/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Name,DateEvaluation")] Evaluation evaluation)
-        {
-            if (id != evaluation.ID)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(evaluation);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EvaluationExists(evaluation.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(evaluation);
-        }
+        
 
         // GET: Evaluations/Delete/5
         public async Task<IActionResult> Delete(int? id)

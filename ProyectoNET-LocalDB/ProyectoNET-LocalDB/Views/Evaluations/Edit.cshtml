@@ -1,37 +1,168 @@
 ﻿@model ProyectoNET_LocalDB.Models.Evaluation
 
 @{
-    ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_ModuleLayout.cshtml";
 }
 
-<h2>Edit</h2>
+<script type="text/javascript" src="js/site.js" asp-append-version="true"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
-<h4>Evaluation</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ID" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+<div class="col-10 p-0">
+    <div class="card-inf-gray ml-3 mb-3">
+        <div class="card-header-inf bg-inf-blue h3 text-white">@ViewBag.title</div>
+        <div class="card-body-inf">
+            <div class="card-header bg-inf-blue">
+                <ul class="nav nav-tabs card-header-tabs">
+
+                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="Posts" asp-action="Index">Muro</a></li>
+                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
+                    <li class="nav-item"><a class="nav-link active-inf" asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
+                </ul>
             </div>
-            <div class="form-group">
-                <label asp-for="DateEvaluation" class="control-label"></label>
-                <input asp-for="DateEvaluation" class="form-control" />
-                <span asp-validation-for="DateEvaluation" class="text-danger"></span>
+            <div class="card-body-inf-white pre" style="padding-top:10px;">
+
+                <div class="row justify-content-end" style="padding-left=40px">
+                    <a asp-action="Create" asp-route-id=@ViewBag.IDModule class="btn btn-inf btn-sm mb-3">Agregar Instancia Evaluativa</a>
+
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-4">
+                        <div id="collapse@item.ID" class="collapse show" role="tabpanel" aria-labelledby="heading@item.ID" data-parent="#accordion">
+                            <div class="card-body-inf  text-dark">
+                                <div class="card-text">
+                                    <p>@Html.DisplayFor(modelItem => Model.DateEvaluation)</p>
+
+                                    <p>Notas:</p>
+                                    @foreach (var feedback in Model.Feedbacks)
+                                    {
+                                        <div id="feed-@feedback.ID">
+                                            <p>- @Html.DisplayFor(modelItem => feedback.Student.Name)</p>
+                                            <input id="feed-description" value="@Html.DisplayFor(modelItem => feedback.Description)" />
+                                            <input id="feed-note" value="@Html.DisplayFor(modelItem => feedback.Note)" />
+                                            <button onclick="editFeedback(@feedback.ID)">Guardar</button>
+                                        </div>
+
+                                            @*<input id="feed-description-input" value="@Html.DisplayFor(modelItem => feedback.Description)" />
+                                <input id="feed-note-input" value="@Html.DisplayFor(modelItem => feedback.Note)" />
+                                <button id="#feed-btn" onclick="editFeedback(@feedback.ID)">Sapee</button>
+                            </div>
+                            <p id="feed-desc">@Html.DisplayFor(modelItem => feedback.Description)</p>
+                            <p id="feed-note">@Html.DisplayFor(modelItem => feedback.Note)</p>
+                            <button onclick="toggleEdit(@feedback.ID)">Edit</button>*@
+                                    }
+
+
+                                    <a asp-action="Index" class="btn btn-inf btn-sm mb-3">Cancelar</a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div>
+                </div>
+
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+        </div>
+
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+@model IEnumerable<ProyectoNET_LocalDB.Models.Evaluation>
+
+@{
+    Layout = "~/Views/Shared/_ModuleLayout.cshtml";
+}
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+<div class="col-10 p-0">
+    <div class="card-inf-gray ml-3 mb-3">
+        <div class="card-header-inf bg-inf-blue h3 text-white">@ViewBag.title</div>
+        <div class="card-body-inf">
+            <div class="card-header bg-inf-blue">
+                <ul class="nav nav-tabs card-header-tabs">
+
+                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="Posts" asp-action="Index">Muro</a></li>
+                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
+                    <li class="nav-item"><a class="nav-link active-inf" asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
+                </ul>
+            </div>
+            <div class="card-body-inf-white pre" style="padding-top:10px;">
+
+                <div class="row justify-content-end" style="padding-left=40px">
+                    <a asp-action="Create" asp-route-id=@ViewBag.IDModule class="btn btn-inf btn-sm mb-3">Agregar Instancia Evaluativa</a>
+
+                </div>
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-12 p-0 mx-0">
+                        <div class="card-inf-gray text-white ml-3 mb-3">
+                            <div class="card-header-inf bg-inf-blue text-white">
+                                <div class="col-10 ">
+                                    <a data-toggle="" href="#collapse@item.ID" aria-expanded="true" aria-controls="collapse@item.ID">
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </a>
+                                </div>
+
+                                <div class="col-2 ">
+                                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+
+                                    <a asp-action="Edit" asp-route-id="@item.ID">Editar</a>
+                                </div>
+
+                            </div>
+                            <div id="collapse@item.ID" class="collapse.show">
+                                <div class="card-body-inf  text-dark">
+                                    <div class="card-text">
+                                        <p>@Html.DisplayFor(modelItem => item.DateEvaluation)</p>
+
+                                        <p>Notas:</p>
+                                        @foreach (var feedback in item.Feedbacks)
+                                        {
+                                            <div class="col-md-12">
+                                                <div class="col-md-8">
+                                                    <p>@Html.DisplayFor(modelItem => feedback.Student.Name)</p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <p>@Html.DisplayFor(modelItem => feedback.Note)</p>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <p>@Html.DisplayFor(modelItem => feedback.Description)</p>
+                                                </div>
+                                            </div>
+                                                @*<input id="feed-description-input" value="@Html.DisplayFor(modelItem => feedback.Description)" />
+                                                        <input id="feed-note-input" value="@Html.DisplayFor(modelItem => feedback.Note)" />
+                                                        <button id="#feed-btn" onclick="editFeedback(@feedback.ID)">Sapee</button>
+                                                    </div>
+                                                    <p id="feed-desc">@Html.DisplayFor(modelItem => feedback.Description)</p>
+                                                    <p id="feed-note">@Html.DisplayFor(modelItem => feedback.Note)</p>
+                                                    <button onclick="toggleEdit(@feedback.ID)">Edit</button>*@
+                                        }
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+
+    </div>
 </div>
+
 
