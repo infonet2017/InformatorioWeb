@@ -1,0 +1,11 @@
+C:\Users\Eve Bejarano\source\repos\ProyectoNET-LocalDB\ProyectoNET-LocalDB\bin\Debug\netcoreapp2.0\ProyectoNET-LocalDB.deps.json
+C:\Users\Eve Bejarano\source\repos\ProyectoNET-LocalDB\ProyectoNET-LocalDB\bin\Debug\netcoreapp2.0\ProyectoNET-LocalDB.runtimeconfig.json
+C:\Users\Eve Bejarano\source\repos\ProyectoNET-LocalDB\ProyectoNET-LocalDB\bin\Debug\netcoreapp2.0\ProyectoNET-LocalDB.runtimeconfig.dev.json
+C:\Users\Eve Bejarano\source\repos\ProyectoNET-LocalDB\ProyectoNET-LocalDB\bin\Debug\netcoreapp2.0\ProyectoNET-LocalDB.dll
+C:\Users\Eve Bejarano\source\repos\ProyectoNET-LocalDB\ProyectoNET-LocalDB\bin\Debug\netcoreapp2.0\ProyectoNET-LocalDB.pdb
+C:\Users\Eve Bejarano\source\repos\ProyectoNET-LocalDB\ProyectoNET-LocalDB\obj\Debug\netcoreapp2.0\ProyectoNET-LocalDB.csproj.CoreCompileInputs.cache
+C:\Users\Eve Bejarano\source\repos\ProyectoNET-LocalDB\ProyectoNET-LocalDB\obj\Debug\netcoreapp2.0\ProyectoNET-LocalDB.AssemblyInfoInputs.cache
+C:\Users\Eve Bejarano\source\repos\ProyectoNET-LocalDB\ProyectoNET-LocalDB\obj\Debug\netcoreapp2.0\ProyectoNET-LocalDB.AssemblyInfo.cs
+C:\Users\Eve Bejarano\source\repos\ProyectoNET-LocalDB\ProyectoNET-LocalDB\obj\Debug\netcoreapp2.0\ProyectoNET-LocalDB.dll
+C:\Users\Eve Bejarano\source\repos\ProyectoNET-LocalDB\ProyectoNET-LocalDB\obj\Debug\netcoreapp2.0\ProyectoNET-LocalDB.pdb
+C:\Users\Eve Bejarano\source\repos\ProyectoNET-LocalDB\ProyectoNET-LocalDB\obj\Debug\netcoreapp2.0\ProyectoNET-LocalDB.csprojResolveAssemblyReference.cache

@@ -1,40 +1,58 @@
 ﻿@model List<ProyectoNET_LocalDB.Models.FileDescription>
+@{
+    Layout = "~/Views/Shared/_ModuleLayout.cshtml";
+}
 
-
-
-<fieldset>
-    <legend style="padding-top:10px; padding-bottom: 10px;">Uploaded Files</legend>
-
-    <div class="col-xs-12" style="padding: 10px;">
-        <div class="col-xs-2"><b>Nombre</b></div>
-        <div class="col-xs-2"><b>Descripcion</b></div>
-        <div class="col-xs-2"><b>Fecha</b></div>
-        <div class="col-xs-2"><b>Profesor</b></div>
-        <div class="col-xs-2"><b>Modulo</b></div>
-    </div>
-
-    <hr />
-
-    @foreach (var item in Model)
-    {
-        <div class="col-xs-12" style="padding: 10px;">
-            <div class="col-xs-2">
-                <a asp-action="download" asp-route-id="@item.Id">@item.FileName</a>
+<div  class="col-10 p-0">
+    <div class="card-inf-gray ml-3 mb-3">
+        <div  class="card-header-inf bg-inf-blue h3 text-white">@ViewBag.title</div>
+        <div class="card-body-inf">
+            <div class="card-header bg-inf-blue">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="Posts" asp-action="Index">Muro</a></li>
+                    <li class="nav-item"><a class="nav-link active-inf" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
+                    <li class="nav-item"><a class="nav-link inactive-inf text-dark " asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
+                </ul>
             </div>
-            <div class="col-xs-2">
-                <span class="col-xs-2" name="Name" id="Name">  @item.Description</span>
-            </div>
-            <div class="col-xs-2">
-                <span class="col-xs-2" name="Description" id="Description">  @item.CreatedTimestamp</span>
-            </div>
-            <div class="col-xs-2">
-                <span class="col-xs-2" name="Description" id="Description">  @item.ModuleName</span>
-            </div>
-            <div class="col-xs-2">
-                <span class="col-xs-2" name="Description" id="Description">  @item.TeacherName</span>
-            </div>
+            <div class="card-body-inf-white pre">
 
+
+                <fieldset>
+                    <div class="row justify-content-end" style="padding-left=40px">
+                        <a asp-action="AgregarArchivos" asp-route-id=@ViewBag.IDModule class="btn btn-inf btn-sm mb-3">Agregar Material</a>
+
+                    </div>
+
+                    <div class="col-xs-12">
+                        <div class="col-xs-2"><b>Nombre</b></div>
+                        <div class="col-xs-2"><b>Descripcion</b></div>
+                        <div class="col-xs-2"><b>Fecha</b></div>
+                        <div class="col-xs-2"><b>Profesor</b></div>
+                    </div>
+
+                    <hr />
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-12">
+                            <div class="col-xs-2">
+                                <a asp-action="download" asp-route-id="@item.Id">@item.FileName</a>
+                            </div>
+                            <div class="col-xs-2">
+                                <span class="col-xs-2" name="Name" id="Name">  @item.Description</span>
+                            </div>
+                            <div class="col-xs-2">
+                                <span class="col-xs-2" name="CreatedTimestamp" id="CreatedTimestamp">  @item.CreatedTimestamp</span>
+                            </div>
+                            <div class="col-xs-2">
+                                <span class="col-xs-2" name="TeacherName" id="TeacherName">  @item.TeacherName</span>
+                            </div>
+                            <a asp-action="Delete" asp-route-id=@item.Id class="btn btn-inf btn-sm mb-3">Agregar Material</a>
+                        </div>
+                    }
+
+                </fieldset>
+            </div>
         </div>
-    }
-
-</fieldset>
+    </div>
+</div>

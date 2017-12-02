@@ -1,0 +1,46 @@
+﻿@model ProyectoNET_LocalDB.Models.Evaluation
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_ModuleLayout.cshtml";
+}
+<div class="col-10 p-0">
+    <div class="card-inf-gray ml-3 mb-3">
+        <div class="card-header-inf bg-inf-blue h3 text-white"> Eliminar Evaluación</div>
+        <div class="card-body-inf">
+            <div class="card-header bg-inf-blue">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="Posts" asp-action="Index">Muro</a></li>
+                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
+                    <li class="nav-item"><a class="nav-link active-inf" asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
+                </ul>
+            </div>
+            <div class="card-body-inf-white pre">
+                <h3>¿Está seguro que desea eliminar la siguiente Instancia Evaluativa?</h3>
+                <div>
+                    <h4>Evaluation</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.DateEvaluation)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.DateEvaluation)
+                        </dd>
+                    </dl>
+
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="ID" />
+                        <input type="submit" value="Delete" class="btn btn-default" /> |
+                        <a asp-action="Index">Back to List</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

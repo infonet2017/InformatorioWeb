@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ProyectoNET_LocalDB.Models.Evaluation>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_ModuleLayout.cshtml";
+}
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+<div class="col-10 p-0">
+    <div class="card-inf-gray ml-3 mb-3">
+        <div class="card-header-inf bg-inf-blue h3 text-white">@ViewBag.title</div>
+        <div class="card-body-inf">
+            <div class="card-header bg-inf-blue">
+                <ul class="nav nav-tabs card-header-tabs">
+
+                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="Posts" asp-action="Index">Muro</a></li>
+                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
+                    <li class="nav-item"><a class="nav-link active-inf" asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
+                </ul>
+            </div>
+            <div class="card-body-inf-white pre" style="padding-top:10px;">
+
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-6 p-0 mx-0">
+                        <div class="card-inf-gray text-white ml-3 mb-3">
+                            <div class="card-header-inf bg-inf-blue">
+                                <a data-toggle="" href="#collapsed@item.ID" aria-expanded="false" aria-controls="collapse@item.ID" class="lead m-0">
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </a>
+                            </div>
+                            <div id="collapse@item.ID" class="collapse show" role="tabpanel" aria-labelledby="heading@item.ID" data-parent="#accordion">
+                                <div class="card-body-inf  text-dark">
+                                    <div class="card-text">
+                                        <p>@Html.DisplayFor(modelItem => item.DateEvaluation)</p>
+
+                                        <p>Notas:</p>
+                                        @foreach (var feedback in item.Feedbacks)
+                                        {
+                                            <div id="feed-@feedback.ID">
+                                                <p>- @Html.DisplayFor(modelItem => feedback.Student.Name)</p>
+                                                <input id="feed-description" value="@Html.DisplayFor(modelItem => feedback.Description)" />
+                                                <input id="feed-note" value="@Html.DisplayFor(modelItem => feedback.Note)" />
+                                                <button onclick="editFeedback(@feedback.ID)">Sapee</button>
+                                            </div>
+                                        }
+
+                                        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                                        <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+
+                                    </div>
+
+                                    <a class="btn btn-inf btn-sm" asp-action="Details" asp-route-id="@item.ID">Ver Más</a>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

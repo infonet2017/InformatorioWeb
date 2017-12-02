@@ -27,13 +27,16 @@ namespace ProyectoNET_LocalDB.Controllers
         {
             var Modulo = _context.ActualModules.FirstOrDefault();
             List<FileDescription> Files = await _context.FileDescriptions.Where(m => m.Modulo.ID == Modulo.ActualModulo).ToListAsync();
+
+            ViewBag.title = _context.Modules.Single(p => p.ID == Modulo.ActualModulo).Name;
             return View(Files);
         }
 
         public ActionResult AgregarArchivos()
         {
-            ViewBag.Title = "Cargar Archivo";
 
+            var Modulo = _context.ActualModules.FirstOrDefault();
+            ViewBag.title = _context.Modules.Single(p => p.ID == Modulo.ActualModulo).Name;
             return View();
         }
         

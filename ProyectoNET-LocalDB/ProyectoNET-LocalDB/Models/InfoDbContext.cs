@@ -8,11 +8,12 @@ namespace ProyectoNET_LocalDB.Models
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Module> Modules { get; set; }
-
         public DbSet<ActualModule> ActualModules { get; set; }
-
         public DbSet<FileDescription> FileDescriptions { get; set; }
-        
+        public DbSet<Evaluation> Evaluations { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
+        public DbSet<Student> Students { get; set; }
+
 
 
 

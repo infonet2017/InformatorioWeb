@@ -24,31 +24,18 @@ namespace ProyectoNET_LocalDB.Controllers
     public async Task<IActionResult> Index(int Module)
         {
             var Modulo = _context.ActualModules.FirstOrDefault();
-            List<Post> post = await _context.Posts.Where(m => m.Module.ID == Module).ToListAsync();
+            ViewBag.title = _context.Modules.Single(p => p.ID == Modulo.ActualModulo).Name;
+            List<Post> post = await _context.Posts.Where(m => m.Module.ID == Modulo.ActualModulo).ToListAsync();
             return View(post);
         }
-
-        // GET: Posts/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var post = await _context.Posts.SingleOrDefaultAsync(m => m.Id == id);
-            if (post == null)
-            {
-                return NotFound();
-            }
-
-            return View(post);
-        }
+        
 
         // GET: Posts/Create
         public IActionResult Create()
         {
 
+            var Modulo = _context.ActualModules.FirstOrDefault();
+            ViewBag.title = _context.Modules.Single(p => p.ID == Modulo.ActualModulo).Name;
             return View();
         }
 
@@ -75,6 +62,10 @@ namespace ProyectoNET_LocalDB.Controllers
         // GET: Posts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+
+            var Modulo = _context.ActualModules.FirstOrDefault();
+            ViewBag.title = _context.Modules.Single(p => p.ID == Modulo.ActualModulo).Name;
+
             if (id == null)
             {
                 return NotFound();
@@ -127,6 +118,9 @@ namespace ProyectoNET_LocalDB.Controllers
         // GET: Posts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+
+            var Modulo = _context.ActualModules.FirstOrDefault();
+            ViewBag.title = _context.Modules.Single(p => p.ID == Modulo.ActualModulo).Name;
             if (id == null)
             {
                 return NotFound();

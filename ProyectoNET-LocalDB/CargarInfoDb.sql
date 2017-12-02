@@ -1,6 +1,6 @@
 ﻿SET IDENTITY_INSERT [dbo].[Modules] ON
-INSERT INTO [dbo].[Modules] ([ID], [Name]) VALUES (1, N'Agiles')
-INSERT INTO [dbo].[Modules] ([ID], [Name]) VALUES (2, N'Ingles')
+INSERT INTO [dbo].[Modules] ([ID], [Name], [Description]) VALUES (1, N'Agiles',N'Se dará todo lo relacionado a Metodologías Ágiles')
+INSERT INTO [dbo].[Modules] ([ID], [Name], [Description]) VALUES (2, N'Ingles',N'Se dará todo lo relacionado a Inglés orientado a las Ciencias Informáticas y los negocios')
 SET IDENTITY_INSERT [dbo].[Modules] OFF
 
 

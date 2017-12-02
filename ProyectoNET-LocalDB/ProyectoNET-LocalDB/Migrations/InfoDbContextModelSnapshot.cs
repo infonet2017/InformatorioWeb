@@ -34,6 +34,50 @@ namespace ProyectoNETLocalDB.Migrations
                     b.ToTable("ActualModules");
                 });
 
+            modelBuilder.Entity("ProyectoNET_LocalDB.Models.Evaluation", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateEvaluation");
+
+                    b.Property<int?>("ModuleID");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ModuleID");
+
+                    b.ToTable("Evaluations");
+                });
+
+            modelBuilder.Entity("ProyectoNET_LocalDB.Models.Feedback", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<int?>("EvaluationID");
+
+                    b.Property<int>("Note");
+
+                    b.Property<int?>("StudentID");
+
+                    b.Property<int?>("TeacherID");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("EvaluationID");
+
+                    b.HasIndex("StudentID");
+
+                    b.HasIndex("TeacherID");
+
+                    b.ToTable("Feedbacks");
+                });
+
             modelBuilder.Entity("ProyectoNET_LocalDB.Models.FileDescription", b =>
                 {
                     b.Property<int>("Id")
@@ -71,6 +115,8 @@ namespace ProyectoNETLocalDB.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Description");
+
                     b.Property<string>("Name");
 
                     b.HasKey("ID");
@@ -104,6 +150,22 @@ namespace ProyectoNETLocalDB.Migrations
                     b.ToTable("Posts");
                 });
 
+            modelBuilder.Entity("ProyectoNET_LocalDB.Models.Student", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("ModuleID");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ModuleID");
+
+                    b.ToTable("Students");
+                });
+
             modelBuilder.Entity("ProyectoNET_LocalDB.Models.Teacher", b =>
                 {
                     b.Property<int>("ID")
@@ -118,6 +180,28 @@ namespace ProyectoNETLocalDB.Migrations
                     b.HasIndex("ModuleIDID");
 
                     b.ToTable("Teachers");
+                });
+
+            modelBuilder.Entity("ProyectoNET_LocalDB.Models.Evaluation", b =>
+                {
+                    b.HasOne("ProyectoNET_LocalDB.Models.Module", "Module")
+                        .WithMany("Evaluations")
+                        .HasForeignKey("ModuleID");
+                });
+
+            modelBuilder.Entity("ProyectoNET_LocalDB.Models.Feedback", b =>
+                {
+                    b.HasOne("ProyectoNET_LocalDB.Models.Evaluation", "Evaluation")
+                        .WithMany("Feedbacks")
+                        .HasForeignKey("EvaluationID");
+
+                    b.HasOne("ProyectoNET_LocalDB.Models.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentID");
+
+                    b.HasOne("ProyectoNET_LocalDB.Models.Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherID");
                 });
 
             modelBuilder.Entity("ProyectoNET_LocalDB.Models.FileDescription", b =>
@@ -140,6 +224,13 @@ namespace ProyectoNETLocalDB.Migrations
                     b.HasOne("ProyectoNET_LocalDB.Models.Teacher", "Teacher")
                         .WithMany()
                         .HasForeignKey("TeacherID");
+                });
+
+            modelBuilder.Entity("ProyectoNET_LocalDB.Models.Student", b =>
+                {
+                    b.HasOne("ProyectoNET_LocalDB.Models.Module")
+                        .WithMany("Students")
+                        .HasForeignKey("ModuleID");
                 });
 
             modelBuilder.Entity("ProyectoNET_LocalDB.Models.Teacher", b =>

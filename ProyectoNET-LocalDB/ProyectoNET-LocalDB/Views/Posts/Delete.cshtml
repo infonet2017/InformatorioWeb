@@ -1,39 +1,58 @@
 ﻿@model ProyectoNET_LocalDB.Models.Post
-
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_ModuleLayout.cshtml";
 }
 
-<h2>Delete</h2>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Post</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DateTime)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DateTime)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+<div class="col-10 p-0">
+    <div class="card-inf-gray ml-3 mb-3">
+        <div class="card-header-inf bg-inf-blue h3 text-white">@ViewBag.title</div>
+        <div class="card-body-inf">
+            <div class="card-header bg-inf-blue">
+                <ul class="nav nav-tabs card-header-tabs">
+
+                    <li class="nav-item"><a class="nav-link active-inf" asp-controller="Posts" asp-action="Index">Muro</a></li>
+                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
+                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
+                </ul>
+            </div>
+            <div class="card-body-inf-white pre">
+                <h3>¿Está Seguro que desea eliminar la siguiente Publicación?</h3>
+                <div>
+                    <h4>Post</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Title)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Description)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.DateTime)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.DateTime)
+                        </dd>
+                    </dl>
+
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="submit" value="Eliminar" class="btn btn-default" /> |
+                        <a asp-action="Index">Volver al Muro</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

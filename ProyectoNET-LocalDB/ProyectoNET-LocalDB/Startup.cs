@@ -54,6 +54,13 @@ namespace ProyectoNET_LocalDB
                     name: "default",
                     template: "{controller=Modules}/{action=Index}/{id?}");
             });
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "edit",
+                    template: "{controller=Modules}/{action=Index}/{id?}/{description?}/{note?}");
+            });
         }
     }
 }

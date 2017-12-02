@@ -22,7 +22,13 @@ namespace ProyectoNET_LocalDB.Controllers
         // GET: Modules
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Modules.ToListAsync());
+            ViewBag.Title = "Informatorio";
+            List<Module> Modulos = await _context.Modules.ToListAsync();
+            foreach (var item in Modulos)
+            {
+                item.Teachers = await _context.Teachers.Where(p => p.ModuleID == item).ToListAsync();
+            }
+            return View(Modulos);
         }
 
         // GET: Modules/Details/5

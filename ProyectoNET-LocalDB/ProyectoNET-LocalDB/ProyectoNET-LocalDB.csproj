@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\css\site.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="..\..\..\..\.nuget\packages\mysql.data\6.10.4\contentFiles\any\netstandard1.3\app.config.transform" Link="app.config.transform">
       <Private>False</Private>
       <NuGetPackageVersion>6.10.4</NuGetPackageVersion>
@@ -30,6 +34,34 @@
 
   <ItemGroup>
     <None Include="runtimeconfig.template.json" />
+    <None Include="wwwroot\css\bootstrap-grid.css" />
+    <None Include="wwwroot\css\bootstrap-grid.css.map" />
+    <None Include="wwwroot\css\bootstrap-grid.min.css" />
+    <None Include="wwwroot\css\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\css\bootstrap-reboot.css" />
+    <None Include="wwwroot\css\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\css\bootstrap-reboot.min.css" />
+    <None Include="wwwroot\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\css\bootstrap.css" />
+    <None Include="wwwroot\css\bootstrap.css.map" />
+    <None Include="wwwroot\css\bootstrap.min.css" />
+    <None Include="wwwroot\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\images\facebook-logo-button.png" />
+    <None Include="wwwroot\images\iuserstoureis.jpg" />
+    <None Include="wwwroot\images\Logotipo-Informatorio.svg" />
+    <None Include="wwwroot\images\maxresdefault.jpg" />
+    <None Include="wwwroot\images\Sin título-2-04-04.jpg" />
+    <None Include="wwwroot\images\Sin título-2-04.jpg" />
+    <None Include="wwwroot\images\Thumbs.db" />
+    <None Include="wwwroot\images\twitter-logo-button.png" />
+    <None Include="wwwroot\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\js\bootstrap.js" />
+    <None Include="wwwroot\js\bootstrap.js.map" />
+    <None Include="wwwroot\js\bootstrap.min.js" />
+    <None Include="wwwroot\js\bootstrap.min.js.map" />
   </ItemGroup>
 
   <ItemGroup>

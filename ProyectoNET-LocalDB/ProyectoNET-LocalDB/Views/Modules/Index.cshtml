@@ -1,39 +1,32 @@
 ﻿@model IEnumerable<ProyectoNET_LocalDB.Models.Module>
 
 @{
-    Layout = "~/Views/Shared/ModuleLayout.cshtml";
+    Layout = "~/Views/Shared/_CourseLayout.cshtml";
 }
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
+@foreach (var item in Model)
+{
+    <div class="col-6 p-0 mx-0">
+        <div class="card-inf-gray text-white ml-3 mb-3">
+            <div class="card-header-inf bg-inf-blue"><p class="lead m-0">@Html.DisplayFor(modelItem => item.Name)</p></div>
+            <div class="card-body-inf  text-dark">
+                <div class="card-text">
+                    <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                    <p>Profesores:</p>
+                    @foreach (var teacher in item.Teachers)
+                    {
+                        <p>- @Html.DisplayFor(modelItem => teacher.Name)</p>
+                    }
+
+                </div>
+
+                <a class="btn btn-inf btn-sm" asp-action="Details" asp-route-id="@item.ID">Ver Más</a>
+            </div>
+        </div>
+    </div>
 }
-    </tbody>
-</table>

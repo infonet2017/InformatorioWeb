@@ -1,0 +1,41 @@
+﻿@model ProyectoNET_LocalDB.Models.Evaluation
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_ModuleLayout.cshtml";
+}
+
+<div class="col-10 p-0">
+    <div class="card-inf-gray ml-3 mb-3">
+        <div class="card-header-inf bg-inf-blue h3 text-white">Evaluaciones</div>
+        <div class="card-body-inf">
+            <div class="card-header bg-inf-blue">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="Posts" asp-action="Index">Muro</a></li>
+                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
+                    <li class="nav-item"><a class="nav-link active-inf" asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
+                </ul>
+            </div>
+            <div class="card-body-inf-white pre">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <a asp-action="Index">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
