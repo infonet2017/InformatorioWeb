@@ -157,6 +157,15 @@ namespace ProyectoNET_LocalDB.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var evaluation = await _context.Evaluations.SingleOrDefaultAsync(m => m.ID == id);
+            List<Feedback> Feed = await _context.Feedbacks.Where(p => p.Evaluation.ID == id).ToListAsync();
+
+            foreach (var feed in Feed)
+            {
+                var feedback = await _context.Feedbacks.SingleOrDefaultAsync(m => m.ID == feed.ID);
+                _context.Feedbacks.Remove(feedback);
+                await _context.SaveChangesAsync();
+            }
+
             _context.Evaluations.Remove(evaluation);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

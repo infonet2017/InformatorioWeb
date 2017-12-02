@@ -39,9 +39,49 @@ namespace ProyectoNET_LocalDB.Controllers
             ViewBag.title = _context.Modules.Single(p => p.ID == Modulo.ActualModulo).Name;
             return View();
         }
-        
+
+        [Route("delete/{id}")]
+        public async Task<IActionResult> Delete(int? id)
+        {
+
+            var Modulo = _context.ActualModules.FirstOrDefault();
+            ViewBag.title = _context.Modules.Single(p => p.ID == Modulo.ActualModulo).Name;
+
+            if (id == null)
+            {
+                return NotFound();
+            }
 
 
+            var File = _context.FileDescriptions.Single(m => m.Id == id);
+            if (File == null)
+            {
+                return NotFound();
+            }
+
+            return View(File);
+        }
+
+
+        [Route("delete/{id}")]
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+
+            var File = _context.FileDescriptions.Single(m => m.Id == id);
+            var Modulo = _context.ActualModules.FirstOrDefault();
+
+            _context.FileDescriptions.Remove(File);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index", "FileClient", "");
+        }
+
+        private bool PostExists(int id)
+        {
+            return _context.Posts.Any(e => e.Id == id);
+        }
         /// <summary>
         /// Just a test method to view all files.
         /// </summary>

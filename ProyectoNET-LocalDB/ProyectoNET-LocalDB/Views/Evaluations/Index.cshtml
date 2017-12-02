@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<ProyectoNET_LocalDB.Models.Evaluation>
 
 @{
-    ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_ModuleLayout.cshtml";
 }
 
@@ -23,6 +22,10 @@
             </div>
             <div class="card-body-inf-white pre" style="padding-top:10px;">
 
+                <div class="row justify-content-end" style="padding-left=40px">
+                    <a asp-action="Create" asp-route-id=@ViewBag.IDModule class="btn btn-inf btn-sm mb-3">Agregar Instancia Evaluativa</a>
+
+                </div>
 
                 @foreach (var item in Model)
                 {
@@ -49,13 +52,10 @@
                                             </div>
                                         }
 
-                                        <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                                        <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
                                         <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
 
                                     </div>
 
-                                    <a class="btn btn-inf btn-sm" asp-action="Details" asp-route-id="@item.ID">Ver Más</a>
                                 </div>
                             </div>
 

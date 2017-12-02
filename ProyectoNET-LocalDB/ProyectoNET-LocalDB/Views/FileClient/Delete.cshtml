@@ -1,4 +1,4 @@
-﻿@model ProyectoNET_LocalDB.Models.Post
+﻿@model ProyectoNET_LocalDB.Models.FileDescription
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_ModuleLayout.cshtml";
@@ -15,40 +15,46 @@
             <div class="card-header bg-inf-blue">
                 <ul class="nav nav-tabs card-header-tabs">
 
-                    <li class="nav-item"><a class="nav-link active-inf" asp-controller="Posts" asp-action="Index">Muro</a></li>
-                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
+                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="Posts" asp-action="Index">Muro</a></li>
+                    <li class="nav-item"><a class="nav-link active-inf" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
                     <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
                 </ul>
             </div>
             <div class="card-body-inf-white pre">
                 <h3>¿Está Seguro que desea eliminar la siguiente Publicación?</h3>
                 <div>
-                    <h4>Post</h4>
                     <hr />
-                    <dl class="dl-horizontal">
+                    <dl class="d-lg-table-row">
                         <dt>
-                            @Html.DisplayNameFor(model => model.Title)
+                            <p>Nombre del Archivo</p>
                         </dt>
                         <dd>
-                            @Html.DisplayFor(model => model.Title)
+                            @Html.DisplayFor(model => model.FileName)
                         </dd>
                         <dt>
-                            @Html.DisplayNameFor(model => model.Description)
+
+                            <p>Descripción</p>
                         </dt>
                         <dd>
                             @Html.DisplayFor(model => model.Description)
                         </dd>
                         <dt>
-                            @Html.DisplayNameFor(model => model.DateTime)
+                            <p>Fecha de Subida </p>
                         </dt>
                         <dd>
-                            @Html.DisplayFor(model => model.DateTime)
+                            @Html.DisplayFor(model => model.CreatedTimestamp)
+                        </dd>
+                        <dt>
+                            <p>Docente</p>
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.TeacherName)
                         </dd>
                     </dl>
 
                     <form asp-action="Delete">
                         <input type="hidden" asp-for="Id" />
-                        <input type="submit" value="Eliminar" class="btn btn-inf btn-sm mb-3" /> 
+                        <input type="submit" value="Eliminar" class="btn btn-inf btn-sm mb-3"/> 
                         <a asp-action="Index" class="btn btn-inf btn-sm mb-3">Cancelar</a>
                     </form>
                 </div>
