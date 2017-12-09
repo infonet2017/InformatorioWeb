@@ -41,6 +41,8 @@ namespace ProyectoNETLocalDB.Migrations
 
                     b.Property<DateTime>("DateEvaluation");
 
+                    b.Property<bool>("IsDeleted");
+
                     b.Property<int?>("ModuleID");
 
                     b.Property<string>("Name");
@@ -90,6 +92,8 @@ namespace ProyectoNETLocalDB.Migrations
                     b.Property<string>("Description");
 
                     b.Property<string>("FileName");
+
+                    b.Property<bool>("IsDeleted");
 
                     b.Property<string>("ModuleName");
 

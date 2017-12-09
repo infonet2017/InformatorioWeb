@@ -26,7 +26,7 @@ namespace ProyectoNET_LocalDB.Controllers
         public async Task<IActionResult> Index()
         {
             var Modulo = _context.ActualModules.FirstOrDefault();
-            List<FileDescription> Files = await _context.FileDescriptions.Where(m => m.Modulo.ID == Modulo.ActualModulo).ToListAsync();
+            List<FileDescription> Files = await _context.FileDescriptions.Where(m => m.Modulo.ID == Modulo.ActualModulo & m.IsDeleted==false).ToListAsync();
 
             ViewBag.title = _context.Modules.Single(p => p.ID == Modulo.ActualModulo).Name;
             return View(Files);
@@ -72,7 +72,7 @@ namespace ProyectoNET_LocalDB.Controllers
             var File = _context.FileDescriptions.Single(m => m.Id == id);
             var Modulo = _context.ActualModules.FirstOrDefault();
 
-            _context.FileDescriptions.Remove(File);
+            File.IsDeleted = true;
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index", "FileClient", "");
@@ -138,6 +138,7 @@ namespace ProyectoNET_LocalDB.Controllers
                     UpdatedTimestamp = DateTime.UtcNow,
                     Modulo = _context.Modules.Single(p => p.ID == module.ActualModulo),
                     Teacher = _context.Teachers.Single(p => p.ID == module.TeacherID)
+                    
                 };
 
                 _fileRepository.AddFileDescriptions(files);

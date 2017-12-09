@@ -24,7 +24,7 @@ namespace ProyectoNET_LocalDB.Controllers
             ViewBag.Title = "Informatorio";
 
             var Modulo = _context.ActualModules.FirstOrDefault();
-            List<Evaluation> Evaluation = await _context.Evaluations.Where(p=> p.Module.ID == Modulo.ActualModulo).ToListAsync();
+            List<Evaluation> Evaluation = await _context.Evaluations.Where(p=> p.Module.ID == Modulo.ActualModulo & p.IsDeleted == false).ToListAsync();
             foreach (var item in Evaluation)
             {
                 item.Feedbacks= await _context.Feedbacks.Where(p => p.Evaluation == item).Include("Student").ToListAsync();
@@ -52,7 +52,9 @@ namespace ProyectoNET_LocalDB.Controllers
             var Modulo = _context.ActualModules.FirstOrDefault();
             evaluation.Module= _context.Modules.Single(p => p.ID == Modulo.ActualModulo);
             List<Student> Student = _context.Students.ToList();
+            evaluation.IsDeleted = false;
             evaluation.Feedbacks = new List<Feedback>();
+            
             foreach (var stu in Student)
             {
                 Feedback feed = new Feedback();
@@ -126,16 +128,7 @@ namespace ProyectoNET_LocalDB.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var evaluation = await _context.Evaluations.SingleOrDefaultAsync(m => m.ID == id);
-            List<Feedback> Feed = await _context.Feedbacks.Where(p => p.Evaluation.ID == id).ToListAsync();
-
-            foreach (var feed in Feed)
-            {
-                var feedback = await _context.Feedbacks.SingleOrDefaultAsync(m => m.ID == feed.ID);
-                _context.Feedbacks.Remove(feedback);
-                await _context.SaveChangesAsync();
-            }
-
-            _context.Evaluations.Remove(evaluation);
+            evaluation.IsDeleted = true;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

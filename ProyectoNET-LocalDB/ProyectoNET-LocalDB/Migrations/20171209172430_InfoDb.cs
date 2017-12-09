@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ProyectoNETLocalDB.Migrations
 {
-    public partial class InfoDB : Migration
+    public partial class InfoDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,6 +44,7 @@ namespace ProyectoNETLocalDB.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     DateEvaluation = table.Column<DateTime>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
                     ModuleID = table.Column<int>(nullable: true),
                     Name = table.Column<string>(nullable: true)
                 },
@@ -143,6 +144,7 @@ namespace ProyectoNETLocalDB.Migrations
                     CreatedTimestamp = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     FileName = table.Column<string>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: false),
                     ModuleName = table.Column<string>(nullable: true),
                     ModuloID = table.Column<int>(nullable: true),
                     TeacherID = table.Column<int>(nullable: true),

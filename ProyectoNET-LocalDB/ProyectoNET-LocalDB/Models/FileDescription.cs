@@ -14,5 +14,6 @@ namespace ProyectoNET_LocalDB.Models
         public virtual Teacher Teacher { get; set; }
         public string TeacherName { get; set; }
         public string ModuleName { get; set; }
+        public Boolean IsDeleted { get; set; }
     }
 }

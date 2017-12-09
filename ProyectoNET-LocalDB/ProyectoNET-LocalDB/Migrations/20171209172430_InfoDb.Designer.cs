@@ -11,8 +11,8 @@ using System;
 namespace ProyectoNETLocalDB.Migrations
 {
     [DbContext(typeof(InfoDbContext))]
-    [Migration("20171201201650_InfoDB")]
-    partial class InfoDB
+    [Migration("20171209172430_InfoDb")]
+    partial class InfoDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,6 +41,8 @@ namespace ProyectoNETLocalDB.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("DateEvaluation");
+
+                    b.Property<bool>("IsDeleted");
 
                     b.Property<int?>("ModuleID");
 
@@ -91,6 +93,8 @@ namespace ProyectoNETLocalDB.Migrations
                     b.Property<string>("Description");
 
                     b.Property<string>("FileName");
+
+                    b.Property<bool>("IsDeleted");
 
                     b.Property<string>("ModuleName");
 

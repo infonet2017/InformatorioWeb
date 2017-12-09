@@ -12,6 +12,7 @@ namespace ProyectoNET_LocalDB.Models
     public DateTime DateEvaluation { get; set; }
     public virtual List<Feedback> Feedbacks {get; set;}
     public virtual Module Module { get; set; }
+    public Boolean IsDeleted { get; set; }
 
 }
 }

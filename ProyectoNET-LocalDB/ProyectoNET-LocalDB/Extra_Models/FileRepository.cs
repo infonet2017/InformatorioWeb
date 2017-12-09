@@ -35,7 +35,8 @@ namespace ProyectoNET_LocalDB.Extra_Models
                     UpdatedTimestamp = fileResult.UpdatedTimestamp,
                     Description = fileResult.Description,
                     Modulo = _context.Modules.Single(p => p.ID == module.ActualModulo),
-                    Teacher = _context.Teachers.Single(n => n.ID == module.TeacherID)
+                    Teacher = _context.Teachers.Single(n => n.ID == module.TeacherID),
+                    IsDeleted = false
                 };
 
                 fileDescription.TeacherName = fileDescription.Teacher.Name;
