@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title</title>
+    <environment>
+        <link href="wwwroot/css/site.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="~/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="~/css/bootstrap-grid.css">
+        <link rel="stylesheet" type="text/css" href="~/css/bootstrap-reboot.css">
+        <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    </environment>
+</head>
+<body class="bg-inf-gray">
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <div class="bg-inf-blue">
+        <!-- Esto es necesario para poner la navbar dentro de un contaner sin notar el padding -->
+        <div class="container">
+            <nav class="navbar bg-inf-blue navbar-expand-lg">
+                <a class="navbar-brand" href="index.html">
+                    <img src="Images/Logotipo-Informatorio.svg" class="align-top" alt="" height="25">
+                </a>
+                <div class="collapse navbar-collapse justify-content-end" id="responsivo">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="nav navbar-nav ml-auto  mt-2 mt-md-0 enlace">
+                                <li><a class="nav-item nav-link text-white" href="#">¿Qué es el informatorio?</a></li>
+                                <li><a class="nav-item nav-link text-white" href="#">Cursos</a></li>
+                                <li><a class="nav-item nav-link text-white" href="#">Proyectos</a></li>
+                                <li><a class="nav-item nav-link text-white" href="#">Galería</a></li>
+                                <li><a class="nav-item nav-link text-white" href="#">Blog</a></li>
+                                <li><a class="nav-item nav-link text-white" href="#">INICIAR SESIÓN</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div style="padding-top:10px;" class="container">
+        <div class="row">
+            <!-- BARRA LATERAL -->
+            <div class="col-2 bg-white shad-inf p-0">
+                <div class="row p-0 m-3">
+
+                    <a asp-controller="Modules" asp-action="Index" class="btn btn-inf btn-sm mb-3">Ver Cursos</a>
+                    <p class="h6">Los títulos van en h6</p>
+                    <p><small>Los demás elementos como tel texto van en un "p" común como el que estás viendo, pero con la etiqueta small</small></p>
+                    <ul class="list-unstyled col-12 p-0">
+                        <li class="h6">Título</li>
+                        <li><small>-Apartado 1</small></li>
+                        <li><small>-Apartado 2</small></li>
+                        <li><small>-Apartado 3</small></li>
+                        <li><small>-Apartado 4</small></li>
+                    </ul>
+                    <ul class="list-unstyled col-12 p-0">
+                        <li class="h6">Título</li>
+                        <li><small>-Apartado 1</small></li>
+                        <li><small>-Apartado 2</small></li>
+                        <li><small>-Apartado 3</small></li>
+                        <li><small>-Apartado 4</small></li>
+                    </ul>
+                </div>
+            </div>
+ 
+
+                            @RenderBody()
+
+
+    </div>
+    <footer class="bg-inf-blue">
+        <div class="container">
+            <div class="row text-white py-3">
+                <div class="col-6 h6">Contacto</div>
+                <div class="col-6 h6">Redes</div>
+                <div class="col-2">
+                    <ul class="list-unstyled">
+                        <li class="h6">Informtorio Chaco</li>
+                        <li>Arturo Illia 1055</li>
+                        <li>XXX XXX-XXXX</li>
+                    </ul>
+                </div>
+                <div class="col-2">
+                    <ul class="list-unstyled">
+                        <li class="h6">Informtorio Chaco</li>
+                        <li>Arturo Illia 1055</li>
+                        <li>XXX XXX-XXXX</li>
+                    </ul>
+                </div>
+                <div class="col-2">
+                    <ul class="list-unstyled">
+                        <li class="h6">Informtorio Chaco</li>
+                        <li>Arturo Illia 1055</li>
+                        <li>XXX XXX-XXXX</li>
+                    </ul>
+                </div>
+                <div class="col-6 align-items-center">
+                    <a href="#"><img src="~/Content/Images/facebook-logo-button.png" height="40px"></a>
+                    <a href="#"><img src="~/Content/Images/twitter-logo-button.png" height="40px"></a>
+                </div>
+                <div class="col-12">
+                    <small>Información institucional y todo lo necesario de esta pequeña línea de texto</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <environment>
+            <script src="~/Scripts/jquery-1.10.2.min.js" asp-append-version="true"></script>
+            <script src="~/Scripts/bootstrap.min.js" asp-append-version="true"></script>
+                 <script type="text/javascript" src="js/bootstrap.js" asp-append-version="true"></script>
+        <script type="text/javascript" src="js/bootstrap.js" asp-append-version="true"></script>
+                 <script type="text/javascript" src="js/site.js" asp-append-version="true"></script>
+        <script type="text/javascript" src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
+</environment>
+
+</body>
+
+
+
+@RenderSection("scripts", required: false)
+</html>
+
+

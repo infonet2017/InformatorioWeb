@@ -1,0 +1,52 @@
+﻿@{
+    Layout = "~/Views/Shared/_ModuleLayout.cshtml";
+}
+
+<div class="col-10 p-0">
+    <div class="card-inf-gray ml-3 mb-3">
+        <div class="card-header-inf bg-inf-blue h3 text-white">@ViewBag.title</div>
+        <div class="card-body-inf">
+            <div class="card-header bg-inf-blue">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="Posts" asp-action="Index">Muro</a></li>
+                    <li class="nav-item"><a class="nav-link active-inf" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
+                    <li class="nav-item"><a class="nav-link inactive-inf text-dark " asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
+                </ul>
+            </div>
+            <div class="card-body-inf-white pre">
+
+                <div>
+                    <form enctype="multipart/form-data" method="post" action="http://localhost:63411/files" id="ajaxUploadForm" novalidate="novalidate">
+                        <fieldset>
+                            <legend style="padding-top: 10px; padding-bottom: 10px;">Nuevo Archivo</legend>
+                            <div class="col-xs-12" style="padding: 10px;">
+                                <div class="col-xs-4">
+                                    <label>Descripción</label>
+                                </div>
+                                <div class="col-xs-7">
+                                    <textarea rows="2" placeholder="Descripción" class="form-control" name="description" id="description"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-xs-12" style="padding: 10px;">
+                                <div class="col-xs-4">
+                                    <label>Cargar Archivos</label>
+                                </div>
+                                <div class="col-xs-7">
+                                    <input type="file" name="file" id="fileInput">
+                                </div>
+                            </div>
+                            <div class="col-xs-12" style="padding: 10px;">
+                                <div class="col-xs-4">
+                                    <input type="submit" value="Agregar" id="ajaxUploadButton" class="btn btn-inf btn-sm mb-3">
+                                </div>
+                                <div class="col-xs-7">
+
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
