@@ -52,7 +52,7 @@ namespace ProyectoNET_DB
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Modules}/{action=Index}/{id?}");
+                    template: "{controller=Course}/{action=Index}/{id?}");
             });
         }
     }

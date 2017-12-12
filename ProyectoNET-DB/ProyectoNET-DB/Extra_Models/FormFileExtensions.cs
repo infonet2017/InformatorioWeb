@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace ProyectoNET_LocalDB.Extra_Models
+namespace ProyectoNET_DB.Extra_Models
 {
     public static class FormFileExtensions
     {

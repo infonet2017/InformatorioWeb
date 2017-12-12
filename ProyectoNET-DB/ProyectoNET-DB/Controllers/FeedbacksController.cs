@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProyectoNET_DB.Info2017;
 
-namespace ProyectoNET_LocalDB.Controllers
+namespace ProyectoNET_DB.Controllers
 {
     public class FeedbacksController : Controller
     {

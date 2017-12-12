@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ProyectoNET_LocalDB.Extra_Models
+namespace ProyectoNET_DB.Extra_Models
 {
     public class FileResult
     {

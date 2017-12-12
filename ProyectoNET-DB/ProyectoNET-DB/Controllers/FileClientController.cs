@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using System.Net.Http.Headers;
-using ProyectoNET_LocalDB.Extra_Models;
+using ProyectoNET_DB.Extra_Models;
 using Microsoft.EntityFrameworkCore;
 using ProyectoNET_DB.Info2017;
 using ProyectoNET_DB.Extra_Models;
 
-namespace ProyectoNET_LocalDB.Controllers
+namespace ProyectoNET_DB.Controllers
 {
     public class FileClientController : Controller
     {
@@ -126,7 +126,7 @@ namespace ProyectoNET_LocalDB.Controllers
 
                 var module = _context.Actualmodule.FirstOrDefault();
 
-                var files = new ProyectoNET_LocalDB.Extra_Models.FileResult
+                var files = new ProyectoNET_DB.Extra_Models.FileResult
                 {
                     FileNames = names,
                     ContentTypes = contentTypes,

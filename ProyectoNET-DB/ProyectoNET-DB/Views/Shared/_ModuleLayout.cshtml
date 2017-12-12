@@ -2,9 +2,9 @@
 <html>
 <head>
 
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width" />
-        <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
     <environment>
         <link href="wwwroot/css/site.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="~/css/bootstrap.css">
@@ -41,13 +41,13 @@
         </div>
     </div>
 
-    <div style="padding-top:10px;" class="container">
+    <div class="container">
         <div class="row">
             <!-- BARRA LATERAL -->
             <div class="col-2 bg-white shad-inf p-0">
                 <div class="row p-0 m-3">
 
-                    <a asp-controller="Modules" asp-action="Index" class="btn btn-inf btn-sm mb-3">Ver Cursos</a>
+                    <a asp-controller="Course" asp-action="Index" class="btn btn-inf btn-sm mb-3">Ver Módulos</a>
                     <p class="h6">Los títulos van en h6</p>
                     <p><small>Los demás elementos como tel texto van en un "p" común como el que estás viendo, pero con la etiqueta small</small></p>
                     <ul class="list-unstyled col-12 p-0">
@@ -66,12 +66,13 @@
                     </ul>
                 </div>
             </div>
- 
-
-                            @RenderBody()
 
 
+            @RenderBody()
+        </div>
     </div>
+
+
     <footer class="bg-inf-blue">
         <div class="container">
             <div class="row text-white py-3">
@@ -109,13 +110,11 @@
         </div>
     </footer>
     <environment>
-            <script src="~/Scripts/jquery-1.10.2.min.js" asp-append-version="true"></script>
-            <script src="~/Scripts/bootstrap.min.js" asp-append-version="true"></script>
-                 <script type="text/javascript" src="js/bootstrap.js" asp-append-version="true"></script>
+        <script src="~/Scripts/jquery-1.10.2.min.js" asp-append-version="true"></script>
+        <script src="~/Scripts/bootstrap.min.js" asp-append-version="true"></script>
         <script type="text/javascript" src="js/bootstrap.js" asp-append-version="true"></script>
-                 <script type="text/javascript" src="js/site.js" asp-append-version="true"></script>
-        <script type="text/javascript" src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
-</environment>
+        <script type="text/javascript" src="js/bootstrap.bundle.js" asp-append-version="true"></script>
+    </environment>
 
 </body>
 
@@ -123,5 +122,3 @@
 
 @RenderSection("scripts", required: false)
 </html>
-
-

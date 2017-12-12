@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ProyectoNET_DB.Info2017;
-using ProyectoNET_LocalDB.Extra_Models;
+using ProyectoNET_DB.Extra_Models;
 
 namespace ProyectoNET_DB.Extra_Models
 {

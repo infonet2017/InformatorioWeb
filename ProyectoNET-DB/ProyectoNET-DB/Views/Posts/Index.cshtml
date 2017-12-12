@@ -9,35 +9,37 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 <div class="col-10 p-0">
-    <div class="card-inf-gray ml-3 mb-3">
+    <div class="card-inf-gray my-3 ml-0">
         <div class="card-header-inf bg-inf-blue h3 text-white">@ViewBag.title</div>
-        <div class="card-body-inf">
 
-            <div class="card-header bg-inf-blue">
-                <ul class="nav nav-tabs card-header-tabs">
+        <div style="background-color: whitesmoke;">
+            <div class="card-body-inf ">
 
-                    <li class="nav-item"><a class="nav-link active-inf" asp-controller="Posts" asp-action="Index">Muro</a></li>
-                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
-                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
-                </ul>
-            </div>
-            <div class="card-body-inf-white pre">
+                <div class="card-header bg-inf-blue">
+                    <ul class="nav nav-tabs card-header-tabs">
+
+                        <li class="nav-item"><a class="nav-link active-inf" asp-controller="Posts" asp-action="Index">Muro</a></li>
+                        <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
+                        <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
+                    </ul>
+                </div>
+                <div class="card-body-inf-white pre">
                     <div style="justify-content:flex-end;padding-top: 20px;padding-right: 20px">
                         <a asp-action="Create" asp-route-id=@ViewBag.IdModule class="btn btn-inf btn-sm mb-3">+ Agregar Publicación</a>
                     </div>
                     <table class="table">
-                        <thead>
+                        <thead class="text-white bg-inf-blue">
                             <tr>
-                                <th>
+                                <th scope="col">
                                     @Html.DisplayNameFor(model => model.Title)
                                 </th>
-                                <th>
+                                <th scope="col">
                                     @Html.DisplayNameFor(model => model.Description)
                                 </th>
-                                <th>
+                                <th scope="col">
                                     @Html.DisplayNameFor(model => model.DateTime)
                                 </th>
-                                <th>
+                                <th scope="col"> 
                                     @Html.DisplayNameFor(model => model.NameTeacher)
                                 </th>
                                 <th></th>
@@ -47,6 +49,8 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
+
+                                    <th scope="row"></th>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Title)
                                     </td>
@@ -68,7 +72,11 @@
 
                         </tbody>
                     </table>
+
+
+
                 </div>
+            </div>
         </div>
-    </div>
+        </div>
 </div>
