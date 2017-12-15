@@ -115,9 +115,10 @@ namespace ProyectoNET_DB.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Evaluations");
             }
-            return View(feedback);
+
+            return RedirectToAction("Index", "Evaluations");
         }
 
         // GET: Feedbacks/Delete/5
