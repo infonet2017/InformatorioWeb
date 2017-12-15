@@ -8,66 +8,138 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
-<div class="col-10 p-0">
-    <div class="card-inf-gray my-3 ml-0">
-        <div class="card-header-inf bg-inf-blue h3 text-white">@ViewBag.title</div>
-        <div class="card-body-inf">
-            <div class="card-header bg-inf-blue">
-                <ul class="nav nav-tabs card-header-tabs">
 
-                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="Posts" asp-action="Index">Muro</a></li>
-                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
-                    <li class="nav-item"><a class="nav-link active-inf" asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
-                </ul>
-            </div>
-            <div class="card-body-inf-white pre" style="padding-top:10px;">
+    <div class="col-10 ">
+        <div class="card-inf my-3 ml-0">
+            <div class="card-header-inf bg-inf-blue h3 text-white">@ViewBag.Title</div>
+            <div style="background-color: whitesmoke;">
+                <div class="card-body-inf ">
+                    <div class="card-body-inf-white pre">
+                        <div class="card-header bg-inf-blue">
+                            <ul class="nav nav-tabs card-header-tabs">
 
-                <div style="justify-content:flex-end;padding-top: 20px;padding-right: 20px">
-                    <a asp-action="Create" asp-route-id=@ViewBag.IDModule class="btn btn-inf btn-sm mb-3">+ Agregar Instancia Evaluativa</a>
+                                <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="Posts" asp-action="Index">Muro</a></li>
+                                <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
+                                <li class="nav-item"><a class="nav-link active-inf" asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
+                            </ul>
+                        </div>
+                        <div class="card-body-inf-white pre" style="padding-top:10px;">
 
-                </div>
+                            <div style="justify-content:flex-end;padding-top: 20px;padding-right: 20px">
+                                <a asp-action="Create" asp-route-id=@ViewBag.IDModule class="btn btn-inf btn-sm mb-3">+ Agregar Instancia Evaluativa</a>
 
-                @foreach (var item in Model)
-                {
-                    <div class="col-12 p-0 mx-0">
-                        <div class="card-inf-gray text-white ml-3 mb-3">
-                            <div class="card-header-inf bg-inf-blue">
-                                <a>
-                                    @Html.DisplayFor(modelItem => item.Name)
-
-                                </a>
                             </div>
-                            <div >
-                                <div class="card-body-inf  text-dark">
-                                    <div class="card-text">
-                                        <p>@Html.DisplayFor(modelItem => item.DateEvaluation)</p>
 
-                                        <p>Notas:</p>
-                                        @foreach (var feedback in item.Feedback)
-                                        {
-                                            <div id="feed-@feedback.Idfeedback">
-                                                <p>- @Html.DisplayFor(modelItem => feedback.IdStudentNavigation.Nombre) @Html.DisplayFor(modelItem => feedback.IdStudentNavigation.Apellido)</p>
-                                                <input id="feed-description" value="@Html.DisplayFor(modelItem => feedback.Description)" />
-                                                <input id="feed-note" value="@Html.DisplayFor(modelItem => feedback.Note)" />
-                                                <button onclick="editFeedback(@feedback.Idfeedback)">Guardar</button>
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-12 p-0 mx-0">
+                                    <div class="card-inf-gray text-white ml-3 mb-3">
+                                        <div class="card-header-inf bg-inf-blue">
+
+                                            <div class="row">
+                                                <div class="col-6 ">
+                                                    <a class="text-uppercase">@Html.DisplayFor(modelItem => item.Name)</a>
+
+                                                </div>
+
+                                                <div class="col-6 text-lg-right">
+
+                                                    @Html.DisplayFor(modelItem => item.DateEvaluation) | 
+
+                                                    <a asp-action="Delete" asp-route-id="@item.IdEvaluation" class="fas fa-trash"></a>
+
+                                                </div>
                                             </div>
-                                        }
 
-                                        <a asp-action="Delete" asp-route-id="@item.IdEvaluation" class="btn btn-inf btn-sm mb-3">Eliminar Instancia Evaluativa</a>
+
+                                        </div>
+
+                                        <div>
+                                            <div class="card-body-inf  text-dark">
+                                                <div class="card-text">
+
+                                                    @foreach (var feedback in item.Feedback)
+                                                    {
+
+                                                        <div id="feed-@feedback.Idfeedback">
+                                                            <div class="row" style="padding-bottom:10px">
+                                                                <div class="col-12">
+                                                                    <div class="card-inf">
+                                                                        <div class="card-header-inf bg-inf-blue lead text-white">
+
+
+                                                                            <div class="row">
+                                                                                <div class="col-10 ">
+                                                                                    <a style="padding-left:5px">@Html.DisplayFor(modelItem => feedback.IdStudentNavigation.FirstName) @Html.DisplayFor(modelItem => feedback.IdStudentNavigation.LastName)</a>
+                                                                                    <a id="feed-edit">
+                                                                                        <button id="feed-editbutton" onclick="toggleEdit(@feedback.Idfeedback)" class="fas fa-pencil-alt btn btn-inf text-white"></button>
+                                                                                    </a>
+                                                                                </div>
+
+                                                                                <div class="col-2 text-lg-right">
+
+
+                                                                                    <p id="feed-note-l">Nota: @Html.DisplayFor(modelItem => feedback.Note)</p>
+
+                                                                                </div>
+                                                                            </div>
+
+
+
+
+                                                                        </div>
+                                                                        <div class="card-body-inf">
+
+
+
+                                                                            <p id="feed-description-l">@Html.DisplayFor(modelItem => feedback.Description) </p>
+
+
+                                                                            <textarea rows="2" placeholder="Comentarios" class="form-control" style="display:none;margin-bottom:5px" name="description" id="feed-description" value="@Html.DisplayFor(modelItem => feedback.Description)"></textarea>
+
+                                                                            <select id="feed-note" value="@Html.DisplayFor(modelItem => feedback.Note)" style="display:none;margin-bottom:10px" class="form-control">
+                                                                                <option>1</option>
+                                                                                <option>2</option>
+                                                                                <option>3</option>
+                                                                                <option>4</option>
+                                                                                <option>5</option>
+                                                                                <option>6</option>
+                                                                                <option>7</option>
+                                                                                <option>8</option>
+                                                                                <option>9</option>
+                                                                                <option>10</option>
+                                                                            </select>
+
+
+                                                                            <p id="feed-save" style="display:none">
+                                                                                <button id="feed-savebutton" onclick="editFeedback(@feedback.Idfeedback)" class="btn btn-inf btn-sm mb-3">Guardar</button>
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    }
+
+
+                                                        </div>
+
+                                            </div>
+                                        </div>
+
+
 
                                     </div>
 
                                 </div>
-                            </div>
 
-
-
+                            }
                         </div>
                     </div>
 
-                }
+                </div>
             </div>
-        </div>
-
-    </div>
+            </div>
+        
 </div>

@@ -6,10 +6,9 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <environment>
-        <link href="wwwroot/css/site.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="~/css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="~/css/bootstrap-grid.css">
-        <link rel="stylesheet" type="text/css" href="~/css/bootstrap-reboot.css">
+
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
         <script src="~/Scripts/modernizr-2.6.2.js"></script>
     </environment>
 </head>
@@ -27,12 +26,8 @@
                     <div class="row">
                         <div class="col-12">
                             <ul class="nav navbar-nav ml-auto  mt-2 mt-md-0 enlace">
-                                <li><a class="nav-item nav-link text-white" href="#">¿Qué es el informatorio?</a></li>
-                                <li><a class="nav-item nav-link text-white" href="#">Cursos</a></li>
-                                <li><a class="nav-item nav-link text-white" href="#">Proyectos</a></li>
-                                <li><a class="nav-item nav-link text-white" href="#">Galería</a></li>
-                                <li><a class="nav-item nav-link text-white" href="#">Blog</a></li>
-                                <li><a class="nav-item nav-link text-white" href="#">INICIAR SESIÓN</a></li>
+                                <li><a class="nav-item nav-link text-white" href="#">DOCENTE</a></li>
+                                <li><a class="nav-item nav-link text-white" href="#">CERRAR SESIÓN</a></li>
                             </ul>
                         </div>
                     </div>
@@ -65,11 +60,11 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-10 p-0">
-                <div class="card-inf-gray my-3 ml-0">
-                    <div class="card-header-inf bg-inf-blue h3 text-white">@ViewBag.Title</div>
+            <div class="col-10 ">
+                <div class="card-inf my-3 ml-0">
+                    <div class="card-header-inf bg-inf-blue h3 text-white">@ViewBag.title</div>
                     <div style="background-color: whitesmoke;">
-                        <div class="card-body-inf ">
+                        <div class="card-body-inf">
                             <div class="card-body-inf-white pre">
                                 @RenderBody()
                             </div>
@@ -106,8 +101,8 @@
                     </ul>
                 </div>
                 <div class="col-6 align-items-center">
-                    <a href="#"><img src="~/Content/Images/facebook-logo-button.png" height="40px"></a>
-                    <a href="#"><img src="~/Content/Images/twitter-logo-button.png" height="40px"></a>
+                    <a href="#"><img src="~/Images/facebook-logo-button.png" height="40px"></a>
+                    <a href="#"><img src="~/Images/twitter-logo-button.png" height="40px"></a>
                 </div>
                 <div class="col-12">
                     <small>Información institucional y todo lo necesario de esta pequeña línea de texto</small>
@@ -120,6 +115,10 @@
         <script src="~/Scripts/bootstrap.min.js" asp-append-version="true"></script>
         <script type="text/javascript" src="js/bootstrap.js" asp-append-version="true"></script>
         <script type="text/javascript" src="js/bootstrap.bundle.js" asp-append-version="true"></script>
+
+
+
+
     </environment>
 
 </body>

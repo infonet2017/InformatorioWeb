@@ -1,18 +1,13 @@
-﻿// Write your JavaScript code.
+﻿function toggleEdit(id) {
+    //Estos son los inputs con el css "display_none"
+    $("#feed-" + id + " #feed-description").toggle();
+    $("#feed-" + id + " #feed-note").toggle();
+    $("#feed-" + id + " #feed-save").toggle();
 
-function editFeedback(id) {
-    var description = $("#feed-" + id + " #feed-description").val();
-    var note = $("#feed-" + id + " #feed-note").val();
-    var serviceURL = "/feedbacks/Edit/" + id;
-    $.ajax({
-        type: "POST",
-        url: "http://localhost:60350/feedbacks/Edit/" + id + "/" + description + "/" + note,
-        data: "",
-        //data: { description: description, id: id, note: note },
-        //data: { Description: description, ID: id, Note: note },
-        //data: "Description="+description+"&ID="+id+"&Note="+note ,
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-    });
-    
+    //Estos serian los labels
+    $("#feed-" + id + " #feed-note-l").toggle();
+    $("#feed-" + id + " #feed-description-l").toggle();
+    $("#feed-" + id + " #feed-edit").toggle();
 }
+
+

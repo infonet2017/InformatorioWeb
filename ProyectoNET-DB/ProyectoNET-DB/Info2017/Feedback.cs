@@ -13,7 +13,7 @@ namespace ProyectoNET_DB.Info2017
         public int? Note { get; set; }
 
         public Evaluation IdEvaluationNavigation { get; set; }
-        public Usuarios IdStudentNavigation { get; set; }
-        public Usuarios IdTeacherNavigation { get; set; }
+        public Users IdStudentNavigation { get; set; }
+        public Users IdTeacherNavigation { get; set; }
     }
 }

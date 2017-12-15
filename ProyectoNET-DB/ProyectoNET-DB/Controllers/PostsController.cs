@@ -49,8 +49,8 @@ namespace ProyectoNET_DB.Controllers
             var Modulo = _context.Actualmodule.FirstOrDefault();
 
             post.IdModule = _context.Auxiliarmodules.FirstOrDefault(m => m.IdModule == Modulo.ActualModule).IdModule;
-            post.IdTeacher = _context.Teacher.FirstOrDefault(m => m.UsuariosIdUsuario == Modulo.TeacherId).UsuariosIdUsuario;
-            post.NameTeacher = _context.Teacher.FirstOrDefault(m => m.UsuariosIdUsuario == Modulo.TeacherId).Name;
+            post.IdTeacher = _context.Teacher.FirstOrDefault(m => m.IdUser == Modulo.IdTeacher).IdUser;
+            post.NameTeacher = _context.Teacher.FirstOrDefault(m => m.IdUser == Modulo.IdTeacher).Name;
             post.DateTime = DateTime.Now;
 
                 _context.Add(post);

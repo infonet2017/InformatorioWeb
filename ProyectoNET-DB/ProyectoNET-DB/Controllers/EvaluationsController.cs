@@ -50,23 +50,28 @@ namespace ProyectoNET_DB.Controllers
         {
             evaluation.DateEvaluation = DateTime.Now;
             var Modulo = _context.Actualmodule.FirstOrDefault();
-            evaluation.IdModule= _context.Auxiliarmodules.Single(p => p.IdModule == Modulo.ActualModule).IdModule;
+            var auxiliarModule = _context.Auxiliarmodules.Single(p => p.IdModule == Modulo.ActualModule);
+
+            evaluation.IdModule = auxiliarModule.IdModule;
+            //evaluation.IdModuleNavigation = _context.Module.Single(p => p.Idmodule == auxiliarModule.IdModule);
             List<Student> Student = _context.Student.ToList();
             evaluation.IsDeleted = false;
             evaluation.Feedback = new List<Feedback>();
-            
+
+
             foreach (var stu in Student)
             {
                 Feedback feed = new Feedback();
-                feed.IdTeacher = _context.Teacher.FirstOrDefault(m => m.IdAuxiliarModules == Modulo.TeacherId).IdTeacher;
+                feed.IdTeacher = _context.Teacher.FirstOrDefault(m => m.IdAuxiliarModules == auxiliarModule.IdauxiliarModules).IdTeacher;
                 feed.IdStudent = stu.Idstudent;
                 feed.IdEvaluation = evaluation.IdEvaluation;
                 evaluation.Feedback.Add(feed);
+
             }
             
             if (ModelState.IsValid)
             {
-                _context.Add(evaluation);
+                _context.Update(evaluation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

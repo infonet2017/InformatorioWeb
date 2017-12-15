@@ -9,6 +9,6 @@ namespace ProyectoNET_DB.Info2017
         public int IdUsuario { get; set; }
         public string Name { get; set; }
 
-        public Usuarios IdUsuarioNavigation { get; set; }
+        public Users IdUsuarioNavigation { get; set; }
     }
 }

@@ -14,6 +14,6 @@ namespace ProyectoNET_DB.Info2017
         public string NameTeacher { get; set; }
 
         public Module IdModuleNavigation { get; set; }
-        public Usuarios IdTeacherNavigation { get; set; }
+        public Users IdTeacherNavigation { get; set; }
     }
 }

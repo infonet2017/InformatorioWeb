@@ -134,7 +134,7 @@ namespace ProyectoNET_DB.Controllers
                     CreatedTimestamp = DateTime.UtcNow,
                     UpdatedTimestamp = DateTime.UtcNow,
                     idModule = _context.Auxiliarmodules.Single(p => p.IdModule == module.ActualModule).IdModule,
-                    Teacher = _context.Teacher.Single(p => p.IdTeacher == module.TeacherId)
+                    Teacher = _context.Teacher.Single(p => p.IdTeacher == module.IdTeacher)
                     
                 };
 

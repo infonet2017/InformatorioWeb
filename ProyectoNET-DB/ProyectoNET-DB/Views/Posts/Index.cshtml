@@ -4,79 +4,59 @@
     Layout = "~/Views/Shared/_ModuleLayout.cshtml";
 }
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-
-<div class="col-10 p-0">
-    <div class="card-inf-gray my-3 ml-0">
+<div class="col-10 ">
+    <div class="card-inf my-3 ml-0">
         <div class="card-header-inf bg-inf-blue h3 text-white">@ViewBag.title</div>
 
-        <div style="background-color: whitesmoke;">
+        @*// <div style="background-color: whitesmoke;">*@
             <div class="card-body-inf ">
 
-                <div class="card-header bg-inf-blue">
-                    <ul class="nav nav-tabs card-header-tabs">
+                <div class="card-inf-gray">
+                    <ul class="nav nav-tabs nav-fill card-header-tabs px-2">
 
-                        <li class="nav-item"><a class="nav-link active-inf" asp-controller="Posts" asp-action="Index">Muro</a></li>
-                        <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
-                        <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
+                        <li class="nav-item"><a class="nav-link active-inf text-uppercase" asp-controller="Posts" asp-action="Index">Muro</a></li>
+                        <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
+                        <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
                     </ul>
-                </div>
-                <div class="card-body-inf-white pre">
-                    <div style="justify-content:flex-end;padding-top: 20px;padding-right: 20px">
-                        <a asp-action="Create" asp-route-id=@ViewBag.IdModule class="btn btn-inf btn-sm mb-3">+ Agregar Publicación</a>
-                    </div>
-                    <table class="table">
-                        <thead class="text-white bg-inf-blue">
-                            <tr>
-                                <th scope="col">
-                                    @Html.DisplayNameFor(model => model.Title)
-                                </th>
-                                <th scope="col">
-                                    @Html.DisplayNameFor(model => model.Description)
-                                </th>
-                                <th scope="col">
-                                    @Html.DisplayNameFor(model => model.DateTime)
-                                </th>
-                                <th scope="col"> 
-                                    @Html.DisplayNameFor(model => model.NameTeacher)
-                                </th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
+                    <div class="card-body-inf-white pre">
+                        <div class="text-right" style="padding-top: 20px;padding-right: 20px">
+                            <a asp-action="Create" asp-route-id=@ViewBag.IdModule class="btn btn-inf btn-sm mb-3">+ Agregar Publicación</a>
+                        </div>
 
-                                    <th scope="row"></th>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Title)
-                                    </td>
-                                    <td>
+                        @foreach (var item in Model)
+                        {
+                            <div class="row mx-3" style="padding-bottom: 10px">
+                                <div class="col-12 card-inf bg-inf-blue text-white p-0">
+
+                                    <div class="card-header-inf">
+                                        <div class="row">
+                                            <div class="col-6 ">
+                                                <a class="text-uppercase">@Html.DisplayFor(modelItem => item.Title)</a>
+
+                                            </div>
+
+                                            <div class="col-6 text-lg-right">
+                                                @Html.DisplayFor(modelItem => item.DateTime) | @Html.DisplayFor(modelItem => item.NameTeacher) 
+
+                                                <a asp-action="Edit" asp-route-id="@item.IdPost" class="fas fa-pencil-alt"></a>  
+                                                <a asp-action="Delete" asp-route-id="@item.IdPost" class="fas fa-trash"></a>
+                                            </div>
+                                            </div>
+                                    </div>
+                                    <div class=" card-body-inf py-0 mb-3 p-2">
+
                                         @Html.DisplayFor(modelItem => item.Description)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.DateTime)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NameTeacher)
-                                    </td>
-                                    <td>
-                                        <a asp-action="Edit" asp-route-id="@item.IdPost" class="btn btn-inf btn-sm mb-3">Edit</a>
-                                        <a asp-action="Delete" asp-route-id="@item.IdPost" class="btn btn-inf btn-sm mb-3">Delete</a>
-                                    </td>
-                                </tr>
-                            }
-
-                        </tbody>
-                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                        }
 
 
 
-                </div>
+                        @*</div>*@
+                    </div>
+
             </div>
         </div>
-        </div>
+    </div>
 </div>

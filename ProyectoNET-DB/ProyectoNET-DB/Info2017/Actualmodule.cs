@@ -7,6 +7,6 @@ namespace ProyectoNET_DB.Info2017
     {
         public int IdActualModule { get; set; }
         public int ActualModule { get; set; }
-        public int TeacherId { get; set; }
+        public int IdTeacher { get; set; }
     }
 }

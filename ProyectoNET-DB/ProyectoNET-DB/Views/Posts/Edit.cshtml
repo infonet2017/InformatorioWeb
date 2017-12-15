@@ -7,52 +7,57 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
-<div class="col-10 p-0">
-    <div class="card-inf-gray my-3 ml-0">
+<div class="col-10 ">
+    <div class="card-inf my-3 ml-0">
         <div class="card-header-inf bg-inf-blue h3 text-white">@ViewBag.title</div>
         <div class="card-body-inf">
-            <div class="card-header bg-inf-blue">
-                <ul class="nav nav-tabs card-header-tabs">
+
+            <ul class="nav nav-tabs card-header-tabs nav-fill px-2">
+
+                <li class="nav-item"><a class="nav-link active-inf" asp-controller="Posts" asp-action="Index">Muro</a></li>
+                <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
+                <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
+            </ul>
+
+            <div class="card-body-inf bg-inf-gray">
 
 
-                    <li class="nav-item"><a class="nav-link active-inf" asp-controller="Posts" asp-action="Index">Muro</a></li>
-                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
-                    <li class="nav-item"><a class="nav-link inactive-inf text-dark" asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
-                </ul>
-            </div>
-            <div class="card-body-inf-white pre">
 
-                <h2>Editar Publicación</h2>
-                <hr />
-                <div class="row">
-                    <div class="col-md-4">
-                        <form asp-action="Edit">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <input type="hidden" asp-for="IdPost" />
-                            <div class="form-group">
-                                <label asp-for="Title" class="control-label"></label>
-                                <input asp-for="Title" class="form-control" />
-                                <span asp-validation-for="Title" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="Description" class="control-label"></label>
-                                <input asp-for="Description" class="form-control" />
-                                <span asp-validation-for="Description" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" value="Guardar" class="btn btn-inf btn-sm mb-3" />
-
-                                <a asp-action="Index" class="btn btn-inf btn-sm mb-3">Cancelar</a>
-                            </div>
-                        </form>
+                <div class="card-inf mt-3">
+                    <div class="card-header-inf bg-inf-blue text-white ">
+                        <h6 class="mb-0">Editar Post</h6>
                     </div>
+                    <div class="card-body-inf p-3">
+                        <div class="form-group m-0">
+                            <form asp-action="Edit">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <input type="Título" id="Title" placeholder="Título" asp-for="Title" class="form-control" />
+                                </div>
+                                <div class="form-group m-0">
+                                    <textarea placeholder="Escriba lo que desea avisar aquí..." asp-for="Description" class="form-control" id="Textarea" rows="3"></textarea>
+
+                                    <div class="row">
+                                        <div class="col-6 ">
+                                            <button asp-action="Edit" class="btn btn-inf btn-sm btn-block mt-3">Guardar</button>
+                                        </div>
+
+                                        <div class="col-6 ">
+                                            <button asp-action="Index" class="btn btn-inf btn-sm btn-block mt-3">Cancelar</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <div>
+                    </div>
+                    @section Scripts {
+                        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                    }
                 </div>
-                <div>
-                </div>
-                @section Scripts {
-                    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-                }
             </div>
         </div>
     </div>
-</div>

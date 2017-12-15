@@ -36,11 +36,11 @@ namespace ProyectoNET_DB.Extra_Models
                     UpdatedTimestamp = fileResult.UpdatedTimestamp,
                     Description = fileResult.Description,
                     IdModule = _context.Auxiliarmodules.Single(p => p.IdModule == module.ActualModule).IdModule,
-                    IdTeacher = _context.Teacher.Single(n => n.UsuariosIdUsuario == module.TeacherId).UsuariosIdUsuario,
+                    IdTeacher = _context.Teacher.Single(n => n.IdUser == module.IdTeacher).IdUser,
                     IsDeleted = false
                 };
 
-                fileDescription.TeacherName = _context.Teacher.Single(n => n.UsuariosIdUsuario == fileDescription.IdTeacher).Name;
+                fileDescription.TeacherName = _context.Teacher.Single(n => n.IdUser == fileDescription.IdTeacher).Name;
 
                 fileDescription.ModuleName = _context.Auxiliarmodules.Single(p => p.IdModule == fileDescription.IdModule).Name;
 

@@ -7,10 +7,10 @@ namespace ProyectoNET_DB.Info2017
     {
         public int IdTeacher { get; set; }
         public string Name { get; set; }
-        public int UsuariosIdUsuario { get; set; }
+        public int IdUser { get; set; }
         public int IdAuxiliarModules { get; set; }
 
         public Auxiliarmodules IdAuxiliarModulesNavigation { get; set; }
-        public Usuarios UsuariosIdUsuarioNavigation { get; set; }
+        public Users IdUserNavigation { get; set; }
     }
 }
