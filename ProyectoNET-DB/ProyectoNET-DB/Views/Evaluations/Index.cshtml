@@ -93,8 +93,7 @@
 
                                                                         <p id="feed-description-l">@Html.DisplayFor(modelItem => feedback.Description) </p>
 
-
-                                                                        <textarea rows="2" placeholder="Comentarios" class="form-control" style="display:none;margin-bottom:5px" name="description" id="feed-description" value="@Html.DisplayFor(modelItem => feedback.Description)"></textarea>
+                                                                        <textarea rows="3" placeholder="@Html.DisplayFor(modelItem => feedback.Description)" class="form-control" style="display:none;margin-bottom:5px" name="description" id="feed-description" value="@Html.DisplayFor(modelItem => feedback.Description)"></textarea>
 
                                                                         <select id="feed-note" value="@Html.DisplayFor(modelItem => feedback.Note)" style="display:none;margin-bottom:10px" class="form-control">
                                                                             <option>1</option>
