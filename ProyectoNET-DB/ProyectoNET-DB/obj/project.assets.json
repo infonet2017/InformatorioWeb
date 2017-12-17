@@ -12844,11 +12844,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\Eve Bejarano\\source\\repos\\ProyectoNET-DB\\ProyectoNET-DB\\ProyectoNET-DB.csproj",
+      "projectUniqueName": "C:\\Users\\Eve Bejarano\\source\\repos\\ProyectoNET-DB\\ProyectoNET-DB\\ProyectoNET-DB\\ProyectoNET-DB.csproj",
       "projectName": "ProyectoNET-DB",
-      "projectPath": "C:\\Users\\Eve Bejarano\\source\\repos\\ProyectoNET-DB\\ProyectoNET-DB\\ProyectoNET-DB.csproj",
+      "projectPath": "C:\\Users\\Eve Bejarano\\source\\repos\\ProyectoNET-DB\\ProyectoNET-DB\\ProyectoNET-DB\\ProyectoNET-DB.csproj",
       "packagesPath": "C:\\Users\\Eve Bejarano\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Eve Bejarano\\source\\repos\\ProyectoNET-DB\\ProyectoNET-DB\\obj\\",
+      "outputPath": "C:\\Users\\Eve Bejarano\\source\\repos\\ProyectoNET-DB\\ProyectoNET-DB\\ProyectoNET-DB\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -11,6 +11,5 @@ namespace ProyectoNET_DB.Info2017
         public int IdAuxiliarModules { get; set; }
 
         public Auxiliarmodules IdAuxiliarModulesNavigation { get; set; }
-        public Users IdUserNavigation { get; set; }
     }
 }

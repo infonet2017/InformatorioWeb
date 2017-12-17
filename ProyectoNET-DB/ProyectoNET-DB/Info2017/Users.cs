@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace ProyectoNET_DB.Info2017
 {
-    public partial class Users
+    public partial class UsuarioUsers
     {
-        public Users()
+        public UsuarioUsers()
         {
             FeedbackIdStudentNavigation = new HashSet<Feedback>();
             FeedbackIdTeacherNavigation = new HashSet<Feedback>();

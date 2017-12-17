@@ -11,6 +11,8 @@ using ProyectoNET_DB.Info2017;
 using System.IO;
 using ProyectoNET_DB.Models.RestModels;
 using Newtonsoft.Json;
+using System.Net.Http;
+using System.Text;
 
 namespace ProyectoNET_DB.Controllers
 {
@@ -91,31 +93,30 @@ namespace ProyectoNET_DB.Controllers
 
 
         // GET: Course/Modules
-        [HttpPost]
-        public async Task<IActionResult> Modules([FromBody] CourseResponse courseResponse)
-        {
-            var modules = GetModules(courseResponse);//cargo el jotason desde un archivo para simular la request a la api rancia del equipo de django
-            
-            return Ok(courseResponse);
-            //return RedirectToAction("Index", "Course");
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> Modules([FromBody] CourseResponse courseResponse)
+        //{
+        //    var fakeResponse = LoadModulesAsync(courseResponse);//cargo el jotason desde un archivo para simular la request a la api rancia del equipo de django
+
+        //    var modules = ModuleMapping(fakeResponse.Result);
 
 
+        //    return Ok(courseResponse);
+        //    return RedirectToAction("Index", "Course");
+        //}
 
-        public List<Auxiliarmodules> GetModules(CourseResponse course)
-        {
-            ModuleResponse fakeResponse;
-            using (StreamReader r = new StreamReader("fakeResponse.json"))
-            {
-                string json = r.ReadToEnd();
+               // GET: Course/Modules
+        //[HttpPost]
+        //public List<Auxiliarmodules> Modules([FromBody] CourseResponse courseResponse)
+        //{
+        //    var fakeResponse = LoadModulesAsync(courseResponse);//cargo el jotason desde un archivo para simular la request a la api rancia del equipo de django
 
-                fakeResponse = JsonConvert.DeserializeObject<ModuleResponse>(json);
-            }
+        //    var modules = ModuleMapping(fakeResponse.Result);
 
-            var modules = ModuleMapping(fakeResponse);
 
-            return modules;
-        }
+        //    return modules;
+        //    //return RedirectToAction("Index", "Course");
+        //}
 
 
 
@@ -142,6 +143,40 @@ namespace ProyectoNET_DB.Controllers
                 modules.Add(newMod);
             }
             return modules;
+        }
+
+
+        public async Task<string> LoadModulesAsync(CourseResponse course)
+        {
+            var Url = "http://localhost:61350/Modules/ProudModulesAsync";
+
+            string data;
+
+            string Json = JsonConvert.SerializeObject(course);
+
+            var request = new StringContent(Json, Encoding.UTF8,"application/json");
+
+            using (HttpClient client = new HttpClient())
+            {
+                using (HttpResponseMessage res = await client.PostAsync(Url,request))
+                {
+                    using (HttpContent content = res.Content)
+                    {
+                        data = await content.ReadAsStringAsync();
+                    }
+                }
+            }
+
+            //return JsonConvert.DeserializeObject<ModuleResponse>(data);
+
+            return data;
+        }
+
+        [HttpPost]
+        public string ProudModulesAsync([FromBody] CourseResponse course)
+        {
+
+            return JsonConvert.SerializeObject(course);
         }
 
 
