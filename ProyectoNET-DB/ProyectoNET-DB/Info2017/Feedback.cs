@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProyectoNET_DB.Info2017
 {
@@ -8,12 +9,12 @@ namespace ProyectoNET_DB.Info2017
         public int Idfeedback { get; set; }
         public string Description { get; set; }
         public int IdEvaluation { get; set; }
-        public int IdTeacher { get; set; }
         public int IdStudent { get; set; }
         public int? Note { get; set; }
 
         public Evaluation IdEvaluationNavigation { get; set; }
-        public UsuarioUsuarioUsers IdStudentNavigation { get; set; }
-        public UsuarioUsuarioUsers IdTeacherNavigation { get; set; }
+
+        [ForeignKey("IdStudent")]
+        public UsuarioUsers IdStudentNavigation { get; set; }
     }
 }

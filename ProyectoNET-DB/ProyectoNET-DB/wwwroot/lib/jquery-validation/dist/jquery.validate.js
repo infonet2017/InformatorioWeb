@@ -899,7 +899,7 @@ $.extend( $.validator, {
 		},
 
 		dependTypes: {
-			"boolean": function( param ) {
+			"bool": function( param ) {
 				return param;
 			},
 			"string": function( param, element ) {

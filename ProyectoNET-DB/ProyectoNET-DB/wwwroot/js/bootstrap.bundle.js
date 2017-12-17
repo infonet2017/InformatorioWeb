@@ -128,7 +128,7 @@ var Util = function () {
       $(element).trigger(transition.end);
     },
     supportsTransitionEnd: function supportsTransitionEnd() {
-      return Boolean(transition);
+      return bool(transition);
     },
     isElement: function isElement(obj) {
       return (obj[0] || obj).nodeType;
@@ -546,11 +546,11 @@ var Carousel = function () {
     wrap: true
   };
   var DefaultType = {
-    interval: '(number|boolean)',
-    keyboard: 'boolean',
-    slide: '(boolean|string)',
-    pause: '(string|boolean)',
-    wrap: 'boolean'
+    interval: '(number|bool)',
+    keyboard: 'bool',
+    slide: '(bool|string)',
+    pause: '(string|bool)',
+    wrap: 'bool'
   };
   var Direction = {
     NEXT: 'next',
@@ -834,7 +834,7 @@ var Carousel = function () {
 
       var nextElementIndex = this._getItemIndex(nextElement);
 
-      var isCycling = Boolean(this._interval);
+      var isCycling = bool(this._interval);
       var directionalClassName;
       var orderClassName;
       var eventDirectionName;
@@ -1037,7 +1037,7 @@ var Collapse = function () {
     parent: ''
   };
   var DefaultType = {
-    toggle: 'boolean',
+    toggle: 'bool',
     parent: '(string|element)'
   };
   var Event = {
@@ -1251,7 +1251,7 @@ var Collapse = function () {
 
     _proto._getConfig = function _getConfig(config) {
       config = $.extend({}, Default, config);
-      config.toggle = Boolean(config.toggle); // coerce string values
+      config.toggle = bool(config.toggle); // coerce string values
 
       Util.typeCheckConfig(NAME, config, DefaultType);
       return config;
@@ -1410,7 +1410,7 @@ var nativeHints = ['native code', '[object MutationObserverConstructor]'];
  * @method
  * @memberof Popper.Utils
  * @argument {Function | undefined} fn the function to check
- * @returns {Boolean}
+ * @returns {bool}
  */
 var isNative = (function (fn) {
   return nativeHints.some(function (hint) {
@@ -1487,7 +1487,7 @@ var debounce = supportsNativeMutationObserver ? microtaskDebounce : taskDebounce
  * @method
  * @memberof Popper.Utils
  * @argument {Any} functionToCheck - variable to check
- * @returns {Boolean} answer to: is a function?
+ * @returns {bool} answer to: is a function?
  */
 function isFunction(functionToCheck) {
   var getType = {};
@@ -1673,7 +1673,7 @@ function getScroll(element) {
  * @memberof Popper.Utils
  * @param {Object} rect - Rect object you want to change
  * @param {HTMLElement} element - The element from the function reads the scroll values
- * @param {Boolean} subtract - set to true if you want to subtract the scroll values
+ * @param {bool} subtract - set to true if you want to subtract the scroll values
  * @return {Object} rect - The modifier rect object
  */
 function includeScroll(rect, element) {
@@ -1710,7 +1710,7 @@ function getBordersSize(styles, axis) {
  * Tells if you are running Internet Explorer 10
  * @method
  * @memberof Popper.Utils
- * @returns {Boolean} isIE10
+ * @returns {bool} isIE10
  */
 var isIE10 = undefined;
 
@@ -1933,7 +1933,7 @@ function getViewportOffsetRectRelativeToArtbitraryNode(element) {
  * @memberof Popper.Utils
  * @argument {Element} element
  * @argument {Element} customContainer
- * @returns {Boolean} answer to "isFixed?"
+ * @returns {bool} answer to "isFixed?"
  */
 function isFixed(element) {
   var nodeName = element.nodeName;
@@ -2286,7 +2286,7 @@ function update() {
  * Helper used to know if the given modifier is enabled.
  * @method
  * @memberof Popper.Utils
- * @returns {Boolean}
+ * @returns {bool}
  */
 function isModifierEnabled(modifiers, modifierName) {
   return modifiers.some(function (_ref) {
@@ -2429,7 +2429,7 @@ function disableEventListeners() {
  * @method
  * @memberof Popper.Utils
  * @param {*} input to check
- * @return {Boolean}
+ * @return {bool}
  */
 function isNumeric(n) {
   return n !== '' && !isNaN(parseFloat(n)) && isFinite(n);
@@ -2631,7 +2631,7 @@ function computeStyle(data, options) {
  * @param {Array} modifiers - list of modifiers
  * @param {String} requestingName - name of requesting modifier
  * @param {String} requestedName - name of requested modifier
- * @returns {Boolean}
+ * @returns {bool}
  */
 function isModifierRequired(modifiers, requestingName, requestedName) {
   var requesting = find(modifiers, function (_ref) {
@@ -2789,7 +2789,7 @@ var validPlacements = placements.slice(3);
  * @method
  * @memberof Popper.Utils
  * @argument {String} placement - A valid placement (it accepts variations)
- * @argument {Boolean} counter - Set to true to walk the placements counterclockwise
+ * @argument {bool} counter - Set to true to walk the placements counterclockwise
  * @returns {Array} placements including their variations
  */
 function clockwise(placement) {
@@ -2873,7 +2873,7 @@ function flip(data, options) {
     var flippedVariation = !!options.flipVariations && (isVertical && variation === 'start' && overflowsLeft || isVertical && variation === 'end' && overflowsRight || !isVertical && variation === 'start' && overflowsTop || !isVertical && variation === 'end' && overflowsBottom);
 
     if (overlapsRef || overflowsBoundaries || flippedVariation) {
-      // this boolean to detect any flip loop
+      // this bool to detect any flip loop
       data.flipped = true;
 
       if (overlapsRef || overflowsBoundaries) {
@@ -3280,7 +3280,7 @@ var modifiers = {
   shift: {
     /** @prop {number} order=100 - Index used to define the order of execution */
     order: 100,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    /** @prop {bool} enabled=true - Whether the modifier is enabled or not */
     enabled: true,
     /** @prop {ModifierFn} */
     fn: shift
@@ -3327,7 +3327,7 @@ var modifiers = {
   offset: {
     /** @prop {number} order=200 - Index used to define the order of execution */
     order: 200,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    /** @prop {bool} enabled=true - Whether the modifier is enabled or not */
     enabled: true,
     /** @prop {ModifierFn} */
     fn: offset,
@@ -3357,7 +3357,7 @@ var modifiers = {
   preventOverflow: {
     /** @prop {number} order=300 - Index used to define the order of execution */
     order: 300,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    /** @prop {bool} enabled=true - Whether the modifier is enabled or not */
     enabled: true,
     /** @prop {ModifierFn} */
     fn: preventOverflow,
@@ -3394,7 +3394,7 @@ var modifiers = {
   keepTogether: {
     /** @prop {number} order=400 - Index used to define the order of execution */
     order: 400,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    /** @prop {bool} enabled=true - Whether the modifier is enabled or not */
     enabled: true,
     /** @prop {ModifierFn} */
     fn: keepTogether
@@ -3413,7 +3413,7 @@ var modifiers = {
   arrow: {
     /** @prop {number} order=500 - Index used to define the order of execution */
     order: 500,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    /** @prop {bool} enabled=true - Whether the modifier is enabled or not */
     enabled: true,
     /** @prop {ModifierFn} */
     fn: arrow,
@@ -3435,7 +3435,7 @@ var modifiers = {
   flip: {
     /** @prop {number} order=600 - Index used to define the order of execution */
     order: 600,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    /** @prop {bool} enabled=true - Whether the modifier is enabled or not */
     enabled: true,
     /** @prop {ModifierFn} */
     fn: flip,
@@ -3470,7 +3470,7 @@ var modifiers = {
   inner: {
     /** @prop {number} order=700 - Index used to define the order of execution */
     order: 700,
-    /** @prop {Boolean} enabled=false - Whether the modifier is enabled or not */
+    /** @prop {bool} enabled=false - Whether the modifier is enabled or not */
     enabled: false,
     /** @prop {ModifierFn} */
     fn: inner
@@ -3489,7 +3489,7 @@ var modifiers = {
   hide: {
     /** @prop {number} order=800 - Index used to define the order of execution */
     order: 800,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    /** @prop {bool} enabled=true - Whether the modifier is enabled or not */
     enabled: true,
     /** @prop {ModifierFn} */
     fn: hide
@@ -3513,12 +3513,12 @@ var modifiers = {
   computeStyle: {
     /** @prop {number} order=850 - Index used to define the order of execution */
     order: 850,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    /** @prop {bool} enabled=true - Whether the modifier is enabled or not */
     enabled: true,
     /** @prop {ModifierFn} */
     fn: computeStyle,
     /**
-     * @prop {Boolean} gpuAcceleration=true
+     * @prop {bool} gpuAcceleration=true
      * If true, it uses the CSS 3d transformation to position the popper.
      * Otherwise, it will use the `top` and `left` properties.
      */
@@ -3555,7 +3555,7 @@ var modifiers = {
   applyStyle: {
     /** @prop {number} order=900 - Index used to define the order of execution */
     order: 900,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    /** @prop {bool} enabled=true - Whether the modifier is enabled or not */
     enabled: true,
     /** @prop {ModifierFn} */
     fn: applyStyle,
@@ -3563,7 +3563,7 @@ var modifiers = {
     onLoad: applyStyleOnLoad,
     /**
      * @deprecated since version 1.10.0, the property moved to `computeStyle` modifier
-     * @prop {Boolean} gpuAcceleration=true
+     * @prop {bool} gpuAcceleration=true
      * If true, it uses the CSS 3d transformation to position the popper.
      * Otherwise, it will use the `top` and `left` properties.
      */
@@ -3578,8 +3578,8 @@ var modifiers = {
  * @property {Object} data.instance The Popper.js instance
  * @property {String} data.placement Placement applied to popper
  * @property {String} data.originalPlacement Placement originally defined on init
- * @property {Boolean} data.flipped True if popper has been flipped by flip modifier
- * @property {Boolean} data.hide True if the reference element is out of boundaries, useful to know when to hide the popper.
+ * @property {bool} data.flipped True if popper has been flipped by flip modifier
+ * @property {bool} data.hide True if the reference element is out of boundaries, useful to know when to hide the popper.
  * @property {HTMLElement} data.arrowElement Node used as arrow by arrow modifier
  * @property {Object} data.styles Any CSS property defined here will be applied to the popper, it expects the JavaScript nomenclature (eg. `marginBottom`)
  * @property {Object} data.arrowStyles Any CSS property defined here will be applied to the popper arrow, it expects the JavaScript nomenclature (eg. `marginBottom`)
@@ -3615,14 +3615,14 @@ var Defaults = {
 
   /**
    * Whether events (resize, scroll) are initially enabled
-   * @prop {Boolean} eventsEnabled=true
+   * @prop {bool} eventsEnabled=true
    */
   eventsEnabled: true,
 
   /**
    * Set to true if you want to automatically remove the popper when
    * you call the `destroy` method.
-   * @prop {Boolean} removeOnDestroy=false
+   * @prop {bool} removeOnDestroy=false
    */
   removeOnDestroy: false,
 
@@ -3894,7 +3894,7 @@ var Dropdown = function () {
   };
   var DefaultType = {
     offset: '(number|string|function)',
-    flip: 'boolean'
+    flip: 'bool'
     /**
      * ------------------------------------------------------------------------
      * Class Definition
@@ -4286,10 +4286,10 @@ var Modal = function () {
     show: true
   };
   var DefaultType = {
-    backdrop: '(boolean|string)',
-    keyboard: 'boolean',
-    focus: 'boolean',
-    show: 'boolean'
+    backdrop: '(bool|string)',
+    keyboard: 'bool',
+    focus: 'bool',
+    show: 'bool'
   };
   var Event = {
     HIDE: "hide" + EVENT_KEY,
@@ -4863,16 +4863,16 @@ var Tooltip = function () {
   var CLASS_PREFIX = 'bs-tooltip';
   var BSCLS_PREFIX_REGEX = new RegExp("(^|\\s)" + CLASS_PREFIX + "\\S+", 'g');
   var DefaultType = {
-    animation: 'boolean',
+    animation: 'bool',
     template: 'string',
     title: '(string|element|function)',
     trigger: 'string',
     delay: '(number|object)',
-    html: 'boolean',
-    selector: '(string|boolean)',
+    html: 'bool',
+    selector: '(string|bool)',
     placement: '(string|function)',
     offset: '(number|string)',
-    container: '(string|element|boolean)',
+    container: '(string|element|bool)',
     fallbackPlacement: '(string|array)'
   };
   var AttachmentMap = {
@@ -5177,7 +5177,7 @@ var Tooltip = function () {
 
 
     _proto.isWithContent = function isWithContent() {
-      return Boolean(this.getTitle());
+      return bool(this.getTitle());
     };
 
     _proto.addAttachmentClass = function addAttachmentClass(attachment) {

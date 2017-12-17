@@ -129,7 +129,7 @@ var Util = function () {
       $(element).trigger(transition.end);
     },
     supportsTransitionEnd: function supportsTransitionEnd() {
-      return Boolean(transition);
+      return bool(transition);
     },
     isElement: function isElement(obj) {
       return (obj[0] || obj).nodeType;
@@ -547,11 +547,11 @@ var Carousel = function () {
     wrap: true
   };
   var DefaultType = {
-    interval: '(number|boolean)',
-    keyboard: 'boolean',
-    slide: '(boolean|string)',
-    pause: '(string|boolean)',
-    wrap: 'boolean'
+    interval: '(number|bool)',
+    keyboard: 'bool',
+    slide: '(bool|string)',
+    pause: '(string|bool)',
+    wrap: 'bool'
   };
   var Direction = {
     NEXT: 'next',
@@ -835,7 +835,7 @@ var Carousel = function () {
 
       var nextElementIndex = this._getItemIndex(nextElement);
 
-      var isCycling = Boolean(this._interval);
+      var isCycling = bool(this._interval);
       var directionalClassName;
       var orderClassName;
       var eventDirectionName;
@@ -1038,7 +1038,7 @@ var Collapse = function () {
     parent: ''
   };
   var DefaultType = {
-    toggle: 'boolean',
+    toggle: 'bool',
     parent: '(string|element)'
   };
   var Event = {
@@ -1252,7 +1252,7 @@ var Collapse = function () {
 
     _proto._getConfig = function _getConfig(config) {
       config = $.extend({}, Default, config);
-      config.toggle = Boolean(config.toggle); // coerce string values
+      config.toggle = bool(config.toggle); // coerce string values
 
       Util.typeCheckConfig(NAME, config, DefaultType);
       return config;
@@ -1457,7 +1457,7 @@ var Dropdown = function () {
   };
   var DefaultType = {
     offset: '(number|string|function)',
-    flip: 'boolean'
+    flip: 'bool'
     /**
      * ------------------------------------------------------------------------
      * Class Definition
@@ -1849,10 +1849,10 @@ var Modal = function () {
     show: true
   };
   var DefaultType = {
-    backdrop: '(boolean|string)',
-    keyboard: 'boolean',
-    focus: 'boolean',
-    show: 'boolean'
+    backdrop: '(bool|string)',
+    keyboard: 'bool',
+    focus: 'bool',
+    show: 'bool'
   };
   var Event = {
     HIDE: "hide" + EVENT_KEY,
@@ -2426,16 +2426,16 @@ var Tooltip = function () {
   var CLASS_PREFIX = 'bs-tooltip';
   var BSCLS_PREFIX_REGEX = new RegExp("(^|\\s)" + CLASS_PREFIX + "\\S+", 'g');
   var DefaultType = {
-    animation: 'boolean',
+    animation: 'bool',
     template: 'string',
     title: '(string|element|function)',
     trigger: 'string',
     delay: '(number|object)',
-    html: 'boolean',
-    selector: '(string|boolean)',
+    html: 'bool',
+    selector: '(string|bool)',
     placement: '(string|function)',
     offset: '(number|string)',
-    container: '(string|element|boolean)',
+    container: '(string|element|bool)',
     fallbackPlacement: '(string|array)'
   };
   var AttachmentMap = {
@@ -2740,7 +2740,7 @@ var Tooltip = function () {
 
 
     _proto.isWithContent = function isWithContent() {
-      return Boolean(this.getTitle());
+      return bool(this.getTitle());
     };
 
     _proto.addAttachmentClass = function addAttachmentClass(attachment) {

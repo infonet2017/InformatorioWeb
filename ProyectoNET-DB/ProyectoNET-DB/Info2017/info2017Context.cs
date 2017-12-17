@@ -15,7 +15,7 @@ namespace ProyectoNET_DB.Info2017
         public virtual DbSet<Post> Post { get; set; }
         public virtual DbSet<Student> Student { get; set; }
         public virtual DbSet<Teacher> Teacher { get; set; }
-        public virtual DbSet<UsuarioUsuarioUsers> UsuarioUsuarioUsers { get; set; }
+        public virtual DbSet<UsuarioUsers> UsuarioUsers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -130,10 +130,7 @@ namespace ProyectoNET_DB.Info2017
                     .HasName("fk_feedback_evaluation1_idx");
 
                 entity.HasIndex(e => e.IdStudent)
-                    .HasName("fk_feedback_UsuarioUserstudent_idx");
-
-                entity.HasIndex(e => e.IdTeacher)
-                    .HasName("fk_feedback_userTeacher_idx");
+                    .HasName("fk_feedback_userStudent_idx");
 
                 entity.Property(e => e.Idfeedback)
                     .HasColumnName("idfeedback")
@@ -149,10 +146,6 @@ namespace ProyectoNET_DB.Info2017
                     .HasColumnName("idStudent")
                     .HasColumnType("int(11)");
 
-                entity.Property(e => e.IdTeacher)
-                    .HasColumnName("idTeacher")
-                    .HasColumnType("int(11)");
-
                 entity.Property(e => e.Note)
                     .HasColumnName("note")
                     .HasColumnType("int(11)");
@@ -164,16 +157,10 @@ namespace ProyectoNET_DB.Info2017
                     .HasConstraintName("fk_feedback_evaluation1");
 
                 entity.HasOne(d => d.IdStudentNavigation)
-                    .WithMany(p => p.FeedbackIdStudentNavigation)
+                    .WithMany(p => p.Feedback)
                     .HasForeignKey(d => d.IdStudent)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_feedback_student");
-
-                entity.HasOne(d => d.IdTeacherNavigation)
-                    .WithMany(p => p.FeedbackIdTeacherNavigation)
-                    .HasForeignKey(d => d.IdTeacher)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_feedback_teacher");
             });
 
             modelBuilder.Entity<Filedescription>(entity =>
@@ -186,7 +173,7 @@ namespace ProyectoNET_DB.Info2017
                     .HasName("fk_fileDescription_module_idx");
 
                 entity.HasIndex(e => e.IdTeacher)
-                    .HasName("fk_fileDescription_UsuarioUsers_idx");
+                    .HasName("fk_fileDescription_users_idx");
 
                 entity.Property(e => e.IdfileDescription)
                     .HasColumnName("idfileDescription")
@@ -368,7 +355,7 @@ namespace ProyectoNET_DB.Info2017
                     .HasName("fk_teacher_auxiliarmodules_idx");
 
                 entity.HasIndex(e => e.IdUser)
-                    .HasName("fk_teacher_UsuarioUsers");
+                    .HasName("fk_teacher_users");
 
                 entity.Property(e => e.IdTeacher)
                     .HasColumnName("idTeacher")
@@ -392,9 +379,9 @@ namespace ProyectoNET_DB.Info2017
                     .HasConstraintName("fk_teacher_auxiliarmodules");
             });
 
-            modelBuilder.Entity<UsuarioUsuarioUsers>(entity =>
+            modelBuilder.Entity<UsuarioUsers>(entity =>
             {
-                entity.ToTable("usuario_UsuarioUsers");
+                entity.ToTable("usuario_users");
 
                 entity.HasIndex(e => e.Username)
                     .HasName("username")
@@ -440,15 +427,15 @@ namespace ProyectoNET_DB.Info2017
 
                 entity.Property(e => e.IsActive)
                     .HasColumnName("is_active")
-                    .HasColumnType("tinyint(1)");
+                    .HasColumnType("Boolean");
 
                 entity.Property(e => e.IsStaff)
                     .HasColumnName("is_staff")
-                    .HasColumnType("tinyint(1)");
+                    .HasColumnType("Boolean");
 
                 entity.Property(e => e.IsSuperuser)
                     .HasColumnName("is_superuser")
-                    .HasColumnType("tinyint(1)");
+                    .HasColumnType("Boolean");
 
                 entity.Property(e => e.LastLogin)
                     .HasColumnName("last_login")

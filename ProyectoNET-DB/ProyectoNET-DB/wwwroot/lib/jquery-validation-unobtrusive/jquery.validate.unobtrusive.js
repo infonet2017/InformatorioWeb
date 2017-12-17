@@ -165,7 +165,7 @@
             /// Parses a single HTML element for unobtrusive validation attributes.
             /// </summary>
             /// <param name="element" domElement="true">The HTML element to be parsed.</param>
-            /// <param name="skipAttach" type="Boolean">[Optional] true to skip attaching the
+            /// <param name="skipAttach" type="bool">[Optional] true to skip attaching the
             /// validation to the form. If parsing just this single element, you should specify true.
             /// If parsing several elements, you should specify false, and manually attach the validation
             /// to the form when you are finished. The default is false.</param>

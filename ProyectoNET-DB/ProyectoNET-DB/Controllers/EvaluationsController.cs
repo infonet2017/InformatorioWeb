@@ -28,7 +28,6 @@ namespace ProyectoNET_DB.Controllers
             foreach (var item in Evaluation)
             {
                 item.Feedback= await _context.Feedback.Where(p => p.IdEvaluation == item.IdEvaluation).Include("IdStudentNavigation").ToListAsync();
-
             }
 
 
@@ -62,7 +61,6 @@ namespace ProyectoNET_DB.Controllers
             foreach (var stu in Student)
             {
                 Feedback feed = new Feedback();
-                feed.IdTeacher = _context.Teacher.FirstOrDefault(m => m.IdAuxiliarModules == auxiliarModule.IdauxiliarModules).IdTeacher;
                 feed.IdStudent = stu.Idstudent;
                 feed.IdEvaluation = evaluation.IdEvaluation;
                 evaluation.Feedback.Add(feed);
