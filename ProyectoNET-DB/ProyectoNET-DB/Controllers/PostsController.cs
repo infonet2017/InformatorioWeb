@@ -48,15 +48,15 @@ namespace ProyectoNET_DB.Controllers
         {
             var Modulo = _context.Actualmodule.FirstOrDefault();
 
-            post.IdModule = _context.Auxiliarmodules.FirstOrDefault(m => m.IdModule == Modulo.ActualModule).IdModule;
-            post.IdTeacher = _context.Teacher.FirstOrDefault(m => m.IdUser == Modulo.IdTeacher).IdUser;
-            post.NameTeacher = _context.Teacher.FirstOrDefault(m => m.IdUser == Modulo.IdTeacher).Name;
+            post.IdModule = Modulo.ActualModule;
+            post.IdTeacher = Modulo.IdTeacher;
+            post.NameTeacher = _context.Teacher.FirstOrDefault(m => m.IdUser == Modulo.IdTeacher).Lastname +" "+ _context.Teacher.FirstOrDefault(m => m.IdUser == Modulo.IdTeacher).Firstname;
             post.DateTime = DateTime.Now;
 
-                _context.Add(post);
-                await _context.SaveChangesAsync();
+           _context.Add(post);
+            await _context.SaveChangesAsync();
 
-                return RedirectToAction("Index", "Posts", new { Module = Modulo.ActualModule });
+           return RedirectToAction("Index", "Posts", new { Module = Modulo.ActualModule });
         }
 
         // GET: Posts/Edit/5

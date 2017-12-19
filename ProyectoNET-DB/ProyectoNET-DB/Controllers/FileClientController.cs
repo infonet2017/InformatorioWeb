@@ -8,7 +8,6 @@ using System.Net.Http.Headers;
 using ProyectoNET_DB.Extra_Models;
 using Microsoft.EntityFrameworkCore;
 using ProyectoNET_DB.Info2017;
-using ProyectoNET_DB.Extra_Models;
 
 namespace ProyectoNET_DB.Controllers
 {
@@ -131,10 +130,10 @@ namespace ProyectoNET_DB.Controllers
                     FileNames = names,
                     ContentTypes = contentTypes,
                     Description = fileDescriptionShort.Description,
-                    CreatedTimestamp = DateTime.UtcNow,
-                    UpdatedTimestamp = DateTime.UtcNow,
-                    idModule = _context.Auxiliarmodules.Single(p => p.IdModule == module.ActualModule).IdModule,
-                    Teacher = _context.Teacher.Single(p => p.IdTeacher == module.IdTeacher)
+                    CreatedTimestamp = DateTime.Now,
+                    UpdatedTimestamp = DateTime.Now,
+                    idModule = module.ActualModule,
+                    Teacher = _context.Teacher.Single(p => p.IdUser == module.IdTeacher)
                     
                 };
 

@@ -42,9 +42,25 @@ namespace ProyectoNET_DB.Info2017
                     .HasColumnName("actualModule")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.Dni)
+                    .HasColumnName("dni")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.Email)
+                    .HasColumnName("email")
+                    .HasMaxLength(45);
+
+                entity.Property(e => e.FirstName)
+                    .HasColumnName("first_name")
+                    .HasMaxLength(45);
+
                 entity.Property(e => e.IdTeacher)
                     .HasColumnName("idTeacher")
                     .HasColumnType("int(11)");
+
+                entity.Property(e => e.LastName)
+                    .HasColumnName("last_name")
+                    .HasMaxLength(45);
             });
 
             modelBuilder.Entity<Auxiliarmodules>(entity =>
@@ -113,11 +129,6 @@ namespace ProyectoNET_DB.Info2017
                     .HasForeignKey(d => d.IdModule)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_Evaluation_module1");
-
-                entity.HasOne(d => d.IdTeacherNavigation)
-                    .WithMany(p => p.Evaluation)
-                    .HasForeignKey(d => d.IdTeacher)
-                    .HasConstraintName("fk_Evaluation_teacher");
             });
 
             modelBuilder.Entity<Feedback>(entity =>
@@ -155,12 +166,6 @@ namespace ProyectoNET_DB.Info2017
                     .HasForeignKey(d => d.IdEvaluation)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_feedback_evaluation1");
-
-                entity.HasOne(d => d.IdStudentNavigation)
-                    .WithMany(p => p.Feedback)
-                    .HasForeignKey(d => d.IdStudent)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_feedback_student");
             });
 
             modelBuilder.Entity<Filedescription>(entity =>
@@ -226,12 +231,6 @@ namespace ProyectoNET_DB.Info2017
                     .HasForeignKey(d => d.IdModule)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_fileDescription_module");
-
-                entity.HasOne(d => d.IdTeacherNavigation)
-                    .WithMany(p => p.Filedescription)
-                    .HasForeignKey(d => d.IdTeacher)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_fileDescription_teacher");
             });
 
             modelBuilder.Entity<Modules>(entity =>
@@ -240,7 +239,7 @@ namespace ProyectoNET_DB.Info2017
 
                 entity.ToTable("modules");
 
-                entity.HasIndex(e => e.IdCourse)
+                entity.HasIndex(e => e.CourseId)
                     .HasName("fk_module_course_idx");
 
                 entity.HasIndex(e => e.IdModuleStudent)
@@ -250,13 +249,17 @@ namespace ProyectoNET_DB.Info2017
                     .HasColumnName("idmodule")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.CourseId)
+                    .HasColumnName("course_id")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.CreatedAt)
+                    .HasColumnName("created_at")
+                    .HasColumnType("timestamp");
+
                 entity.Property(e => e.Description)
                     .HasColumnName("description")
                     .HasMaxLength(45);
-
-                entity.Property(e => e.IdCourse)
-                    .HasColumnName("idCourse")
-                    .HasColumnType("int(11)");
 
                 entity.Property(e => e.IdModuleStudent)
                     .HasColumnName("idModule-Student")
@@ -266,6 +269,10 @@ namespace ProyectoNET_DB.Info2017
                     .IsRequired()
                     .HasColumnName("name")
                     .HasMaxLength(45);
+
+                entity.Property(e => e.UpdatedAt)
+                    .HasColumnName("updated_at")
+                    .HasColumnType("timestamp");
             });
 
             modelBuilder.Entity<Post>(entity =>
@@ -315,12 +322,6 @@ namespace ProyectoNET_DB.Info2017
                     .HasForeignKey(d => d.IdModule)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_post_module1");
-
-                entity.HasOne(d => d.IdTeacherNavigation)
-                    .WithMany(p => p.Post)
-                    .HasForeignKey(d => d.IdTeacher)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_post_teacher");
             });
 
             modelBuilder.Entity<Student>(entity =>
@@ -361,6 +362,10 @@ namespace ProyectoNET_DB.Info2017
                     .HasColumnName("idTeacher")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.Firstname)
+                    .HasColumnName("firstname")
+                    .HasMaxLength(45);
+
                 entity.Property(e => e.IdAuxiliarModules)
                     .HasColumnName("idAuxiliarModules")
                     .HasColumnType("int(11)");
@@ -369,13 +374,14 @@ namespace ProyectoNET_DB.Info2017
                     .HasColumnName("idUser")
                     .HasColumnType("int(8)");
 
-                entity.Property(e => e.Name)
-                    .IsRequired()
+                entity.Property(e => e.Lastname)
+                    .HasColumnName("lastname")
                     .HasMaxLength(45);
 
                 entity.HasOne(d => d.IdAuxiliarModulesNavigation)
                     .WithMany(p => p.Teacher)
                     .HasForeignKey(d => d.IdAuxiliarModules)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_teacher_auxiliarmodules");
             });
 
@@ -427,15 +433,15 @@ namespace ProyectoNET_DB.Info2017
 
                 entity.Property(e => e.IsActive)
                     .HasColumnName("is_active")
-                    .HasColumnType("Boolean");
+                    .HasColumnType("boolean");
 
                 entity.Property(e => e.IsStaff)
                     .HasColumnName("is_staff")
-                    .HasColumnType("Boolean");
+                    .HasColumnType("boolean");
 
                 entity.Property(e => e.IsSuperuser)
                     .HasColumnName("is_superuser")
-                    .HasColumnType("Boolean");
+                    .HasColumnType("boolean");
 
                 entity.Property(e => e.LastLogin)
                     .HasColumnName("last_login")

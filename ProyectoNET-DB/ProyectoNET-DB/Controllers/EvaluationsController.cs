@@ -24,13 +24,11 @@ namespace ProyectoNET_DB.Controllers
             ViewBag.Title = "Informatorio";
 
             var Modulo = _context.Actualmodule.FirstOrDefault();
-            List<Evaluation> Evaluation = await _context.Evaluation.Where(p=> p.IdModule == Modulo.ActualModule & p.IsDeleted == false).ToListAsync();
+            List<Evaluation> Evaluation = await _context.Evaluation.Where(p => p.IdModule == Modulo.ActualModule & p.IsDeleted == false).ToListAsync();
             foreach (var item in Evaluation)
             {
-                item.Feedback= await _context.Feedback.Where(p => p.IdEvaluation == item.IdEvaluation).Include("IdStudentNavigation").ToListAsync();
+                item.Feedback = await _context.Feedback.Where(p => p.IdEvaluation == item.IdEvaluation).Include("IdStudentNavigation").ToListAsync();
             }
-
-
             return View(Evaluation);
         }
 
@@ -49,14 +47,13 @@ namespace ProyectoNET_DB.Controllers
         {
             evaluation.DateEvaluation = DateTime.Now;
             var Modulo = _context.Actualmodule.FirstOrDefault();
-            var auxiliarModule = _context.Auxiliarmodules.Single(p => p.IdModule == Modulo.ActualModule);
 
-            evaluation.IdModule = auxiliarModule.IdModule;
-            //evaluation.IdModuleNavigation = _context.Module.Single(p => p.Idmodule == auxiliarModule.IdModule);
+            evaluation.IdModule = Modulo.ActualModule;
+            evaluation.IdModuleNavigation = _context.Modules.Single(p => p.Idmodule == Modulo.ActualModule);
             List<Student> Student = _context.Student.ToList();
+            evaluation.IdTeacher = Modulo.IdTeacher;
             evaluation.IsDeleted = false;
             evaluation.Feedback = new List<Feedback>();
-
 
             foreach (var stu in Student)
             {
@@ -76,19 +73,7 @@ namespace ProyectoNET_DB.Controllers
             return View(evaluation);
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> CreateFeedback([Bind("ID,Name,DateEvaluation")] List<Feedback> Feedback)
-        //{
-        //    evaluation.DateEvaluation = DateTime.Now;
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Add(evaluation);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(CreateFeedback));
-        //    }
-        //    return View(evaluation);
-        //}
+
 
         // GET: Evaluations/Edit/5
         public async Task<IActionResult> Edit(int? id)

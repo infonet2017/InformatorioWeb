@@ -18,7 +18,6 @@ namespace ProyectoNET_DB.Info2017
         public int? IdTeacher { get; set; }
 
         public Modules IdModuleNavigation { get; set; }
-        public UsuarioUsers IdTeacherNavigation { get; set; }
         public ICollection<Feedback> Feedback { get; set; }
     }
 }

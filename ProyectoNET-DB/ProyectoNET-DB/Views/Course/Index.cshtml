@@ -18,12 +18,12 @@
                         <h5>Profesores:</h5>
                         @foreach (var teacher in item.Teacher)
                         {
-                            <p class="mb-1">- @Html.DisplayFor(modelItem => teacher.Name)</p>
+                            <p class="mb-1">- @Html.DisplayFor(modelItem => teacher.Lastname) @Html.DisplayFor(modelItem => teacher.Firstname)</p>
                         }
 
                     </div>
 
-                    <a class="btn btn-inf btn-sm" asp-action="Details" asp-route-id="@item.IdauxiliarModules">Ver Más</a>
+                    <a class="btn btn-inf btn-sm" asp-action="Details" asp-route-id="@item.IdModule">Ver Más</a>
                 </div>
             </div>
         </div>

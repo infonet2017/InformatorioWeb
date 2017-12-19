@@ -85,7 +85,7 @@ namespace ProyectoNET_DB.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
 
-        public async Task<IActionResult> Edit(int id, string description, int note)
+        public async Task<ActionResult> Edit(int id, string description, int note)
         {
             Feedback feedback = _context.Feedback.Single(p => p.Idfeedback == id);
 

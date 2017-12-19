@@ -29,45 +29,32 @@ namespace ProyectoNET_DB.Controllers
         public async Task<IActionResult> Index()
         {
             ViewBag.Title = "Informatorio";
-            List<Auxiliarmodules> Modulos = await _context.Auxiliarmodules.ToListAsync();
-            foreach (var item in Modulos)
-            {
-                item.Teacher = await _context.Teacher.Where(p => p.IdAuxiliarModules == item.IdModule).ToListAsync();
-            }
+            List<Auxiliarmodules> Modulos = await _context.Auxiliarmodules.Include("Teacher").ToListAsync();
+
             return View(Modulos);
         }
 
         // GET: Modules/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var module = _context.Auxiliarmodules.FirstOrDefault(m => m.IdauxiliarModules == id);
-            var teacher = _context.Teacher.LastOrDefault(m => m.IdAuxiliarModules == id);
+            var module = _context.Actualmodule.FirstOrDefault();
 
-            if (_context.Actualmodule.Any())
-            {
-                _context.Database.ExecuteSqlCommand("TRUNCATE TABLE Actualmodule");
-            }
+            module.ActualModule = id;
 
-            var ActualModule = new Actualmodule();
-            ActualModule.ActualModule = module.IdModule;
-            ActualModule.IdTeacher = teacher.IdUser;
-
-            _context.Actualmodule.Add(ActualModule);
-
+            _context.Update(module);
             _context.SaveChanges();
+
 
             if (@module == null)
             {
                 return NotFound();
             }
 
-            return RedirectToAction("Index","Posts", new { Module = module.IdModule });
+            return RedirectToAction("Index", "Posts", new { Module = id});
         }
+
+
 
         //// GET: Modules/Create
         //public IActionResult Create()
@@ -105,54 +92,104 @@ namespace ProyectoNET_DB.Controllers
         //    return RedirectToAction("Index", "Course");
         //}
 
-               // GET: Course/Modules
-        //[HttpPost]
-        //public List<Auxiliarmodules> Modules([FromBody] CourseResponse courseResponse)
-        //{
-        //    var fakeResponse = LoadModulesAsync(courseResponse);//cargo el jotason desde un archivo para simular la request a la api rancia del equipo de django
-
-        //    var modules = ModuleMapping(fakeResponse.Result);
-
-
-        //    return modules;
-        //    //return RedirectToAction("Index", "Course");
-        //}
-
-
-
-        public List<Auxiliarmodules> ModuleMapping(ModuleResponse restResult)
+        //GET: Course/Modules
+        [HttpPost]
+        public async Task<ActionResult> GetModules([FromBody] CourseResponse courseResponse)
         {
-            var modules = new List<Auxiliarmodules>();
-            foreach (var respModule in restResult.Modulos)
-            {
-                var newMod = new Auxiliarmodules();
-                newMod.IdModule = respModule.IDModulo;
-                newMod.Name = respModule.Name;
-                newMod.Teacher = new List<Teacher>();
+            var fakeResponse = LoadModulesAsync(courseResponse).Result;//cargo el jotason desde un archivo para simular la request a la api rancia del equipo de django
 
-                foreach (var teacher in respModule.Docentes)
-                {
-                    var tea = new Teacher();
-                    tea.IdTeacher = teacher.IDDocente;
-                    tea.IdAuxiliarModules = newMod.IdauxiliarModules;
-                    tea.Name = teacher.Nombre;
-                    newMod.Teacher.Add(tea);
+            var task = ModuleMappingAsync(fakeResponse);
 
-                }
-                newMod.Description = respModule.Descripcion;
-                modules.Add(newMod);
-            }
-            return modules;
+            return RedirectToAction("Index", "Course");
         }
 
 
-        public async Task<string> LoadModulesAsync(CourseResponse course)
+
+        public async Task<List<Auxiliarmodules>> ModuleMappingAsync(ModuleResponse restResult)
         {
-            var Url = "http://localhost:61350/Modules/ProudModulesAsync";
+            var modules = new List<Auxiliarmodules>();
+
+            if (_context.Teacher.Any())
+            {
+                _context.Database.ExecuteSqlCommand("TRUNCATE TABLE teacher");
+            }
+
+            if (_context.Student.Any())
+            {
+                _context.Database.ExecuteSqlCommand("TRUNCATE TABLE student");
+            }
+
+            if (_context.Auxiliarmodules.Any())
+            {
+                _context.Database.ExecuteSqlCommand("SET FOREIGN_KEY_CHECKS=0; TRUNCATE TABLE auxiliarmodules");
+            }
+            
+
+            foreach (var respModule in restResult.modules)
+            {
+                Auxiliarmodules newMod = new Auxiliarmodules();
+                newMod.IdModule = respModule.idModule;
+                newMod.Name = respModule.name;
+                newMod.Description = respModule.description;
+                newMod.Teacher = new List<Teacher>();
+
+                foreach (var teacher in respModule.teachers)
+                {
+                    Teacher tea = new Teacher();
+                    tea.IdUser = teacher.idTeacher;
+                    tea.IdAuxiliarModules = newMod.IdauxiliarModules;
+                    tea.Lastname = teacher.lastname;
+                    tea.Firstname = teacher.firstname;
+                    newMod.Teacher.Add(tea);
+                }
+                
+                _context.Add(newMod);
+
+                _context.SaveChanges();
+
+            }
+
+
+
+
+            return modules;
+        }
+
+        [HttpPost]
+        public async Task<ModuleResponse> LoadModulesAsync([FromBody] CourseResponse course)
+        {
+            var Url = "http://www.mocky.io/v2/5a3886d33200003e35eb6c77";
 
             string data;
 
-            string Json = JsonConvert.SerializeObject(course);
+            if (_context.Actualmodule.Any())
+            {
+                _context.Database.ExecuteSqlCommand("TRUNCATE TABLE actualmodule");
+            }
+
+            var Actualmodule = new Actualmodule
+            {
+
+                IdTeacher = course.id_user,
+                FirstName = course.first_name,
+                LastName = course.last_name,
+                Dni = course.dni,
+                Email = course.email,
+
+            };
+
+            _context.Actualmodule.Add(Actualmodule);
+
+            _context.SaveChanges();
+
+
+            var ModuleRequest = new ModuleRequest
+            {
+                idCourse = course.id_course,
+                idUser = course.id_user
+            };
+
+            string Json = JsonConvert.SerializeObject(ModuleRequest);
 
             var request = new StringContent(Json, Encoding.UTF8,"application/json");
 
@@ -167,9 +204,7 @@ namespace ProyectoNET_DB.Controllers
                 }
             }
 
-            //return JsonConvert.DeserializeObject<ModuleResponse>(data);
-
-            return data;
+            return JsonConvert.DeserializeObject<ModuleResponse>(data);
         }
 
         [HttpPost]

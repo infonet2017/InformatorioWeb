@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProyectoNET_DB.Info2017
 {
@@ -13,8 +12,5 @@ namespace ProyectoNET_DB.Info2017
         public int? Note { get; set; }
 
         public Evaluation IdEvaluationNavigation { get; set; }
-
-        [ForeignKey("IdStudent")]
-        public UsuarioUsers IdStudentNavigation { get; set; }
     }
 }
