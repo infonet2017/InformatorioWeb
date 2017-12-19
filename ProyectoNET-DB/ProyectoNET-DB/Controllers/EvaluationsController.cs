@@ -52,6 +52,7 @@ namespace ProyectoNET_DB.Controllers
             evaluation.IdModuleNavigation = _context.Modules.Single(p => p.Idmodule == Modulo.ActualModule);
             List<Student> Student = _context.Student.ToList();
             evaluation.IdTeacher = Modulo.IdTeacher;
+            evaluation.IdTeacherNavigation = _context.UsuarioUsers.FirstOrDefault(p => p.Id == Modulo.IdTeacher);
             evaluation.IsDeleted = false;
             evaluation.Feedback = new List<Feedback>();
 
@@ -102,6 +103,9 @@ namespace ProyectoNET_DB.Controllers
 
             var evaluation = await _context.Evaluation
                 .SingleOrDefaultAsync(m => m.IdEvaluation == id);
+
+            evaluation.Feedback = await _context.Feedback.Where(p => p.IdEvaluation == id).Include("IdStudentNavigation").ToListAsync();
+
             if (evaluation == null)
             {
                 return NotFound();

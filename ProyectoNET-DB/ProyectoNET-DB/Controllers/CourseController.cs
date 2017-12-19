@@ -51,7 +51,7 @@ namespace ProyectoNET_DB.Controllers
                 return NotFound();
             }
 
-            return RedirectToAction("Index", "Posts", new { Module = id});
+            return RedirectToAction("Index", "Posts");
         }
 
 
@@ -94,7 +94,7 @@ namespace ProyectoNET_DB.Controllers
 
         //GET: Course/Modules
         [HttpPost]
-        public async Task<ActionResult> GetModules([FromBody] CourseResponse courseResponse)
+        public async Task<ActionResult> Modules([FromBody] CourseResponse courseResponse)
         {
             var fakeResponse = LoadModulesAsync(courseResponse).Result;//cargo el jotason desde un archivo para simular la request a la api rancia del equipo de django
 

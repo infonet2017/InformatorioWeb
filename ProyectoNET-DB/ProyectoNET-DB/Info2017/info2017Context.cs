@@ -129,6 +129,11 @@ namespace ProyectoNET_DB.Info2017
                     .HasForeignKey(d => d.IdModule)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_Evaluation_module1");
+
+                entity.HasOne(d => d.IdTeacherNavigation)
+                    .WithMany(p => p.Evaluation)
+                    .HasForeignKey(d => d.IdTeacher)
+                    .HasConstraintName("fk_Evaluation_student");
             });
 
             modelBuilder.Entity<Feedback>(entity =>
@@ -166,6 +171,12 @@ namespace ProyectoNET_DB.Info2017
                     .HasForeignKey(d => d.IdEvaluation)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_feedback_evaluation1");
+
+                entity.HasOne(d => d.IdStudentNavigation)
+                    .WithMany(p => p.Feedback)
+                    .HasForeignKey(d => d.IdStudent)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_feedback_student");
             });
 
             modelBuilder.Entity<Filedescription>(entity =>
@@ -231,6 +242,12 @@ namespace ProyectoNET_DB.Info2017
                     .HasForeignKey(d => d.IdModule)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_fileDescription_module");
+
+                entity.HasOne(d => d.IdTeacherNavigation)
+                    .WithMany(p => p.Filedescription)
+                    .HasForeignKey(d => d.IdTeacher)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_fileDescription_teacher");
             });
 
             modelBuilder.Entity<Modules>(entity =>
@@ -322,6 +339,12 @@ namespace ProyectoNET_DB.Info2017
                     .HasForeignKey(d => d.IdModule)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_post_module1");
+
+                entity.HasOne(d => d.IdTeacherNavigation)
+                    .WithMany(p => p.Post)
+                    .HasForeignKey(d => d.IdTeacher)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_post_teacher");
             });
 
             modelBuilder.Entity<Student>(entity =>

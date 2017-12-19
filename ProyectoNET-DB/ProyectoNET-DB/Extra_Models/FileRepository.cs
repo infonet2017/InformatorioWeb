@@ -37,6 +37,7 @@ namespace ProyectoNET_DB.Extra_Models
                     Description = fileResult.Description,
                     IdModule = module.ActualModule,
                     IdTeacher = module.IdTeacher,
+                    IdTeacherNavigation = _context.UsuarioUsers.FirstOrDefault(p=> p.Id == module.IdTeacher),
                     IsDeleted = false
                 };
 

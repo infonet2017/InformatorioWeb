@@ -10,22 +10,27 @@
 
 <div class="col-10 ">
     <div class="card-inf my-3 ml-0">
-        <div class="card-header-inf bg-inf-blue h3 text-white">@ViewBag.Title</div>
-        <div style="background-color: whitesmoke;">
-            <div class="card-body-inf ">
-                <div class="card-body-inf-white pre">
-                    <div class="card-header bg-inf-blue">
-                        <ul class="nav nav-tabs card-header-tabs">
+        <div class="card-header-inf bg-inf-blue h3 text-white">@ViewBag.title</div>
+        <div class="card-body-inf">
 
-                            <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="Posts" asp-action="Index">Muro</a></li>
-                            <li class="nav-item"><a class="nav-link active-inf" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
-                            <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
-                        </ul>
+            <ul class="nav nav-tabs card-header-tabs nav-fill px-2">
+
+                <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="Posts" asp-action="Index">Muro</a></li>
+                <li class="nav-item"><a class="nav-link active-inf" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
+                <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
+            </ul>
+
+            <div class="card-body-inf bg-inf-gray">
+
+
+
+                <div class="card-inf mt-3">
+                    <div class="card-header-inf bg-inf-blue text-white ">
+
+                        <h4 class="text-center">¿Está Seguro que desea eliminar la siguiente Publicación?</h4>
                     </div>
-                    <div class="card-body-inf-white pre">
-                        <h3>¿Está Seguro que desea eliminar la siguiente Publicación?</h3>
+                    <div class="card-body-inf p-3">
                         <div>
-                            <hr />
                             <dl class="d-lg-table-row">
                                 <dt>
                                     <p>Nombre del Archivo</p>

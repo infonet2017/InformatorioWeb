@@ -26,9 +26,10 @@ namespace ProyectoNET_DB.Controllers
         public async Task<IActionResult> Index()
         {
             var Modulo = _context.Actualmodule.FirstOrDefault();
+            ViewBag.title = _context.Auxiliarmodules.Single(p => p.IdModule == Modulo.ActualModule).Name;
+
             List<Filedescription> Files = await _context.Filedescription.Where(m => m.IdModule == Modulo.ActualModule & m.IsDeleted==false).ToListAsync();
 
-            ViewBag.title = _context.Auxiliarmodules.Single(p => p.IdModule == Modulo.ActualModule).Name;
             return View(Files);
         }
 
@@ -37,6 +38,7 @@ namespace ProyectoNET_DB.Controllers
 
             var Modulo = _context.Actualmodule.FirstOrDefault();
             ViewBag.title = _context.Auxiliarmodules.Single(p => p.IdModule == Modulo.ActualModule).Name;
+
             return View();
         }
 

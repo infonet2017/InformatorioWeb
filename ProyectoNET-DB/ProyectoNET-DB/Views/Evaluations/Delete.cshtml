@@ -27,7 +27,6 @@
                                 </div>
                                 <div class="card-body-inf p-3">
                                     <div>
-                                        <hr />
                                         <dl class="dl-horizontal">
                                             <dt>
                                                 <p>Nombre</p>
@@ -41,11 +40,45 @@
                                             <dd>
                                                 @Html.DisplayFor(model => model.DateEvaluation)
                                             </dd>
+                                            <dt>
+                                                Notas
+                                            </dt>
                                         </dl>
 
-                                        <p>Notas</p>
 
 
+                                        @foreach (var feedback in Model.Feedback)
+                                        {
+
+                                            <div id="feed-@feedback.Idfeedback">
+                                                <div class="row" style="padding-bottom:10px">
+                                                    <div class="col-12">
+                                                        <div class="card-inf bg-inf-gray">
+                                                            <div class="card-header-inf bg-inf-blue lead text-white">
+
+
+                                                                <div class="row">
+                                                                    <div class="col-10 ">
+                                                                        <a style="padding-left:5px">@Html.DisplayFor(modelItem => feedback.IdStudentNavigation.FirstName) @Html.DisplayFor(modelItem => feedback.IdStudentNavigation.LastName)</a>
+                                                                    </div>
+
+                                                                    <div class="col-2 text-lg-right">
+                                                                        <p id="feed-note-l">Nota: @Html.DisplayFor(modelItem => feedback.Note)</p>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-body-inf">
+
+                                                                <p id="feed-description-l">@Html.DisplayFor(modelItem => feedback.Description) </p>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        }
 
                                         <form asp-action="Delete">
 

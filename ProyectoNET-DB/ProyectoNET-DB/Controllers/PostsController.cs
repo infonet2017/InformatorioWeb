@@ -21,10 +21,11 @@ namespace ProyectoNET_DB.Controllers
         }
 
     // GET: Posts/Module
-    public async Task<IActionResult> Index(int Module)
+    public async Task<IActionResult> Index()
         {
             var Modulo = _context.Actualmodule.FirstOrDefault();
             ViewBag.title = _context.Auxiliarmodules.Single(p => p.IdModule == Modulo.ActualModule).Name;
+
             List<Post> post = await _context.Post.Where(m => m.IdModule == Modulo.ActualModule).ToListAsync();
             return View(post);
         }
@@ -36,6 +37,7 @@ namespace ProyectoNET_DB.Controllers
 
             var Modulo = _context.Actualmodule.FirstOrDefault();
             ViewBag.title = _context.Auxiliarmodules.Single(p => p.IdModule == Modulo.ActualModule).Name;
+
             return View();
         }
 
@@ -52,6 +54,7 @@ namespace ProyectoNET_DB.Controllers
             post.IdTeacher = Modulo.IdTeacher;
             post.NameTeacher = _context.Teacher.FirstOrDefault(m => m.IdUser == Modulo.IdTeacher).Lastname +" "+ _context.Teacher.FirstOrDefault(m => m.IdUser == Modulo.IdTeacher).Firstname;
             post.DateTime = DateTime.Now;
+            post.IdTeacherNavigation = _context.UsuarioUsers.FirstOrDefault(m => m.Id == Modulo.IdTeacher);
 
            _context.Add(post);
             await _context.SaveChangesAsync();
@@ -115,8 +118,7 @@ namespace ProyectoNET_DB.Controllers
                         throw;
                     }
                 }
-                var Modulo = _context.Actualmodule.FirstOrDefault();
-                return RedirectToAction("Index", "Posts", new { Module = Modulo });
+                return RedirectToAction("Index", "Posts");
             }
             return View(post);
         }
@@ -147,11 +149,13 @@ namespace ProyectoNET_DB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            
             var post = await _context.Post.SingleOrDefaultAsync(m => m.IdPost == id);
-            var Modulo = _context.Actualmodule.FirstOrDefault();
+
             _context.Post.Remove(post);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index", "Posts", new { Module = Modulo});
+
+            return RedirectToAction("Index", "Posts");
         }
 
         private bool PostExists(int id)
