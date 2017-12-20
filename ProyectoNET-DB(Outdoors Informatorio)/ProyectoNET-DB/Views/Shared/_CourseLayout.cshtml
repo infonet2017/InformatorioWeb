@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <environment>
+        <link rel="stylesheet" type="text/css" href="~/css/bootstrap.css">
+
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
+        <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    </environment>
+</head>
+<body class="bg-inf-gray">
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <div class="bg-inf-blue">
+        <!-- Esto es necesario para poner la navbar dentro de un contaner sin notar el padding -->
+        <div class="container">
+            <nav class="navbar bg-inf-blue navbar-expand-lg">
+                <a class="navbar-brand" href="index.html">
+                    <img src="~/images/Logotipo-Informatorio.svg" class="align-top" alt="" height="25">
+                </a>
+                <div class="collapse navbar-collapse justify-content-end" id="responsivo">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="nav navbar-nav ml-auto  mt-2 mt-md-0 enlace">
+                                <li><a class="nav-item nav-link text-white" href="#">DOCENTE</a></li>
+                                <li><a class="nav-item nav-link text-white" href="http://192.168.42.27:8000/logout">CERRAR SESIÓN</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <!-- BARRA LATERAL -->
+            <div class="col-2 bg-white shad-inf p-0">
+                <div class="row p-0 m-3">
+                    <ul class="list-unstyled col-12 p-0">
+                        <li class="h6"> @ViewBag.user.FirstName @ViewBag.user.LastName</li>
+                        <li><small>@ViewBag.user.Dni</small></li>
+                        <li><small>@ViewBag.user.Email</small></li>
+                        <li><h6><a class="col-12 btn btn-sm btn-inf mb-3" href="http://192.168.42.27:8000/Usuarios/editardatos/@ViewBag.user.id">Editar Datos</a></h6></li>
+                    </ul>
+
+                    <ul class="list-unstyled col-12 p-0">
+
+                        <li class="h6"> PROFESORES</li>
+                        <li><small><a href="http://192.168.42.27:8000/Cursos/CursosProfesor">VER CURSOS</a></small></li>
+                        <li><small><a href="http://localhost:60350/Course">VER MÓDULOS</a></small></li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="col-10 ">
+                <div class="card-inf my-3 ml-0">
+                    <div class="card-header-inf bg-inf-blue h3 text-white">@ViewBag.title</div>
+                    <div style="background-color: whitesmoke;">
+                        <div class="card-body-inf">
+                            <div class="card-body-inf-white pre">
+                                @RenderBody()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-inf-blue">
+        <div class="container">
+            <div class="row text-white py-3">
+                <div class="col-6 h6">Contacto</div>
+                <div class="col-6 h6">Redes</div>
+                <div class="col-2">
+                    <ul class="list-unstyled">
+                        <li class="h6">Informtorio Chaco</li>
+                        <li>Arturo Illia 1055</li>
+                        <li>XXX XXX-XXXX</li>
+                    </ul>
+                </div>
+                <div class="col-2">
+                    <ul class="list-unstyled">
+                        <li class="h6">Informtorio Chaco</li>
+                        <li>Arturo Illia 1055</li>
+                        <li>XXX XXX-XXXX</li>
+                    </ul>
+                </div>
+                <div class="col-2">
+                    <ul class="list-unstyled">
+                        <li class="h6">Informtorio Chaco</li>
+                        <li>Arturo Illia 1055</li>
+                        <li>XXX XXX-XXXX</li>
+                    </ul>
+                </div>
+                <div class="col-6 align-items-center">
+                    <a href="#"><img src="~/Images/facebook-logo-button.png" height="40px"></a>
+                    <a href="#"><img src="~/Images/twitter-logo-button.png" height="40px"></a>
+                </div>
+                <div class="col-12">
+                    <small>Información institucional y todo lo necesario de esta pequeña línea de texto</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <environment>
+        <script src="~/Scripts/jquery-1.10.2.min.js" asp-append-version="true"></script>
+        <script src="~/Scripts/bootstrap.min.js" asp-append-version="true"></script>
+        <script type="text/javascript" src="js/bootstrap.js" asp-append-version="true"></script>
+        <script type="text/javascript" src="js/bootstrap.bundle.js" asp-append-version="true"></script>
+
+
+
+
+    </environment>
+
+</body>
+
+
+
+@RenderSection("scripts", required: false)
+</html>
+
+

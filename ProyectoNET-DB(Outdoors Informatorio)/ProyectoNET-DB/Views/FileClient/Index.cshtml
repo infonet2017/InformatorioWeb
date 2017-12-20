@@ -1,0 +1,66 @@
+﻿@model List<ProyectoNET_DB.Info2017.Filedescription>
+@{
+    Layout = "~/Views/Shared/_ModuleLayout.cshtml";
+}
+
+<div class="col-10 ">
+    <div class="card-inf my-3 ml-0">
+        <div class="card-header-inf bg-inf-blue h3 text-white">@ViewBag.title</div>
+        <div class="card-body-inf">
+
+            <ul class="nav nav-tabs card-header-tabs nav-fill px-2">
+                    <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="Posts" asp-action="Index">Muro</a></li>
+                    <li class="nav-item"><a class="nav-link active-inf text-uppercase text-white" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
+                    <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="Evaluations" asp-action="GetStudents">Instancias Evaluativas</a></li>
+                </ul>
+
+
+            <div class="card-body-inf bg-inf-gray">
+                <div class="text-right" style="padding-top: 20px">
+                    <a asp-action="AgregarArchivos" asp-route-id=@ViewBag.IDModule class="btn btn-inf btn-sm mb-3"> + Agregar Material</a>
+                </div>
+                <div class="bg-inf-white">
+                    <table class="table" style="background-color:white">
+                        <thead class="text-white bg-inf-blue">
+                            <tr>
+
+                                <th scope="col">
+                                    <a>Nombre</a>
+                                </th>
+                                <th scope="col">
+
+                                    <a>Descripción</a>
+                                </th>
+                                <th scope="col">
+                                    <a>Docente</a>
+                                </th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FileName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TeacherName)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Delete" asp-route-id=@item.IdfileDescription class="fas fa-trash btn btn-inf text-white" style="align-content:center;"></a>
+                                        <a asp-action="download" asp-route-id="@item.IdfileDescription" class="fas fa-download btn btn-inf text-white"></a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+</div>
+                </div>
+    </div>
+</div>
+</div>

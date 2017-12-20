@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ProyectoNET_DB.Info2017.Auxiliarmodules>
+
+@{
+    Layout = "~/Views/Shared/_CourseLayout.cshtml";
+}
+
+
+
+@foreach (var item in Model)
+{
+    <div style="padding-top: 20px">
+        <div class="col-12 ">
+            <div class="card-inf-gray text-white">
+                <div class="card-header-inf bg-inf-blue"><p class="lead m-0">@Html.DisplayFor(modelItem => item.Name)</p></div>
+                <div class="card-body-inf  text-dark">
+                    <div class="card-text">
+                        <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                        <h5>Profesores:</h5>
+                        @foreach (var teacher in item.Teacher)
+                        {
+                            <p class="mb-1">- @Html.DisplayFor(modelItem => teacher.Lastname) @Html.DisplayFor(modelItem => teacher.Firstname)</p>
+                        }
+
+                    </div>
+
+                    <a class="btn btn-inf btn-sm" asp-action="Details" asp-route-id="@item.IdModule">Ver Más</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

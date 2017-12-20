@@ -1,0 +1,60 @@
+﻿@model ProyectoNET_DB.Info2017.Evaluation
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_ModuleLayout.cshtml";
+}
+
+<div class="col-10 ">
+    <div class="card-inf my-3 ml-0">
+        <div class="card-header-inf bg-inf-blue h3 text-white">@ViewBag.title</div>
+        <div class="card-body-inf">
+
+            <ul class="nav nav-tabs card-header-tabs nav-fill px-2">
+                <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="Posts" asp-action="Index">Muro</a></li>
+                <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
+                <li class="nav-item"><a class="nav-link active-inf" asp-controller="Evaluations" asp-action="GetStudents">Instancias Evaluativas</a></li>
+            </ul>
+
+            <div class="card-body-inf bg-inf-gray">
+
+
+
+                <div class="card-inf mt-3">
+                    <div class="card-header-inf bg-inf-blue text-white ">
+                        <h6 class="mb-0">Nueva Instancia Evaluativa</h6>
+                    </div>
+                    <div class="card-body-inf p-3">
+                        <div class="form-group m-0">
+
+                            <form asp-action="Create">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <input type="Name" id="Title" placeholder="Nombre" asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                                <div class="form-group m-0">
+                                    <div class="row">
+                                        <div class="col-6 ">
+                                            <input type="submit" value="Create" class="btn btn-inf btn-sm btn-block mt-3" />
+                                        </div>
+
+                                        <div class="col-6 ">
+                                            <button asp-action="Index" class="btn btn-inf btn-sm btn-block mt-3">Cancelar</button>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
