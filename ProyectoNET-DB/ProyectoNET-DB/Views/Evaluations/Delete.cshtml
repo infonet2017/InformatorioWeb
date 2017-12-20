@@ -13,7 +13,7 @@
                         <ul class="nav nav-tabs card-header-tabs">
                             <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="Posts" asp-action="Index">Muro</a></li>
                             <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
-                            <li class="nav-item"><a class="nav-link active-inf" asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
+                            <li class="nav-item"><a class="nav-link active-inf" asp-controller="Evaluations" asp-action="GetStudents">Instancias Evaluativas</a></li>
                         </ul>
                     </div>
                         <div class="card-body-inf bg-inf-gray">
@@ -23,7 +23,7 @@
                             <div class="card-inf mt-3">
                                 <div class="card-header-inf bg-inf-blue text-white ">
 
-                                    <h4 class="text-center">¿Está Seguro que desea eliminar la siguiente Publicación?</h4>
+                                    <h4 class="text-center">¿Está Seguro de que desea eliminar la siguiente instancia evaluativa?</h4>
                                 </div>
                                 <div class="card-body-inf p-3">
                                     <div>
@@ -49,17 +49,15 @@
 
                                         @foreach (var feedback in Model.Feedback)
                                         {
-
                                             <div id="feed-@feedback.Idfeedback">
                                                 <div class="row" style="padding-bottom:10px">
                                                     <div class="col-12">
                                                         <div class="card-inf bg-inf-gray">
+
                                                             <div class="card-header-inf bg-inf-blue lead text-white">
-
-
                                                                 <div class="row">
                                                                     <div class="col-10 ">
-                                                                        <a style="padding-left:5px">@Html.DisplayFor(modelItem => feedback.IdStudentNavigation.FirstName) @Html.DisplayFor(modelItem => feedback.IdStudentNavigation.LastName)</a>
+                                                                        <a style="padding-left:5px">@Html.DisplayFor(modelItem => feedback.NameStudent)</a>
                                                                     </div>
 
                                                                     <div class="col-2 text-lg-right">
@@ -68,17 +66,15 @@
 
                                                                 </div>
                                                             </div>
+
                                                             <div class="card-body-inf">
-
                                                                 <p id="feed-description-l">@Html.DisplayFor(modelItem => feedback.Description) </p>
-
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
-                                        }
+                                         }
 
                                         <form asp-action="Delete">
 

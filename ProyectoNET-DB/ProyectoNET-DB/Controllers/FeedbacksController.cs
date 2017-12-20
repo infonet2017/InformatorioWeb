@@ -25,7 +25,7 @@ namespace ProyectoNET_DB.Controllers
         }
 
         // GET: Feedbacks/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
             if (id == null)
             {
@@ -65,7 +65,7 @@ namespace ProyectoNET_DB.Controllers
         }
 
         // GET: Feedbacks/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
             if (id == null)
             {
@@ -122,7 +122,7 @@ namespace ProyectoNET_DB.Controllers
         }
 
         // GET: Feedbacks/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (id == null)
             {

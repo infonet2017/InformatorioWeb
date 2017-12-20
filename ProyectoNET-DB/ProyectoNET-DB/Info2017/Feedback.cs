@@ -9,9 +9,9 @@ namespace ProyectoNET_DB.Info2017
         public string Description { get; set; }
         public int IdEvaluation { get; set; }
         public int IdStudent { get; set; }
-        public int? Note { get; set; }
+        public int Note { get; set; }
+        public string NameStudent { get; set; }
 
         public Evaluation IdEvaluationNavigation { get; set; }
-        public UsuarioUsers IdStudentNavigation { get; set; }
     }
 }

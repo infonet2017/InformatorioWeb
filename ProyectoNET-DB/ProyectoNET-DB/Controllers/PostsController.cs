@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProyectoNET_DB.Info2017;
+using ProyectoNET_DB.Extra_Models;
 
 namespace ProyectoNET_DB.Controllers
 {
@@ -23,10 +24,21 @@ namespace ProyectoNET_DB.Controllers
     // GET: Posts/Module
     public async Task<IActionResult> Index()
         {
-            var Modulo = _context.Actualmodule.FirstOrDefault();
-            ViewBag.title = _context.Auxiliarmodules.Single(p => p.IdModule == Modulo.ActualModule).Name;
+            var module = _context.Actualmodule.FirstOrDefault();
 
-            List<Post> post = await _context.Post.Where(m => m.IdModule == Modulo.ActualModule).ToListAsync();
+            UserData user = new UserData
+            {
+                FirstName = module.FirstName,
+                LastName = module.LastName,
+                Dni = module.Dni,
+                Email = module.Email
+            };
+
+            ViewBag.user = user;
+
+            ViewBag.title = _context.Auxiliarmodules.Single(p => p.IdModule == module.ActualModule).Name;
+
+            List<Post> post = await _context.Post.Where(m => m.IdModule == module.ActualModule).ToListAsync();
             return View(post);
         }
         
@@ -35,8 +47,19 @@ namespace ProyectoNET_DB.Controllers
         public IActionResult Create()
         {
 
-            var Modulo = _context.Actualmodule.FirstOrDefault();
-            ViewBag.title = _context.Auxiliarmodules.Single(p => p.IdModule == Modulo.ActualModule).Name;
+            var module = _context.Actualmodule.FirstOrDefault();
+
+            UserData user = new UserData
+            {
+                FirstName = module.FirstName,
+                LastName = module.LastName,
+                Dni = module.Dni,
+                Email = module.Email
+            };
+
+            ViewBag.user = user;
+
+            ViewBag.title = _context.Auxiliarmodules.Single(p => p.IdModule == module.ActualModule).Name;
 
             return View();
         }
@@ -63,11 +86,21 @@ namespace ProyectoNET_DB.Controllers
         }
 
         // GET: Posts/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
+            var module = _context.Actualmodule.FirstOrDefault();
 
-            var Modulo = _context.Actualmodule.FirstOrDefault();
-            ViewBag.title = _context.Auxiliarmodules.Single(p => p.IdModule == Modulo.ActualModule).Name;
+            UserData user = new UserData
+            {
+                FirstName = module.FirstName,
+                LastName = module.LastName,
+                Dni = module.Dni,
+                Email = module.Email
+            };
+
+            ViewBag.user = user;
+            
+            ViewBag.title = _context.Auxiliarmodules.Single(p => p.IdModule == module.ActualModule).Name;
 
             if (id == null)
             {
@@ -124,11 +157,22 @@ namespace ProyectoNET_DB.Controllers
         }
 
         // GET: Posts/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
 
-            var Modulo = _context.Actualmodule.FirstOrDefault();
-            ViewBag.title = _context.Auxiliarmodules.Single(p => p.IdModule == Modulo.ActualModule).Name;
+            var module = _context.Actualmodule.FirstOrDefault();
+
+            UserData user = new UserData
+            {
+                FirstName = module.FirstName,
+                LastName = module.LastName,
+                Dni = module.Dni,
+                Email = module.Email
+            };
+
+            ViewBag.user = user;
+
+            ViewBag.title = _context.Auxiliarmodules.Single(p => p.IdModule == module.ActualModule).Name;
             if (id == null)
             {
                 return NotFound();

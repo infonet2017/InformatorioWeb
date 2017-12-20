@@ -8,7 +8,6 @@ namespace ProyectoNET_DB.Info2017
         public UsuarioUsers()
         {
             Evaluation = new HashSet<Evaluation>();
-            Feedback = new HashSet<Feedback>();
             Filedescription = new HashSet<Filedescription>();
             Post = new HashSet<Post>();
         }
@@ -24,15 +23,14 @@ namespace ProyectoNET_DB.Info2017
         public Boolean IsStaff { get; set; }
         public Boolean IsActive { get; set; }
         public DateTime DateJoined { get; set; }
-        public int? Dni { get; set; }
+        public int Dni { get; set; }
         public long? Phone { get; set; }
         public string Address { get; set; }
-        public int? IdLocality { get; set; }
-        public int? IdRol { get; set; }
+        public int IdLocality { get; set; }
+        public int IdRol { get; set; }
         public string Image { get; set; }
 
         public ICollection<Evaluation> Evaluation { get; set; }
-        public ICollection<Feedback> Feedback { get; set; }
         public ICollection<Filedescription> Filedescription { get; set; }
         public ICollection<Post> Post { get; set; }
     }

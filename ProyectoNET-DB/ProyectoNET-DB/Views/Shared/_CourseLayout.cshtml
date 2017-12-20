@@ -43,21 +43,15 @@
                 <div class="row p-0 m-3">
                     <div class="col-12 btn btn-sm btn-inf mb-3">Ver Cursos</div>
                     <ul class="list-unstyled col-12 p-0">
-                        @*<li class="h6">{{user.first_name}}, {{user.last_name}}</li>
-                        <li><small>{{user.birth_date}}</small></li>
-                        <li><small>{{user.dni}}</small></li>
-                        <li><small>{{user.address}}</small></li>
-                        <li><small>{{user.id_locality}}</small></li>
-                        <li><small>{{user.email}}</small></li>*@
+                        <li class="h6">@ViewBag.user.LastName @ViewBag.user.FirstName </li>
+                        <li><small>@ViewBag.user.Dni</small></li>
+                        <li><small>@ViewBag.user.Email</small></li>
                         <li><h6><a href="http://192.168.42.27:8000/Usuarios/editardatos/{id_user}">Editar Datos</a></h6></li>
                     </ul>
 
-                    {% if user.tipoUsuario == '1' %}<!--COMO ADMIN-->
                     <ul class="list-unstyled col-12 p-0">
-                        <li class="h6">ADMIN PANEL</li>
                         <li><small><a href="http://192.168.42.27:8000/Cursos/CursosActuales/{is_user}">VER CURSOS</a></small></li>
                     </ul>
-                    {%endif%}
                 </div>
             </div>
             <div class="col-10 ">

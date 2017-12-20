@@ -10,7 +10,8 @@ namespace ProyectoNET_DB.Info2017
         public int IdTeacher { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int? Dni { get; set; }
+        public int Dni { get; set; }
         public string Email { get; set; }
+        public string NameCourse { get; set; }
     }
 }

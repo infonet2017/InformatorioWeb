@@ -19,7 +19,7 @@
 
                     <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="Posts" asp-action="Index">Muro</a></li>
                     <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
-                    <li class="nav-item"><a class="nav-link active-inf" asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
+                    <li class="nav-item"><a class="nav-link active-inf" asp-controller="Evaluations" asp-action="GetStudents">Instancias Evaluativas</a></li>
 
 
 
@@ -53,102 +53,95 @@
 
                                 </div>
 
-                                    <div style="background-color: white;">
-                                        <div class="card-body-inf  text-dark">
-                                            <div class="card-text">
+                                <div style="background-color: white;">
+                                    <div class="card-body-inf  text-dark">
+                                        <div class="card-text">
 
-                                                @foreach (var feedback in item.Feedback)
-                                                {
+                                            @foreach (var feedback in item.Feedback)
+                                            {
 
-                                                    <div id="feed-@feedback.Idfeedback">
-                                                        <div class="row" style="padding-bottom:10px">
-                                                            <div class="col-12">
-                                                                <div class="card-inf bg-inf-gray">
-                                                                    <div class="card-header-inf bg-inf-blue lead text-white">
-
-
-                                                                        <div class="row">
-                                                                            <div class="col-10 ">
-                                                                                <a style="padding-left:5px">@Html.DisplayFor(modelItem => feedback.IdStudentNavigation.FirstName) @Html.DisplayFor(modelItem => feedback.IdStudentNavigation.LastName)</a>
-                                                                                <a id="feed-edit">
-                                                                                    <button id="feed-editbutton" onclick="toggleEdit(@feedback.Idfeedback)" class="fas fa-pencil-alt btn btn-inf text-white"></button>
-                                                                                </a>
-                                                                            </div>
-
-                                                                            <div class="col-2 text-lg-right">
+                                                <div id="feed-@feedback.Idfeedback">
+                                                    <div class="row" style="padding-bottom:10px">
+                                                        <div class="col-12">
+                                                            <div class="card-inf bg-inf-gray">
+                                                                <div class="card-header-inf bg-inf-blue lead text-white">
 
 
-                                                                                <p id="feed-note-l">Nota: @Html.DisplayFor(modelItem => feedback.Note)</p>
-
-                                                                            </div>
+                                                                    <div class="row">
+                                                                        <div class="col-10 ">
+                                                                            <a style="padding-left:5px">@Html.DisplayFor(modelItem => feedback.NameStudent)</a>
+                                                                            <a id="feed-edit">
+                                                                                <button id="feed-editbutton" onclick="toggleEdit(@feedback.Idfeedback)" class="fas fa-pencil-alt btn btn-inf text-white"></button>
+                                                                            </a>
                                                                         </div>
 
+                                                                        <div class="col-2 text-lg-right">
 
 
+                                                                            <p id="feed-note-l">Nota: @Html.DisplayFor(modelItem => feedback.Note)</p>
 
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="card-body-inf">
 
 
 
-                                                                        <p id="feed-description-l">@Html.DisplayFor(modelItem => feedback.Description) </p>
 
-                                                                        <textarea rows="3" placeholder="@Html.DisplayFor(modelItem => feedback.Description)" class="form-control" style="display:none;margin-bottom:5px" name="description" id="feed-description" value="@Html.DisplayFor(modelItem => feedback.Description)"></textarea>
-
-                                                                        <select id="feed-note" value="@Html.DisplayFor(modelItem => feedback.Note)" style="display:none;margin-bottom:10px" class="form-control">
-                                                                            <option>1</option>
-                                                                            <option>2</option>
-                                                                            <option>3</option>
-                                                                            <option>4</option>
-                                                                            <option>5</option>
-                                                                            <option>6</option>
-                                                                            <option>7</option>
-                                                                            <option>8</option>
-                                                                            <option>9</option>
-                                                                            <option>10</option>
-                                                                        </select>
+                                                                </div>
+                                                                <div class="card-body-inf">
 
 
-                                                                        <p>
 
-                                                                        </p>
+                                                                    <p id="feed-description-l">@Html.DisplayFor(modelItem => feedback.Description) </p>
 
-                                                                        <div class="row" id="feed-save" style="display:none">
-                                                                            <div class="col-6 ">
-                                                                                <button id="feed-savebutton" onclick="editFeedback(@feedback.Idfeedback)" class="btn btn-inf btn-sm btn-block mt-3">Guardar</button>
-                                                                            </div>
+                                                                    <textarea rows="3" placeholder="@Html.DisplayFor(modelItem => feedback.Description)" class="form-control" style="display:none;margin-bottom:5px" name="description" id="feed-description" value="@Html.DisplayFor(modelItem => feedback.Description)"></textarea>
 
-                                                                            <div class="col-6 ">
-                                                                                <button onclick="toggleEdit(@feedback.Idfeedback)" class="btn btn-inf btn-sm btn-block mt-3">Cancelar</button>
+                                                                    <select id="feed-note" value="@Html.DisplayFor(modelItem => feedback.Note)" style="display:none;margin-bottom:10px" class="form-control">
+                                                                        <option>1</option>
+                                                                        <option>2</option>
+                                                                        <option>3</option>
+                                                                        <option>4</option>
+                                                                        <option>5</option>
+                                                                        <option>6</option>
+                                                                        <option>7</option>
+                                                                        <option>8</option>
+                                                                        <option>9</option>
+                                                                        <option>10</option>
+                                                                    </select>
 
-                                                                            </div>
+
+                                                                    <p>
+
+                                                                    </p>
+
+                                                                    <div class="row" id="feed-save" style="display:none">
+                                                                        <div class="col-6 ">
+                                                                            <button id="feed-savebutton" onclick="editFeedback(@feedback.Idfeedback)" class="btn btn-inf btn-sm btn-block mt-3">Guardar</button>
+                                                                        </div>
+
+                                                                        <div class="col-6 ">
+                                                                            <button onclick="toggleEdit(@feedback.Idfeedback)" class="btn btn-inf btn-sm btn-block mt-3">Cancelar</button>
+
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                     </div>
-                                                }
 
+                                                </div>
+                                            }
 
-                                            </div>
 
                                         </div>
+
                                     </div>
-
-
-
                                 </div>
-
+                            </div>
                         </div>
-
                     }
                 </div>
-        </div>
-
-    </div>
-</div>
             </div>
 
+        </div>
+    </div>
 </div>

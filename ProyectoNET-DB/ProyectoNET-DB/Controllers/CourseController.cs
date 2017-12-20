@@ -13,6 +13,7 @@ using ProyectoNET_DB.Models.RestModels;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace ProyectoNET_DB.Controllers
 {
@@ -20,15 +21,33 @@ namespace ProyectoNET_DB.Controllers
     {
         private readonly info2017Context _context;
 
-        public CourseController(info2017Context context)
+        private readonly ISession _session;
+
+        public CourseController(info2017Context context, IHttpContextAccessor httpContextAccessor)
         {
+            _session = httpContextAccessor.HttpContext.Session;
             _context = context;
         }
 
         // GET: Modules
         public async Task<IActionResult> Index()
         {
-            ViewBag.Title = "Informatorio";
+
+
+            var module = _context.Actualmodule.FirstOrDefault();
+
+            UserData user = new UserData
+            {
+                FirstName = module.FirstName,
+                LastName = module.LastName,
+                Dni = module.Dni,
+                Email = module.Email
+            };
+
+            ViewBag.user = user;
+
+            ViewBag.Title = module.NameCourse;
+
             List<Auxiliarmodules> Modulos = await _context.Auxiliarmodules.Include("Teacher").ToListAsync();
 
             return View(Modulos);
@@ -94,8 +113,9 @@ namespace ProyectoNET_DB.Controllers
 
         //GET: Course/Modules
         [HttpPost]
-        public async Task<ActionResult> Modules([FromBody] CourseResponse courseResponse)
+        public async Task<ActionResult> Modules([Bind("id_course,name,id_user,first_name,last_name,dni,email")] CourseResponse courseResponse)
         {
+
             var fakeResponse = LoadModulesAsync(courseResponse).Result;//cargo el jotason desde un archivo para simular la request a la api rancia del equipo de django
 
             var task = ModuleMappingAsync(fakeResponse);
@@ -112,11 +132,6 @@ namespace ProyectoNET_DB.Controllers
             if (_context.Teacher.Any())
             {
                 _context.Database.ExecuteSqlCommand("TRUNCATE TABLE teacher");
-            }
-
-            if (_context.Student.Any())
-            {
-                _context.Database.ExecuteSqlCommand("TRUNCATE TABLE student");
             }
 
             if (_context.Auxiliarmodules.Any())
@@ -149,16 +164,13 @@ namespace ProyectoNET_DB.Controllers
 
             }
 
-
-
-
             return modules;
         }
 
         [HttpPost]
         public async Task<ModuleResponse> LoadModulesAsync([FromBody] CourseResponse course)
         {
-            var Url = "http://www.mocky.io/v2/5a3886d33200003e35eb6c77";
+            var Url = "http://www.mocky.io/v2/5a3939e63700005617fd2f71";
 
             string data;
 
@@ -169,14 +181,17 @@ namespace ProyectoNET_DB.Controllers
 
             var Actualmodule = new Actualmodule
             {
-
+           
                 IdTeacher = course.id_user,
                 FirstName = course.first_name,
                 LastName = course.last_name,
                 Dni = course.dni,
                 Email = course.email,
+                NameCourse = course.name
 
             };
+
+            //UserData user = new UserData
 
             _context.Actualmodule.Add(Actualmodule);
 
@@ -207,28 +222,11 @@ namespace ProyectoNET_DB.Controllers
             return JsonConvert.DeserializeObject<ModuleResponse>(data);
         }
 
-        [HttpPost]
-        public string ProudModulesAsync([FromBody] CourseResponse course)
-        {
-
-            return JsonConvert.SerializeObject(course);
-        }
-
-
-        //public ModuleResponse LoadModules(int idAlumno, int idCurso)
+        //[HttpPost]
+        //public string ProudModulesAsync([FromBody] CourseResponse course)
         //{
-        //    var client = new RestClient("http://example.com");
-        //    // client.Authenticator = new HttpBasicAuthenticator(username, password);
 
-        //    var request = new RestRequest("modulo/", Method.GET);
-        //    request.AddParameter("IDAlumno", idAlumno); // adds to POST or URL querystring based on Method
-        //    request.AddParameter("IDCurso", idCurso);
-        //    // or automatically deserialize result
-        //    // return content type is sniffed but can be explicitly set via RestClient.AddHandler();
-        //    RestResponse<ModuleResponse> response2 = client.Execute<ModuleResponse>(request);
-        //    // var name = response2.Data.Name;
-        //    return algo
-
+        //    return JsonConvert.SerializeObject(course);
         //}
 
     }

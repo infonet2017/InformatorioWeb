@@ -10,8 +10,8 @@
         //data: { Description: description, ID: id, Note: note },
         //data: "Description="+description+"&ID="+id+"&Note="+note ,
         contentType: "application/json; charset=utf-8",
-        dataType: "json",
-    })
+        dataType: "json"
+    });
 
     $("#feed-" + id + " #feed-description").toggle();
     $("#feed-" + id + " #feed-note").toggle();

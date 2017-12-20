@@ -15,7 +15,7 @@ namespace ProyectoNET_DB.Info2017
         public DateTime DateEvaluation { get; set; }
         public string Name { get; set; }
         public bool IsDeleted { get; set; }
-        public int? IdTeacher { get; set; }
+        public int IdTeacher { get; set; }
 
         public Modules IdModuleNavigation { get; set; }
         public UsuarioUsers IdTeacherNavigation { get; set; }

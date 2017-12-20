@@ -12,7 +12,7 @@ namespace ProyectoNET_DB.Extra_Models
         public DateTime UpdatedTimestamp { get; set; }
         public List<string> ContentTypes { get; set; }
 
-        public virtual int? idModule { get; set; }
+        public virtual int idModule { get; set; }
         public virtual Teacher Teacher { get; set; }
     }
 }

@@ -61,6 +61,10 @@ namespace ProyectoNET_DB.Info2017
                 entity.Property(e => e.LastName)
                     .HasColumnName("last_name")
                     .HasMaxLength(45);
+
+                entity.Property(e => e.NameCourse)
+                    .HasColumnName("nameCourse")
+                    .HasMaxLength(45);
             });
 
             modelBuilder.Entity<Auxiliarmodules>(entity =>
@@ -145,9 +149,6 @@ namespace ProyectoNET_DB.Info2017
                 entity.HasIndex(e => e.IdEvaluation)
                     .HasName("fk_feedback_evaluation1_idx");
 
-                entity.HasIndex(e => e.IdStudent)
-                    .HasName("fk_feedback_userStudent_idx");
-
                 entity.Property(e => e.Idfeedback)
                     .HasColumnName("idfeedback")
                     .HasColumnType("int(11)");
@@ -162,6 +163,10 @@ namespace ProyectoNET_DB.Info2017
                     .HasColumnName("idStudent")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.NameStudent)
+                    .HasColumnName("nameStudent")
+                    .HasMaxLength(45);
+
                 entity.Property(e => e.Note)
                     .HasColumnName("note")
                     .HasColumnType("int(11)");
@@ -169,14 +174,7 @@ namespace ProyectoNET_DB.Info2017
                 entity.HasOne(d => d.IdEvaluationNavigation)
                     .WithMany(p => p.Feedback)
                     .HasForeignKey(d => d.IdEvaluation)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("fk_feedback_evaluation1");
-
-                entity.HasOne(d => d.IdStudentNavigation)
-                    .WithMany(p => p.Feedback)
-                    .HasForeignKey(d => d.IdStudent)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("fk_feedback_student");
             });
 
             modelBuilder.Entity<Filedescription>(entity =>

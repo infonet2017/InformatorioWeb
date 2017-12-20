@@ -25,29 +25,61 @@ namespace ProyectoNET_DB.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var Modulo = _context.Actualmodule.FirstOrDefault();
-            ViewBag.title = _context.Auxiliarmodules.Single(p => p.IdModule == Modulo.ActualModule).Name;
+            var module = _context.Actualmodule.FirstOrDefault();
 
-            List<Filedescription> Files = await _context.Filedescription.Where(m => m.IdModule == Modulo.ActualModule & m.IsDeleted==false).ToListAsync();
+            UserData user = new UserData
+            {
+                FirstName = module.FirstName,
+                LastName = module.LastName,
+                Dni = module.Dni,
+                Email = module.Email
+            };
+
+            ViewBag.user = user;
+
+            ViewBag.title = _context.Auxiliarmodules.Single(p => p.IdModule == module.ActualModule).Name;
+
+            List<Filedescription> Files = await _context.Filedescription.Where(m => m.IdModule == module.ActualModule & m.IsDeleted==false).ToListAsync();
 
             return View(Files);
         }
 
         public ActionResult AgregarArchivos()
         {
+            var module = _context.Actualmodule.FirstOrDefault();
 
-            var Modulo = _context.Actualmodule.FirstOrDefault();
-            ViewBag.title = _context.Auxiliarmodules.Single(p => p.IdModule == Modulo.ActualModule).Name;
+            UserData user = new UserData
+            {
+                FirstName = module.FirstName,
+                LastName = module.LastName,
+                Dni = module.Dni,
+                Email = module.Email
+            };
+
+            ViewBag.user = user;
+            
+            ViewBag.title = _context.Auxiliarmodules.Single(p => p.IdModule == module.ActualModule).Name;
 
             return View();
         }
 
         [Route("delete/{id}")]
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
 
-            var Modulo = _context.Actualmodule.FirstOrDefault();
-            ViewBag.title = _context.Auxiliarmodules.Single(p => p.IdModule == Modulo.ActualModule).Name;
+            var module = _context.Actualmodule.FirstOrDefault();
+
+            UserData user = new UserData
+            {
+                FirstName = module.FirstName,
+                LastName = module.LastName,
+                Dni = module.Dni,
+                Email = module.Email
+            };
+
+            ViewBag.user = user;
+
+            ViewBag.title = _context.Auxiliarmodules.Single(p => p.IdModule == module.ActualModule).Name;
 
             if (id == null)
             {

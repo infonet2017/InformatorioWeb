@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProyectoNET_DB.Info2017;
+using ProyectoNET_DB.Extra_Models;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Text;
 
 namespace ProyectoNET_DB.Controllers
 {
@@ -23,18 +27,36 @@ namespace ProyectoNET_DB.Controllers
         {
             ViewBag.Title = "Informatorio";
 
-            var Modulo = _context.Actualmodule.FirstOrDefault();
-            List<Evaluation> Evaluation = await _context.Evaluation.Where(p => p.IdModule == Modulo.ActualModule & p.IsDeleted == false).ToListAsync();
-            foreach (var item in Evaluation)
+            var module = _context.Actualmodule.FirstOrDefault();
+
+            UserData user = new UserData
             {
-                item.Feedback = await _context.Feedback.Where(p => p.IdEvaluation == item.IdEvaluation).Include("IdStudentNavigation").ToListAsync();
-            }
+                FirstName = module.FirstName,
+                LastName = module.LastName,
+                Dni = module.Dni,
+                Email = module.Email
+            };
+
+            ViewBag.user = user;
+
+            List<Evaluation> Evaluation = await _context.Evaluation.Where(p => p.IdModule == module.ActualModule & p.IsDeleted == false).Include("Feedback").ToListAsync();
+
             return View(Evaluation);
         }
 
         // GET: Evaluations/Create
         public IActionResult Create()
         {
+            var module = _context.Actualmodule.FirstOrDefault();
+            UserData user = new UserData
+            {
+                FirstName = module.FirstName,
+                LastName = module.LastName,
+                Dni = module.Dni,
+                Email = module.Email
+            };
+
+            ViewBag.user = user;
             return View();
         }
 
@@ -45,29 +67,33 @@ namespace ProyectoNET_DB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Name,DateEvaluation")] Evaluation evaluation)
         {
-            evaluation.DateEvaluation = DateTime.Now;
-            var Modulo = _context.Actualmodule.FirstOrDefault();
+            var module = _context.Actualmodule.FirstOrDefault();
 
-            evaluation.IdModule = Modulo.ActualModule;
-            evaluation.IdModuleNavigation = _context.Modules.Single(p => p.Idmodule == Modulo.ActualModule);
+            _context.Database.ExecuteSqlCommand("SET FOREIGN_KEY_CHECKS=0");
+
+            evaluation.DateEvaluation = DateTime.Now;
+
+            evaluation.IdModule = module.ActualModule;
+            //evaluation.IdModuleNavigation = _context.Modules.Single(p => p.Idmodule == module.ActualModule);
             List<Student> Student = _context.Student.ToList();
-            evaluation.IdTeacher = Modulo.IdTeacher;
-            evaluation.IdTeacherNavigation = _context.UsuarioUsers.FirstOrDefault(p => p.Id == Modulo.IdTeacher);
+            evaluation.IdTeacher = module.IdTeacher;
+            evaluation.IdTeacherNavigation = _context.UsuarioUsers.FirstOrDefault(p => p.Id == module.IdTeacher);
             evaluation.IsDeleted = false;
             evaluation.Feedback = new List<Feedback>();
 
             foreach (var stu in Student)
             {
                 Feedback feed = new Feedback();
-                feed.IdStudent = stu.Idstudent;
+                feed.IdStudent = stu.IdUsuario;
                 feed.IdEvaluation = evaluation.IdEvaluation;
+                feed.NameStudent =_context.UsuarioUsers.FirstOrDefault(p => p.Id == stu.IdUsuario).FirstName + " " + _context.UsuarioUsers.FirstOrDefault(p => p.Id == stu.IdUsuario).LastName;
                 evaluation.Feedback.Add(feed);
 
             }
             
             if (ModelState.IsValid)
             {
-                _context.Update(evaluation);
+                _context.Add(evaluation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -77,8 +103,20 @@ namespace ProyectoNET_DB.Controllers
 
 
         // GET: Evaluations/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
+            var module = _context.Actualmodule.FirstOrDefault();
+
+            UserData user = new UserData
+            {
+                FirstName = module.FirstName,
+                LastName = module.LastName,
+                Dni = module.Dni,
+                Email = module.Email
+            };
+
+            ViewBag.user = user;
+
             if (id == null)
             {
                 return NotFound();
@@ -94,8 +132,20 @@ namespace ProyectoNET_DB.Controllers
         
 
         // GET: Evaluations/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
+            var module = _context.Actualmodule.FirstOrDefault();
+
+            UserData user = new UserData
+            {
+                FirstName = module.FirstName,
+                LastName = module.LastName,
+                Dni = module.Dni,
+                Email = module.Email
+            };
+
+            ViewBag.user = user;
+
             if (id == null)
             {
                 return NotFound();
@@ -128,6 +178,81 @@ namespace ProyectoNET_DB.Controllers
         private bool EvaluationExists(int id)
         {
             return _context.Evaluation.Any(e => e.IdEvaluation == id);
+        }
+
+
+        
+        public async Task<ActionResult> GetStudents()
+        {
+            int idModule = _context.Actualmodule.FirstOrDefault().IdActualModule;
+
+            var fakeResponse = LoadStudentsAsync(idModule);//cargo el jotason desde un archivo para simular la request a la api rancia del equipo de django
+
+            var task = StudentMappingAsync(fakeResponse.Result);
+
+            return RedirectToAction("Index", "Evaluations");
+        }
+
+
+
+        public async Task<List<Student>> StudentMappingAsync(StudentResponse restResult)
+        {
+            var modules = new List<Student>();
+
+            if (_context.Student.Any())
+            {
+                _context.Database.ExecuteSqlCommand("TRUNCATE TABLE student");
+            }
+
+
+            foreach (var respStu in restResult.Students)
+            {
+                Student newStu = new Student
+                {
+                    IdUsuario = respStu.user_iduser,
+                    Name = respStu.last_name + respStu.first_name
+                };
+
+
+                _context.Add(newStu);
+
+                _context.SaveChanges();
+
+            }
+
+            return modules;
+        }
+
+        [HttpPost]
+        public async Task<StudentResponse> LoadStudentsAsync(int idModule)
+        {
+            var Url = "http://www.mocky.io/v2/5a3a794731000082148e95ab";
+
+            //            var Url = "http://192.168.42.27/studentsJson";
+
+            string data;
+            
+            var StudentRequest = new StudentRequest
+            {
+                idModule = idModule
+            };
+
+            string Json = JsonConvert.SerializeObject(StudentRequest);
+
+            var request = new StringContent(Json, Encoding.UTF8, "application/json");
+
+            using (HttpClient client = new HttpClient())
+            {
+                using (HttpResponseMessage res = await client.PostAsync(Url, request))
+                {
+                    using (HttpContent content = res.Content)
+                    {
+                        data = await content.ReadAsStringAsync();
+                    }
+                }
+            }
+
+            return JsonConvert.DeserializeObject<StudentResponse>(data);
         }
     }
 }

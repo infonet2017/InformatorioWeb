@@ -1,6 +1,6 @@
 ﻿namespace ProyectoNET_DB.Models.RestModels
 {
-    public class DocenteRest
+    public class DocenteModel
     {
         public int ID { get;set; }
         public int idTeacher { get; set; }

@@ -17,7 +17,7 @@
 
                 <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="Posts" asp-action="Index">Muro</a></li>
                 <li class="nav-item"><a class="nav-link active-inf" asp-controller="FileClient" asp-action="Index">Materiales</a></li>
-                <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="Evaluations" asp-action="Index">Instancias Evaluativas</a></li>
+                <li class="nav-item"><a class="nav-link inactive-inf text-white" asp-controller="Evaluations" asp-action="GetStudents">Instancias Evaluativas</a></li>
             </ul>
 
             <div class="card-body-inf bg-inf-gray">
@@ -27,7 +27,7 @@
                 <div class="card-inf mt-3">
                     <div class="card-header-inf bg-inf-blue text-white ">
 
-                        <h4 class="text-center">¿Está Seguro que desea eliminar la siguiente Publicación?</h4>
+                        <h4 class="text-center">¿Está Seguro de que desea eliminar el siguiente Material?</h4>
                     </div>
                     <div class="card-body-inf p-3">
                         <div>
@@ -60,9 +60,20 @@
                             </dl>
 
                             <form asp-action="Delete">
-                                <input type="hidden" asp-for="IdfileDescription" />
-                                <input type="submit" value="Eliminar" class="btn btn-inf btn-sm mb-3" />
-                                <a asp-action="Index" class="btn btn-inf btn-sm mb-3">Cancelar</a>
+
+                                <div class="row">
+                                    <div class="col-6 ">
+
+                                        <input type="hidden" asp-for="IdfileDescription" />
+                                        <input type="submit" value="Eliminar" class="btn btn-inf btn-sm btn-block mt-3" />
+                                    </div>
+
+                                    <div class="col-6 ">
+
+                                        <a asp-action="Index" class="btn btn-inf btn-sm btn-block mt-3">Cancelar</a>
+
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>

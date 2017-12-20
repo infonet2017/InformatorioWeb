@@ -10,6 +10,6 @@ namespace ProyectoNET_DB.Models.RestModels
         public int ID { get; set; }
         public int idCourse { get; set; }
 
-        public List<ModuleRest> modules { get; set; }
+        public List<ModuleModel> modules { get; set; }
     }
 }
